@@ -8,6 +8,8 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
 
+    public float distanceToSee;
+
     private Transform _selection;
     private void Update() {
         if (_selection != null) {
@@ -19,7 +21,7 @@ public class SelectionManager : MonoBehaviour
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit, distanceToSee)) {
             var selection = hit.transform;
             if (selection.CompareTag(interactTag)) {
                 var selectionRenderer = selection.GetComponent<Renderer>();
@@ -27,6 +29,9 @@ public class SelectionManager : MonoBehaviour
                     selectionRenderer.material = highlightMaterial;
                 }
                 _selection = selection;
+                if (Input.GetKeyDown(KeyCode.E)) {
+                    Debug.Log("Hit " + hit.collider.gameObject.GetComponent<Interactable>().id);
+                }
             }
         }
     }
