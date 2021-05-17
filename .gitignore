@@ -1,4 +1,5 @@
 InteractiveLab/Temp/UnityLockfile
-InteractiveLab/Assets/Scripts/SelectionManager.cs
-InteractiveLab/Library/SourceAssetDB
-/[Tt]emp/
+[Tt]emp/
+obj/
+UnityTempFile/
+InteractiveLab/Library/*
