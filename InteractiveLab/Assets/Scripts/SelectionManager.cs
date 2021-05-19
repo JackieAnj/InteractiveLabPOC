@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -10,12 +11,19 @@ public class SelectionManager : MonoBehaviour
 
     public float distanceToSee;
 
+    public Text interactCaption;
+
     private Transform _selection;
+
+    private void Start() {
+        interactCaption.text = "";
+    }
     private void Update() {
         if (_selection != null) {
             var selectionRenderer = _selection.GetComponent<Renderer>();
             selectionRenderer.material = defaultMaterial;
             _selection = null;
+            interactCaption.text = "";
         }
 
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -29,8 +37,13 @@ public class SelectionManager : MonoBehaviour
                     selectionRenderer.material = highlightMaterial;
                 }
                 _selection = selection;
+
+                interactCaption.text = "Interact " + hit.collider.gameObject.GetComponent<Interactable>().id + " [E]";
+
                 if (Input.GetKeyDown(KeyCode.E)) {
-                    Debug.Log("Hit " + hit.collider.gameObject.GetComponent<Interactable>().id);
+                    var target = hit.collider.gameObject.GetComponent<Interactable>();
+                    Debug.Log("Hit " + target.id);
+                    target.open = !target.open;
                 }
             }
         }

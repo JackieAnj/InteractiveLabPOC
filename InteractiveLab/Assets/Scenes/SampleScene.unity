@@ -326,6 +326,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1848217528}
+  - {fileID: 1570280590}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1539,6 +1540,84 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.000002, y: 15.5141945, z: 2.0369802}
   m_Center: {x: -24.648449, y: 221.89442, z: 8.4270115}
+--- !u!1 &1570280589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1570280590}
+  - component: {fileID: 1570280592}
+  - component: {fileID: 1570280591}
+  m_Layer: 5
+  m_Name: InteractCaption
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1570280590
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570280589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 184068687}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -265}
+  m_SizeDelta: {x: 500, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1570280591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570280589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Interact [E]
+--- !u!222 &1570280592
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570280589}
+  m_CullTransparentMesh: 0
 --- !u!1 &1627276499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6990195581905717039, guid: 8016dd0f6f6dcf24983cd487c0af4775,
@@ -1697,19 +1776,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5661929412556663974}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1754175917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754175916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee8413d557f180408c05fa99fe60aa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: V121
 --- !u!65 &1754175920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1723,6 +1789,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7, y: 10.000002, z: 16.000002}
   m_Center: {x: 44.273655, y: 229.68596, z: 31.24044}
+--- !u!114 &1754175921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754175916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee8413d557f180408c05fa99fe60aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: V121
+  open: 0
 --- !u!1 &1798516522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 70287737292028969, guid: 8016dd0f6f6dcf24983cd487c0af4775,
@@ -2242,6 +2322,7 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: 0fe4b1527d4123740b400b9ee37de98d, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 773068fe7fdeb984190565aa2d4c247b, type: 2}
   distanceToSee: 300
+  interactCaption: {fileID: 1570280591}
 --- !u!4 &2128209334
 Transform:
   m_ObjectHideFlags: 0

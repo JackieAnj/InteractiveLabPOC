@@ -5,4 +5,5 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public string id;
+    public bool open;
 }
