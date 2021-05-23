@@ -38,12 +38,18 @@ public class SelectionManager : MonoBehaviour
                 }
                 _selection = selection;
 
-                interactCaption.text = "Interact " + hit.collider.gameObject.GetComponent<Interactable>().id + " [E]";
+                var action = "";
+                if (hit.collider.gameObject.GetComponent<Interactable>().closed) {
+                    action = "Open ";
+                } else {
+                    action = "Close ";
+                }
+                interactCaption.text = action + hit.collider.gameObject.GetComponent<Interactable>().id + " [E]";
 
                 if (Input.GetKeyDown(KeyCode.E)) {
                     var target = hit.collider.gameObject.GetComponent<Interactable>();
                     Debug.Log("Hit " + target.id);
-                    target.open = !target.open;
+                    target.closed = !target.closed;
                 }
             }
         }
