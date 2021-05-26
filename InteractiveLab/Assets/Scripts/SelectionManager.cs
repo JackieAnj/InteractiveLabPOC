@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
-    [SerializeField] private string interactTag = "interactable";
+    [SerializeField] private string twoWayValveTag = "TwoWayValve";
+    [SerializeField] private string threeWayValveTag = "ThreeWayValve";
+    [SerializeField] private string circleValveTag = "CircleValve";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
 
@@ -15,9 +17,11 @@ public class SelectionManager : MonoBehaviour
     public Image captionBackground;
 
     private Transform _selection;
+    private GameObject system;
 
     private void Start() {
         interactCaption.text = "";
+        system = GameObject.FindWithTag("System");
     }
     private void Update() {
         if (_selection != null) {
@@ -33,7 +37,8 @@ public class SelectionManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, distanceToSee)) {
             var selection = hit.transform;
-            if (selection.CompareTag(interactTag)) {
+
+            if (selection.CompareTag(twoWayValveTag)) {
                 var selectionRenderer = selection.GetComponent<Renderer>();
                 if (selectionRenderer != null) {
                     selectionRenderer.material = highlightMaterial;
@@ -41,18 +46,73 @@ public class SelectionManager : MonoBehaviour
                 _selection = selection;
 
                 var action = "";
-                if (hit.collider.gameObject.GetComponent<Interactable>().closed) {
+                if (hit.collider.gameObject.GetComponent<TwoWayValve>().closed) {
                     action = "Open ";
                 } else {
                     action = "Close ";
                 }
-                interactCaption.text = action + hit.collider.gameObject.GetComponent<Interactable>().id + " [E]";
+                interactCaption.text = action + hit.collider.gameObject.GetComponent<TwoWayValve>().id + " [E]";
                 captionBackground.enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.E)) {
-                    var target = hit.collider.gameObject.GetComponent<Interactable>();
+                    var target = hit.collider.gameObject.GetComponent<TwoWayValve>();
                     Debug.Log("Hit " + target.id);
-                    target.closed = !target.closed;
+                    target.TurnValve();
+                    var valves = system.GetComponent<SystemState>().twoWayValves;
+                    foreach(var v in valves)
+                    {
+                        if (v.id == target.id) {
+                            v.open = !target.closed;
+                        }
+                    }
+                }
+            }
+
+            if (selection.CompareTag(threeWayValveTag)) {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null) {
+                    selectionRenderer.material = highlightMaterial;
+                }
+                _selection = selection;
+
+                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + " [E]";
+                captionBackground.enabled = true;
+
+                if (Input.GetKeyDown(KeyCode.E)) {
+                    var target = hit.collider.gameObject.GetComponent<ThreeWayValve>();
+                    Debug.Log("Hit " + target.id);
+                    target.TurnValve();
+                    var valves = system.GetComponent<SystemState>().threeWayValves;
+                    foreach(var v in valves)
+                    {
+                        if (v.id == target.id) {
+                            v.position = target.position;
+                        }
+                    }
+                }
+            }
+
+            if (selection.CompareTag(circleValveTag)) {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null) {
+                    selectionRenderer.material = highlightMaterial;
+                }
+                _selection = selection;
+
+                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<CircleValve>().id + " [E]";
+                captionBackground.enabled = true;
+
+                if (Input.GetKeyDown(KeyCode.E)) {
+                    var target = hit.collider.gameObject.GetComponent<CircleValve>();
+                    Debug.Log("Hit " + target.id);
+                    target.TurnValve();
+                    var valves = system.GetComponent<SystemState>().twoWayValves;
+                    foreach(var v in valves)
+                    {
+                        if (v.id == target.id) {
+                            v.open = !target.closed;
+                        }
+                    }
                 }
             }
         }
