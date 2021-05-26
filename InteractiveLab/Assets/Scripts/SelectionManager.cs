@@ -12,6 +12,7 @@ public class SelectionManager : MonoBehaviour
     public float distanceToSee;
 
     public Text interactCaption;
+    public Image captionBackground;
 
     private Transform _selection;
 
@@ -24,6 +25,7 @@ public class SelectionManager : MonoBehaviour
             selectionRenderer.material = defaultMaterial;
             _selection = null;
             interactCaption.text = "";
+            captionBackground.enabled = false;
         }
 
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -45,6 +47,7 @@ public class SelectionManager : MonoBehaviour
                     action = "Close ";
                 }
                 interactCaption.text = action + hit.collider.gameObject.GetComponent<Interactable>().id + " [E]";
+                captionBackground.enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.E)) {
                     var target = hit.collider.gameObject.GetComponent<Interactable>();
