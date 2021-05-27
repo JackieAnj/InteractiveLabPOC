@@ -9,6 +9,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private string threeWayValveTag = "ThreeWayValve";
     [SerializeField] private string circleValveTag = "CircleValve";
     [SerializeField] private string condensationTrapTag = "CondensationTrap";
+    [SerializeField] private string PRVTag = "PRV";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
 
@@ -67,11 +68,12 @@ public class SelectionManager : MonoBehaviour
                             v.open = !target.closed;
                         }
                     }
+                    system.GetComponent<SystemState>().onChange();
                 }
             }
 
             if (selection.CompareTag(threeWayValveTag)) {
-                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + " [E]";
+                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + "(" + hit.collider.gameObject.GetComponent<ThreeWayValve>().position + ") [E]";
                 captionBackground.enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.E)) {
@@ -85,11 +87,18 @@ public class SelectionManager : MonoBehaviour
                             v.position = target.position;
                         }
                     }
+                    system.GetComponent<SystemState>().onChange();
                 }
             }
 
             if (selection.CompareTag(circleValveTag)) {
-                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<CircleValve>().id + " [E]";
+                var action = "";
+                if (hit.collider.gameObject.GetComponent<CircleValve>().closed) {
+                    action = "Open ";
+                } else {
+                    action = "Close ";
+                }
+                interactCaption.text = action + hit.collider.gameObject.GetComponent<CircleValve>().id + " [E]";
                 captionBackground.enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.E)) {
@@ -103,11 +112,45 @@ public class SelectionManager : MonoBehaviour
                             v.open = !target.closed;
                         }
                     }
+                    system.GetComponent<SystemState>().onChange();
                 }
             }
 
             if (selection.CompareTag(condensationTrapTag)) {
                 interactCaption.text = "Condensation Trap Liquid Level: " + hit.collider.gameObject.GetComponent<CondensationTrap>().liquidLevel + "%";
+                captionBackground.enabled = true;
+            }
+
+            if (selection.CompareTag(PRVTag)) {
+                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<PRVValve>().id + "(current: " + hit.collider.gameObject.GetComponent<PRVValve>().turn + ") Left [Q], Right [E]";
+                captionBackground.enabled = true;
+
+                if (Input.GetKeyDown(KeyCode.E)) {
+                    var target = hit.collider.gameObject.GetComponent<PRVValve>();
+                    target.TurnValve("right");
+                    var valves = system.GetComponent<SystemState>().PRVs;
+                    foreach(var v in valves)
+                    {
+                        if (v.id == target.id) {
+                            v.turn = target.turn;
+                        }
+                    }
+                    system.GetComponent<SystemState>().onChange();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q)) {
+                    var target = hit.collider.gameObject.GetComponent<PRVValve>();
+                    target.TurnValve("left");
+                    var valves = system.GetComponent<SystemState>().PRVs;
+                    foreach(var v in valves)
+                    {
+                        if (v.id == target.id) {
+                            v.turn = target.turn;
+                        }
+                    }
+                    system.GetComponent<SystemState>().onChange();
+                }
+
             }
         }
     }

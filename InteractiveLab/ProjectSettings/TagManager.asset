@@ -9,6 +9,7 @@ TagManager:
   - ThreeWayValve
   - CircleValve
   - CondensationTrap
+  - PRV
   layers:
   - Default
   - TransparentFX
