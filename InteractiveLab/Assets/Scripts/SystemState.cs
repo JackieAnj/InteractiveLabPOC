@@ -136,15 +136,15 @@ public class SystemState : MonoBehaviour
                                 state = 5;
                                 if (checkOpen("V132")) {
                                     state = 6;
-                                    // if (checkOpen("PRV10")) {
-                                    //     state = 7;
-                                    //     if (checkOpen("V111")) {
-                                    //         state = 8;
-                                    //         if (checkOpen("PRV10")) {
-                                    //             state = 9;
-                                    //         }
-                                    //     }
-                                    // }
+                                    if (checkTurn("PRV10", 1)) {
+                                        state = 7;
+                                        if (checkOpen("V111")) {
+                                            state = 8;
+                                            if (checkTurn("PRV10", 3)) {
+                                                state = 9;
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -165,7 +165,8 @@ public class SystemState : MonoBehaviour
         return Array.Find(threeWayValves, v => v.id == id).position == p;
     }
 
+    // check if a PRV has at least x number of turns
     private bool checkTurn(string id, int turn) {
-        return Array.Find(PRVs, v => v.id == id).turn == turn;
+        return Array.Find(PRVs, v => v.id == id).turn >= turn;
     }
 }
