@@ -8,6 +8,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private string twoWayValveTag = "TwoWayValve";
     [SerializeField] private string threeWayValveTag = "ThreeWayValve";
     [SerializeField] private string circleValveTag = "CircleValve";
+    [SerializeField] private string condensationTrapTag = "CondensationTrap";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
 
@@ -38,13 +39,14 @@ public class SelectionManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, distanceToSee)) {
             var selection = hit.transform;
 
-            if (selection.CompareTag(twoWayValveTag)) {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null) {
-                    selectionRenderer.material = highlightMaterial;
-                }
-                _selection = selection;
+            var selectionRenderer = selection.GetComponent<Renderer>();
+            if (selectionRenderer != null) {
+                selectionRenderer.material = highlightMaterial;
+            }
+            _selection = selection;
 
+
+            if (selection.CompareTag(twoWayValveTag)) {
                 var action = "";
                 if (hit.collider.gameObject.GetComponent<TwoWayValve>().closed) {
                     action = "Open ";
@@ -69,12 +71,6 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(threeWayValveTag)) {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null) {
-                    selectionRenderer.material = highlightMaterial;
-                }
-                _selection = selection;
-
                 interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + " [E]";
                 captionBackground.enabled = true;
 
@@ -93,12 +89,6 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(circleValveTag)) {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null) {
-                    selectionRenderer.material = highlightMaterial;
-                }
-                _selection = selection;
-
                 interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<CircleValve>().id + " [E]";
                 captionBackground.enabled = true;
 
@@ -114,6 +104,10 @@ public class SelectionManager : MonoBehaviour
                         }
                     }
                 }
+            }
+
+            if (selection.CompareTag(condensationTrapTag)) {
+                interactCaption.text = "Condensation Trap Liquid Level: " + hit.collider.gameObject.GetComponent<CondensationTrap>().liquidLevel + "%";
             }
         }
     }

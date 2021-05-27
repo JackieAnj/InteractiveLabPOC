@@ -14,6 +14,10 @@ public class SystemState : MonoBehaviour
     private string[] circleValveNames = {};
     private string[] PRVNames = {};
 
+    public GameObject CondensationTrapOne;
+
+    public GameObject CondensationTrapTwo;
+
     public Text startupCheckStatus;
 
     [System.Serializable]
@@ -61,6 +65,9 @@ public class SystemState : MonoBehaviour
         } else {
             startupCheckStatus.text = "Start up checklist unmet";
         }
+
+        clearCondensationCheck();
+
     }
 
     private bool startupCheck() {
@@ -73,5 +80,16 @@ public class SystemState : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void clearCondensationCheck() {
+        foreach(TwoWayValve v in twoWayValves) {
+            if (v.id == "V125" && v.open) {
+                CondensationTrapOne.GetComponent<CondensationTrap>().ClearLiquidLevel();
+            }
+            else if (v.id == "V126" && v.open) {
+                CondensationTrapTwo.GetComponent<CondensationTrap>().ClearLiquidLevel();
+            }
+        }
     }
 }
