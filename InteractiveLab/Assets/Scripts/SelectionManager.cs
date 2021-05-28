@@ -25,6 +25,7 @@ public class SelectionManager : MonoBehaviour
         interactCaption.text = "";
         system = GameObject.FindWithTag("System");
     }
+
     private void Update() {
         if (_selection != null) {
             var selectionRenderer = _selection.GetComponent<Renderer>();
@@ -34,7 +35,7 @@ public class SelectionManager : MonoBehaviour
             captionBackground.enabled = false;
         }
 
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, distanceToSee)) {
