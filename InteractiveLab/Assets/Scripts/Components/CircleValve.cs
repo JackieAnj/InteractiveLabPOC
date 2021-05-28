@@ -5,11 +5,11 @@ using UnityEngine;
 public class CircleValve : MonoBehaviour
 {
     public string id;
-    public bool closed;
+    public bool open;
     public bool rotateVertical;
     public bool rotateHorizontal;
 
     public void TurnValve() {
-        closed = !closed;
+        open = !open;
     }
 }

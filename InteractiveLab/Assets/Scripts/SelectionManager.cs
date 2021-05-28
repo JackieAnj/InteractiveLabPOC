@@ -49,10 +49,10 @@ public class SelectionManager : MonoBehaviour
 
             if (selection.CompareTag(twoWayValveTag)) {
                 var action = "";
-                if (hit.collider.gameObject.GetComponent<TwoWayValve>().closed) {
-                    action = "Open ";
-                } else {
+                if (hit.collider.gameObject.GetComponent<TwoWayValve>().open) {
                     action = "Close ";
+                } else {
+                    action = "Open ";
                 }
                 interactCaption.text = action + hit.collider.gameObject.GetComponent<TwoWayValve>().id + " [E]";
                 captionBackground.enabled = true;
@@ -61,13 +61,6 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<TwoWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    var valves = system.GetComponent<SystemState>().twoWayValves;
-                    foreach(var v in valves)
-                    {
-                        if (v.id == target.id) {
-                            v.open = !target.closed;
-                        }
-                    }
                     system.GetComponent<SystemState>().onChange();
                 }
             }
@@ -80,23 +73,16 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<ThreeWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    var valves = system.GetComponent<SystemState>().threeWayValves;
-                    foreach(var v in valves)
-                    {
-                        if (v.id == target.id) {
-                            v.position = target.position;
-                        }
-                    }
                     system.GetComponent<SystemState>().onChange();
                 }
             }
 
             if (selection.CompareTag(circleValveTag)) {
                 var action = "";
-                if (hit.collider.gameObject.GetComponent<CircleValve>().closed) {
-                    action = "Open ";
-                } else {
+                if (hit.collider.gameObject.GetComponent<CircleValve>().open) {
                     action = "Close ";
+                } else {
+                    action = "Open ";
                 }
                 interactCaption.text = action + hit.collider.gameObject.GetComponent<CircleValve>().id + " [E]";
                 captionBackground.enabled = true;
@@ -105,13 +91,6 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<CircleValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    var valves = system.GetComponent<SystemState>().twoWayValves;
-                    foreach(var v in valves)
-                    {
-                        if (v.id == target.id) {
-                            v.open = !target.closed;
-                        }
-                    }
                     system.GetComponent<SystemState>().onChange();
                 }
             }
@@ -128,26 +107,12 @@ public class SelectionManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("right");
-                    var valves = system.GetComponent<SystemState>().PRVs;
-                    foreach(var v in valves)
-                    {
-                        if (v.id == target.id) {
-                            v.turn = target.turn;
-                        }
-                    }
                     system.GetComponent<SystemState>().onChange();
                 }
 
                 if (Input.GetKeyDown(KeyCode.Q)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("left");
-                    var valves = system.GetComponent<SystemState>().PRVs;
-                    foreach(var v in valves)
-                    {
-                        if (v.id == target.id) {
-                            v.turn = target.turn;
-                        }
-                    }
                     system.GetComponent<SystemState>().onChange();
                 }
 

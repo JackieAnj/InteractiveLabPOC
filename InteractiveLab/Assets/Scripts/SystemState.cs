@@ -6,72 +6,23 @@ using UnityEngine.UI;
 
 public class SystemState : MonoBehaviour
 {
-    private string[] TwoWayValveNames = {"V110", "V111", "V112", "V113", "V115", "V116", "V118",  "V121",  "V125", "V126", "V128", "V130", "V132", "V133", "V134"};
-    private string[] ThreeWayValveNames = {"V119", "V122", "V123", "V124", "V131"};
-    //private string[] circleValveNames = {};
-    private string[] PRVNames = {"PRV10","PRV11","PRV12","PRV13"};
-
     // make this private (public for testing)
     public int state = -1;
 
     public GameObject CondensationTrapOne;
-
     public GameObject CondensationTrapTwo;
-
-    public Text startupCheckStatus;
-
-    [System.Serializable]
-    public class TwoWayValve {
-        public string id;
-        public bool open;
-        public TwoWayValve(string id, bool open = false) {
-            this.id = id;
-            this.open = open;
-        }
-    }
-
-    [System.Serializable]
-    public class ThreeWayValve {
-        public string id;
-        public Position position;
-        public ThreeWayValve(string id, Position position) {
-            this.id = id;
-            this.position = position;
-        }
-    }
-
-    [System.Serializable]
-    public class PRV {
-        public string id;
-        public int turn;
-        public PRV(string id, int turn) {
-            this.id = id;
-            this.turn = turn;
-        }
-    }
+    public Text statusUI;
 
     public TwoWayValve[] twoWayValves;
     public ThreeWayValve[] threeWayValves;
-    public PRV[] PRVs;
+    public CircleValve[] circleValves;
+    public PRVValve[] PRVs;
 
     private void Start() {
-        int index = 0;
-        foreach(string v in TwoWayValveNames) {
-            twoWayValves[index] = new TwoWayValve(v, false);
-            index++;
-        }
-
-        index = 0;
-        foreach(string v in ThreeWayValveNames) {
-            threeWayValves[index] = new ThreeWayValve(v, Position.top);
-            index++;
-        }
-
-        index = 0;
-        foreach (string v in PRVNames) {
-            PRVs[index] = new PRV(v, 0);
-            index++;
-        }
+        twoWayValves = UnityEngine.Object.FindObjectsOfType<TwoWayValve>();
+        threeWayValves = UnityEngine.Object.FindObjectsOfType<ThreeWayValve>();
+        circleValves = UnityEngine.Object.FindObjectsOfType<CircleValve>();
+        PRVs = UnityEngine.Object.FindObjectsOfType<PRVValve>();
 
         startupCheck();
     }
@@ -92,7 +43,15 @@ public class SystemState : MonoBehaviour
         foreach(TwoWayValve v in twoWayValves) {
             if (Array.Exists(closedValves, x => x == v.id) && v.open) {
                 state = -1;
-                startupCheckStatus.text = "Start up checklist unmet";
+                statusUI.text = "Start up checklist unmet";
+                return false;
+            }
+        }
+
+        foreach(CircleValve v in circleValves) {
+            if (Array.Exists(closedValves, x => x == v.id) && v.open) {
+                state = -1;
+                statusUI.text = "Start up checklist unmet";
                 return false;
             }
         }
@@ -100,7 +59,7 @@ public class SystemState : MonoBehaviour
         // check liquid level in condensation traps
         if (CondensationTrapOne.GetComponent<CondensationTrap>().liquidLevel + CondensationTrapTwo.GetComponent<CondensationTrap>().liquidLevel > 0) {
             state = -1;
-            startupCheckStatus.text = "Start up checklist unmet";
+            statusUI.text = "Start up checklist unmet";
             return false;
         }
 
@@ -108,7 +67,7 @@ public class SystemState : MonoBehaviour
             state = 0;
         }
 
-        startupCheckStatus.text = "Start up checklist met";
+        statusUI.text = "Start up checklist met";
         return true;
     }
 
@@ -126,22 +85,31 @@ public class SystemState : MonoBehaviour
     private void partOne() {
         if (checkPosition("V122", Position.left)) {
             state = 1;
-            if (checkOpen("V121")) {
+            statusUI.text = "step: " + state;
+            if (checkCircle("V121")) {
                 state = 2;
+                statusUI.text = "step: " + state;
                 if (checkPosition("V131", Position.left)) {
                     state = 3;
+                    statusUI.text = "step: " + state;
                         if (checkPosition("V119", Position.left) && checkPosition("V123", Position.left)) {
                             state = 4;
+                            statusUI.text = "step: " + state;
                             if (checkPosition("V124", Position.left) && checkOpen("V125")) {
                                 state = 5;
-                                if (checkOpen("V132")) {
+                                statusUI.text = "step: " + state;
+                                if (checkCircle("V132")) {
                                     state = 6;
+                                    statusUI.text = "step: " + state;
                                     if (checkTurn("PRV10", 1)) {
                                         state = 7;
-                                        if (checkOpen("V111")) {
+                                        statusUI.text = "step: " + state;
+                                        if (checkCircle("V111")) {
                                             state = 8;
+                                            statusUI.text = "step: " + state;
                                             if (checkTurn("PRV10", 3)) {
                                                 state = 9;
+                                                statusUI.text = "step: " + state;
                                             }
                                         }
                                     }
@@ -163,6 +131,11 @@ public class SystemState : MonoBehaviour
     // check if a three way valve is in the right position given valve id and target position
     private bool checkPosition(string id, Position p) {
         return Array.Find(threeWayValves, v => v.id == id).position == p;
+    }
+
+    // check if a circle valve is open given valve id
+    private bool checkCircle(string id) {
+        return Array.Find(circleValves, v => v.id == id).open;
     }
 
     // check if a PRV has at least x number of turns
