@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class SystemState : MonoBehaviour
 {
     // make this private (public for testing)
-    public int state = -1;
+    private int state = -1;
 
     public GameObject CondensationTrapOne;
     public GameObject CondensationTrapTwo;
     public Text statusUI;
 
-    public TwoWayValve[] twoWayValves;
-    public ThreeWayValve[] threeWayValves;
-    public CircleValve[] circleValves;
-    public PRVValve[] PRVs;
+    private TwoWayValve[] twoWayValves;
+    private ThreeWayValve[] threeWayValves;
+    private CircleValve[] circleValves;
+    private PRVValve[] PRVs;
 
     private void Start() {
         twoWayValves = UnityEngine.Object.FindObjectsOfType<TwoWayValve>();
