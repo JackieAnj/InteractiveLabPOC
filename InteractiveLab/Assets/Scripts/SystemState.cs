@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SystemState : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SystemState : MonoBehaviour
     public GameObject CondensationTrapOne;
     public GameObject CondensationTrapTwo;
     public Text statusUI;
+    public Transform partOneText;
+    private TextMeshProUGUI content;
 
     private TwoWayValve[] twoWayValves;
     private ThreeWayValve[] threeWayValves;
@@ -34,7 +37,11 @@ public class SystemState : MonoBehaviour
             startupCheck();
         }
 
-        partOne();
+        if (state > -1) {
+            partOne();
+        }
+
+        updateStatus();
     }
 
     private bool startupCheck() {
@@ -119,6 +126,7 @@ public class SystemState : MonoBehaviour
                 }
             }
         } else {
+            state = 0;
             startupCheck();
         }
     }
@@ -141,5 +149,22 @@ public class SystemState : MonoBehaviour
     // check if a PRV has at least x number of turns
     private bool checkTurn(string id, int turn) {
         return Array.Find(PRVs, v => v.id == id).turn >= turn;
+    }
+
+    private void updateStatus() {
+        partOneText = GameObject.Find("Part1SectionA").transform;
+        int index = 0;
+
+        foreach(Transform instruction in partOneText) {
+            index++;
+            content = instruction.GetComponent<TextMeshProUGUI>();
+
+            if (index <= state) {
+                content.fontStyle = FontStyles.Strikethrough;
+            } else {
+                content.fontStyle = FontStyles.Normal;
+                Debug.Log("index: " + index + " state: " + state);
+            }
+        }
     }
 }
