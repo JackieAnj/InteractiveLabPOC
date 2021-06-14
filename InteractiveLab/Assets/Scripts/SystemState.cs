@@ -13,7 +13,7 @@ public class SystemState : MonoBehaviour
     public GameObject CondensationTrapOne;
     public GameObject CondensationTrapTwo;
     public Text statusUI;
-    public Transform partOneText;
+    public GameObject partOneText;
     private TextMeshProUGUI content;
 
     private TwoWayValve[] twoWayValves;
@@ -152,10 +152,10 @@ public class SystemState : MonoBehaviour
     }
 
     private void updateStatus() {
-        partOneText = GameObject.Find("Part1SectionA").transform;
+        Transform partOneTextContent = partOneText.transform;
         int index = 0;
 
-        foreach(Transform instruction in partOneText) {
+        foreach(Transform instruction in partOneTextContent) {
             index++;
             content = instruction.GetComponent<TextMeshProUGUI>();
 
@@ -163,7 +163,6 @@ public class SystemState : MonoBehaviour
                 content.fontStyle = FontStyles.Strikethrough;
             } else {
                 content.fontStyle = FontStyles.Normal;
-                Debug.Log("index: " + index + " state: " + state);
             }
         }
     }
