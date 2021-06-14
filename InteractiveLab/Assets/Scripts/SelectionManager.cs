@@ -55,10 +55,10 @@ public class SelectionManager : MonoBehaviour
                 } else {
                     action = "Open ";
                 }
-                interactCaption.text = action + hit.collider.gameObject.GetComponent<TwoWayValve>().id + " [E]";
+                interactCaption.text = action + hit.collider.gameObject.GetComponent<TwoWayValve>().id + " [Left Click]";
                 captionBackground.enabled = true;
 
-                if (Input.GetKeyDown(KeyCode.E)) {
+                if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<TwoWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
@@ -67,10 +67,10 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(threeWayValveTag)) {
-                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + "(" + hit.collider.gameObject.GetComponent<ThreeWayValve>().position + ") [E]";
+                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + "(" + hit.collider.gameObject.GetComponent<ThreeWayValve>().position + ") [Left Click]";
                 captionBackground.enabled = true;
 
-                if (Input.GetKeyDown(KeyCode.E)) {
+                if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<ThreeWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
@@ -85,10 +85,10 @@ public class SelectionManager : MonoBehaviour
                 } else {
                     action = "Open ";
                 }
-                interactCaption.text = action + hit.collider.gameObject.GetComponent<CircleValve>().id + " [E]";
+                interactCaption.text = action + hit.collider.gameObject.GetComponent<CircleValve>().id + " [Left Click]";
                 captionBackground.enabled = true;
 
-                if (Input.GetKeyDown(KeyCode.E)) {
+                if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<CircleValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
@@ -102,16 +102,16 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(PRVTag)) {
-                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<PRVValve>().id + "(current: " + hit.collider.gameObject.GetComponent<PRVValve>().turn + ") Left [Q], Right [E]";
+                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<PRVValve>().id + "(current: " + hit.collider.gameObject.GetComponent<PRVValve>().turn + ")\n Left [Right Click], Right [Left Click]";
                 captionBackground.enabled = true;
 
-                if (Input.GetKeyDown(KeyCode.E)) {
+                if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("right");
                     system.GetComponent<SystemState>().onChange();
                 }
 
-                if (Input.GetKeyDown(KeyCode.Q)) {
+                if (Input.GetMouseButtonDown(1)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("left");
                     system.GetComponent<SystemState>().onChange();
