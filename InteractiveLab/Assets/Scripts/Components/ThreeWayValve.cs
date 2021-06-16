@@ -12,7 +12,8 @@ public class ThreeWayValve : MonoBehaviour
     public bool rotateHorizontal;
 
     public void TurnValve() {
-        
+        FindObjectOfType<SoundManager>().Play("TurnValve");
+
         if (position == Position.top) {
             position = Position.right;
         } else if (position == Position.right) {

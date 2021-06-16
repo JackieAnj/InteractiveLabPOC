@@ -10,6 +10,7 @@ public class CircleValve : MonoBehaviour
     public bool rotateHorizontal;
 
     public void TurnValve() {
+        FindObjectOfType<SoundManager>().Play("TurnCircleValve");
         open = !open;
     }
 }

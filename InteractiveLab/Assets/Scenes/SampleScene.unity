@@ -439,6 +439,60 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.497961, y: 2.498982, z: 2.3170018}
   m_Center: {x: 23.918938, y: 44.664204, z: 170.69014}
+--- !u!1 &131672882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131672884}
+  - component: {fileID: 131672883}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &131672883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131672882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c5fc3f6a23cbf489e36bd1b6e7c58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: TurnValve
+    clip: {fileID: 8300000, guid: 6fbea9afbaf98c844b35d2eaf3d5fca9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: TurnCircleValve
+    clip: {fileID: 8300000, guid: df9ccfb489d7ae24c8d253e08d0e91eb, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+--- !u!4 &131672884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131672882}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &181717160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1392030358986033116, guid: 8016dd0f6f6dcf24983cd487c0af4775,
@@ -555,7 +609,7 @@ RectTransform:
   - {fileID: 619824615}
   - {fileID: 1695264793}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -945,7 +999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &246011670 stripped
 GameObject:
@@ -3023,7 +3077,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 30, y: 90, z: 0}
 --- !u!1 &1185912674 stripped
 GameObject:
@@ -4692,7 +4746,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 750346093}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1833113642
 MonoBehaviour:
@@ -5222,7 +5276,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2131051583
 GameObject:
@@ -6179,7 +6233,7 @@ PrefabInstance:
     - target: {fileID: 5267399226788340424, guid: 8016dd0f6f6dcf24983cd487c0af4775,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5267399226788340424, guid: 8016dd0f6f6dcf24983cd487c0af4775,
         type: 3}

@@ -10,6 +10,8 @@ public class PRVValve : MonoBehaviour
     public bool rotateHorizontal;
 
     public void TurnValve(string direction) {
+        FindObjectOfType<SoundManager>().Play("TurnCircleValve");
+
         if (direction == "left" && turn > 0) {
             turn--;
         }

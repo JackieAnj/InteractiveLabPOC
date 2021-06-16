@@ -25,6 +25,8 @@ public class TwoWayValve : MonoBehaviour
     public void TurnValve() {
         open = !open;
 
+        FindObjectOfType<SoundManager>().Play("TurnValve");
+
         if (open) {
             if (rotateVertical) {
                 transform.RotateAround(target.transform.position, Vector3.right, 90f);
