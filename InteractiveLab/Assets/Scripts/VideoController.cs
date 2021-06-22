@@ -18,13 +18,13 @@ public class VideoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKey("t")) {
-        //     Play();
-        // }
+        if (Input.GetKey("t")) {
+            Play();
+        }
     }
 
-    // void Play() {
-    //     videoPlayer.Play();
-    //     videoPlayer.isLooping = true;
-    // }
+    void Play() {
+        videoPlayer.Play();
+        videoPlayer.isLooping = true;
+    }
 }
