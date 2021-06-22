@@ -17,6 +17,7 @@ public class SelectionManager : MonoBehaviour
 
     public Text interactCaption;
     public Image captionBackground;
+    public GameObject videoPanel;
 
     private Transform _selection;
     private GameObject system;
@@ -27,6 +28,10 @@ public class SelectionManager : MonoBehaviour
     }
 
     private void Update() {
+        if (Input.GetKeyDown("t")) {
+            videoPanel.SetActive(!videoPanel.activeSelf);
+        }
+
         if (_selection != null) {
             var selectionRenderer = _selection.GetComponent<Renderer>();
             selectionRenderer.material = defaultMaterial;
