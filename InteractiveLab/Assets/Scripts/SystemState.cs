@@ -15,6 +15,7 @@ public class SystemState : MonoBehaviour
     public Text statusUI;
     public GameObject partOneText;
     public GameObject partTwoText;
+    public GameObject partThreeText;
     private Transform textContent;
     private TextMeshProUGUI content;
     private int section = 1;
@@ -40,12 +41,21 @@ public class SystemState : MonoBehaviour
                 textContent = partOneText.transform;
                 partOneText.SetActive(false);
                 partTwoText.SetActive(true);
+                partThreeText.SetActive(false);
                 partTwo();
+            } else if (section == 2) {
+                section = 3;
+                textContent = partTwoText.transform;
+                partOneText.SetActive(false);
+                partTwoText.SetActive(false);
+                partThreeText.SetActive(true);
+                partThree();
             } else {
                 section = 1;
                 textContent = partTwoText.transform;
                 partOneText.SetActive(true);
                 partTwoText.SetActive(false);
+                partThreeText.SetActive(false);
                 partOne();
             }
         }
@@ -59,10 +69,13 @@ public class SystemState : MonoBehaviour
         }
 
         if (state > -1) {
+            Debug.Log(section);
             if (section == 1) {
                 partOne();
-            } else {
+            } else if (section == 2) {
                 partTwo();
+            } else {
+                partThree();
             }
         }
     }
@@ -139,7 +152,7 @@ public class SystemState : MonoBehaviour
                                         statusUI.text = "Part 1: step " + state;
                                         if (checkTurn("PRV10", 3)) {
                                             state = 9;
-                                            statusUI.text = "Part 1: step " + state;
+                                            statusUI.text = "Part 1 Complete!" + state;
                                         }
                                     }
                                 }
@@ -180,7 +193,7 @@ public class SystemState : MonoBehaviour
                                     statusUI.text = "Part 2: step " + state;
                                     if (checkTurn("PRV10", 3)) {
                                         state = 8;
-                                        statusUI.text = "Part 2: step " + state;
+                                        statusUI.text = "Part 2 Complete!" + state;
                                     }
                                 }
                             }
@@ -188,6 +201,61 @@ public class SystemState : MonoBehaviour
                     }
                 }
             }
+        } else {
+            state = 0;
+            startupCheck();
+        }
+
+        updateStatus();
+    }
+
+    private void partThree() {
+        if (checkPosition("V112", Position.left) && (checkPosition("V113", Position.left))) {
+            state = 1;
+            statusUI.text = "Part 3: step " + state;
+            if (!checkOpen("V115") && !checkOpen("V116")) {
+                state = 2;
+                statusUI.text = "Part 3: step " + state;
+                if (checkCircle("V128") && checkTurn("PRV12", 1)) {
+                    state = 3;
+                    statusUI.text = "Part 3: step " + state;
+                    if (checkPosition("V131", Position.left)) {
+                        state = 4;
+                        statusUI.text = "Part 3: step " + state;
+                        if (checkOpen("V126")) {
+                            state = 5;
+                            statusUI.text = "Part 3: step " + state;
+                            if (checkPosition("V118", Position.left)) {
+                                state = 6;
+                                statusUI.text = "Part 3: step " + state;
+                                if (checkOpen("V130")) {
+                                    state = 7;
+                                    statusUI.text = "Part 3: step " + state;
+                                    if (checkTurn("PRV10", 3)) {
+                                        state = 8;
+                                        statusUI.text = "Part 3: step " + state;
+                                        if (checkTurn("PRV10", 1)) {
+                                            state = 9;
+                                            statusUI.text = "Part 3: step " + state;
+                                            if (checkCircle("V111")) {
+                                                state = 10;
+                                                statusUI.text = "Part 3: step " + state;
+                                                if (checkTurn("PRV10", 3)) {
+                                                    state = 11;
+                                                    statusUI.text = "Part 3 Complete!";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            state = 0;
+            startupCheck();
         }
 
         updateStatus();
