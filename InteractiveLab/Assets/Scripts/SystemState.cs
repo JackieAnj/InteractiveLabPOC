@@ -16,6 +16,7 @@ public class SystemState : MonoBehaviour
     public GameObject partOneText;
     public GameObject partTwoText;
     public GameObject partThreeText;
+    public GameObject shutdownProcedureText;
     private Transform textContent;
     private TextMeshProUGUI content;
     private int section = 1;
@@ -38,24 +39,35 @@ public class SystemState : MonoBehaviour
         if (Input.GetKeyDown("c")) {
             if (section == 1) {
                 section = 2;
-                textContent = partOneText.transform;
+                textContent = partTwoText.transform;
                 partOneText.SetActive(false);
                 partTwoText.SetActive(true);
                 partThreeText.SetActive(false);
+                shutdownProcedureText.SetActive(false);
                 partTwo();
             } else if (section == 2) {
                 section = 3;
-                textContent = partTwoText.transform;
+                textContent = partThreeText.transform;
                 partOneText.SetActive(false);
                 partTwoText.SetActive(false);
                 partThreeText.SetActive(true);
+                shutdownProcedureText.SetActive(false);
                 partThree();
+            } else if (section == 3){
+                section = 4;
+                textContent = shutdownProcedureText.transform;
+                partOneText.SetActive(false);
+                partTwoText.SetActive(false);
+                partThreeText.SetActive(false);
+                shutdownProcedureText.SetActive(true);
+                shutdown();
             } else {
                 section = 1;
-                textContent = partTwoText.transform;
+                textContent = partOneText.transform;
                 partOneText.SetActive(true);
                 partTwoText.SetActive(false);
                 partThreeText.SetActive(false);
+                shutdownProcedureText.SetActive(false);
                 partOne();
             }
         }
@@ -69,13 +81,14 @@ public class SystemState : MonoBehaviour
         }
 
         if (state > -1) {
-            Debug.Log(section);
             if (section == 1) {
                 partOne();
             } else if (section == 2) {
                 partTwo();
-            } else {
+            } else if (section == 3) {
                 partThree();
+            } else {
+                shutdown();
             }
         }
     }
@@ -228,7 +241,7 @@ public class SystemState : MonoBehaviour
                             if (checkPosition("V118", Position.left)) {
                                 state = 6;
                                 statusUI.text = "Part 3: step " + state;
-                                if (checkOpen("V130")) {
+                                if (checkCircle("V130")) {
                                     state = 7;
                                     statusUI.text = "Part 3: step " + state;
                                     if (checkTurn("PRV10", 3)) {
@@ -261,6 +274,41 @@ public class SystemState : MonoBehaviour
         updateStatus();
     }
 
+    private void shutdown() {
+        if (!checkCircle("V111") && checkPosition("V112", Position.top) && checkPosition("V113", Position.top)) {
+            state = 1;
+            statusUI.text = "Shutdown: step " + state;
+            if (!checkOpen("V115") && !checkOpen("V116") && checkPosition("V118", Position.top)) {
+                state = 2;
+                statusUI.text = "Shutdown: step " + state;
+                if (checkPosition("V122", Position.top) && checkPosition("V123", Position.top) && checkPosition("V124", Position.top)) {
+                    state = 3;
+                    statusUI.text = "Shutdown: step " + state;
+                    if (!checkOpen("V125") && !checkOpen("V126")) {
+                        state = 4;
+                        statusUI.text = "Shutdown: step " + state;
+                        if (!checkCircle("V128") && !checkCircle("V130")) {
+                            state = 5;
+                            statusUI.text = "Shutdown: step " + state;
+                            if (checkPosition("V131", Position.top) && !checkCircle("V133") && !checkCircle("V134")) {
+                                state = 6;
+                                statusUI.text = "Shutdown Complete!";
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            Debug.Log("why");
+            Debug.Log(checkCircle("V111"));
+            Debug.Log(checkPosition("V112", Position.top));
+            Debug.Log(checkPosition("V113", Position.top));
+            state = 0;
+        }
+
+        updateStatus();
+    }
+
     // check if a two way valve is open given valve id
     private bool checkOpen(string id) {
         return Array.Find(twoWayValves, v => v.id == id).open;
@@ -283,9 +331,10 @@ public class SystemState : MonoBehaviour
 
     private void updateStatus() {
         int index = 0;
-
-        foreach(Transform instruction in textContent) {
+        
+        for (int i = 1; i < textContent.transform.childCount; ++i) {
             index++;
+            Transform instruction = textContent.transform.GetChild(i);
             content = instruction.GetComponent<TextMeshProUGUI>();
 
             if (index <= state) {
