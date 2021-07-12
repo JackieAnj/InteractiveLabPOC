@@ -139,6 +139,7 @@ public class SystemState : MonoBehaviour
     }
 
     private void partOne() {
+        var oldState = state;
         if (checkPosition("V122", Position.left)) {
             state = 1;
             statusUI.text = "Part 1: step " + state;
@@ -178,11 +179,17 @@ public class SystemState : MonoBehaviour
             state = 0;
             startupCheck();
         }
+        if (oldState > state) {
+            FindObjectOfType<SoundManager>().Play("Error");
+        } else if (oldState < state) {
+            FindObjectOfType<SoundManager>().Play("Correct");
+        }
 
         updateStatus();
     }
 
     private void partTwo() {
+        var oldState = state;
         if (checkPosition("V122", Position.left)) {
             state = 1;
             statusUI.text = "Part 2: step " + state;
@@ -219,10 +226,17 @@ public class SystemState : MonoBehaviour
             startupCheck();
         }
 
+        if (oldState > state) {
+            FindObjectOfType<SoundManager>().Play("Error");
+        } else if (oldState < state) {
+            FindObjectOfType<SoundManager>().Play("Correct");
+        }
+
         updateStatus();
     }
 
     private void partThree() {
+        var oldState = state;
         if (checkPosition("V112", Position.left) && (checkPosition("V113", Position.left))) {
             state = 1;
             statusUI.text = "Part 3: step " + state;
@@ -271,10 +285,17 @@ public class SystemState : MonoBehaviour
             startupCheck();
         }
 
+        if (oldState > state) {
+            FindObjectOfType<SoundManager>().Play("Error");
+        } else if (oldState < state) {
+            FindObjectOfType<SoundManager>().Play("Correct");
+        }
+
         updateStatus();
     }
 
     private void shutdown() {
+        var oldState = state;
         if (!checkCircle("V111") && checkPosition("V112", Position.top) && checkPosition("V113", Position.top)) {
             state = 1;
             statusUI.text = "Shutdown: step " + state;
@@ -299,11 +320,13 @@ public class SystemState : MonoBehaviour
                 }
             }
         } else {
-            Debug.Log("why");
-            Debug.Log(checkCircle("V111"));
-            Debug.Log(checkPosition("V112", Position.top));
-            Debug.Log(checkPosition("V113", Position.top));
             state = 0;
+        }
+
+        if (oldState > state) {
+            FindObjectOfType<SoundManager>().Play("Error");
+        } else if (oldState < state) {
+            FindObjectOfType<SoundManager>().Play("Correct");
         }
 
         updateStatus();

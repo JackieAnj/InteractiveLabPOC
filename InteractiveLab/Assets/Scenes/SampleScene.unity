@@ -612,6 +612,11 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: Error
+    clip: {fileID: 8300000, guid: 72ee37ad07a93a447b25d02b0dfcbcd6, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &131672884
 Transform:
   m_ObjectHideFlags: 0
