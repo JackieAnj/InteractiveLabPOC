@@ -617,6 +617,11 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: Correct
+    clip: {fileID: 8300000, guid: b457432f8218f97489064df2044bdec1, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &131672884
 Transform:
   m_ObjectHideFlags: 0
@@ -5128,7 +5133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60021017f4831549bfa028ac9427f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 200
+  sensitivity: 50
   playerBody: {fileID: 1833113641}
 --- !u!114 &963194230
 MonoBehaviour:
