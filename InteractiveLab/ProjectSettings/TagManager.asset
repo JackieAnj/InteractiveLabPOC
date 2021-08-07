@@ -10,6 +10,7 @@ TagManager:
   - CircleValve
   - CondensationTrap
   - PRV
+  - Computer
   layers:
   - Default
   - TransparentFX

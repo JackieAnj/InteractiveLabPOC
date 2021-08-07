@@ -10,6 +10,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private string circleValveTag = "CircleValve";
     [SerializeField] private string condensationTrapTag = "CondensationTrap";
     [SerializeField] private string PRVTag = "PRV";
+     [SerializeField] private string ComputerTag = "Computer";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
 
@@ -19,6 +20,7 @@ public class SelectionManager : MonoBehaviour
     public Image captionBackground;
     public GameObject videoPanel;
 
+    public GameObject DeltaV;
     private Transform _selection;
     private GameObject system;
 
@@ -121,7 +123,16 @@ public class SelectionManager : MonoBehaviour
                     target.TurnValve("left");
                     system.GetComponent<SystemState>().onChange();
                 }
+            }
 
+            if (selection.CompareTag(ComputerTag)) {
+                interactCaption.text = "Access DeltaV [Left Click]";
+                captionBackground.enabled = true;
+
+                if (Input.GetMouseButtonDown(0)) {
+                    DeltaV.SetActive(true);
+                    Cursor.lockState = CursorLockMode.Confined;
+                }
             }
         }
     }
