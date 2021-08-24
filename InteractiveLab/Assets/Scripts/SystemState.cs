@@ -7,13 +7,15 @@ using TMPro;
 
 public class SystemState : MonoBehaviour
 {
-    // make this private (public for testing)
     private int state = -1;
     private int oldState = -1;
 
     public GameObject CondensationTrapOne;
     public GameObject CondensationTrapTwo;
     public Text statusUI;
+    public float timeStart;
+    public Text timer;
+    public Text score;
     public GameObject partOneText;
     public GameObject partTwoText;
     public GameObject partThreeText;
@@ -27,6 +29,7 @@ public class SystemState : MonoBehaviour
     private PRVValve[] PRVs;
 
     private void Start() {
+        timer.text = "Time: 00:00.00";
         twoWayValves = UnityEngine.Object.FindObjectsOfType<TwoWayValve>();
         threeWayValves = UnityEngine.Object.FindObjectsOfType<ThreeWayValve>();
         circleValves = UnityEngine.Object.FindObjectsOfType<CircleValve>();
@@ -37,6 +40,10 @@ public class SystemState : MonoBehaviour
     }
 
     private void Update() {
+        timeStart += Time.deltaTime;
+        TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
+        timer.text = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+
         if (Input.GetKeyDown("c")) {
             if (section == 1) {
                 section = 2;
