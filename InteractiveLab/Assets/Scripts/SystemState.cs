@@ -13,13 +13,17 @@ public class SystemState : MonoBehaviour
     public GameObject CondensationTrapOne;
     public GameObject CondensationTrapTwo;
     public Text statusUI;
-    public float timeStart;
-    public Text timer;
-    public Text score;
+    public Text timer; // time to be displayed in game
+    public Text score; // score to be displayed in game
     public GameObject partOneText;
     public GameObject partTwoText;
     public GameObject partThreeText;
     public GameObject shutdownProcedureText;
+    public GameObject endScreen;
+    public Text finalScore; // final score to be displayed in end screen
+    public Text timePlayed; // final time to be displayed in end screen
+    private float timeStart; // internal time variable
+    private float currentScore; // internal score variable
     private Transform textContent;
     private TextMeshProUGUI content;
     private int section = 1;
@@ -27,9 +31,13 @@ public class SystemState : MonoBehaviour
     private ThreeWayValve[] threeWayValves;
     private CircleValve[] circleValves;
     private PRVValve[] PRVs;
+    private Boolean partOneComplete = false;
+    private Boolean partTwoComplete = false;
+    private Boolean partThreeComplete = false;
 
     private void Start() {
         timer.text = "Time: 00:00.00";
+        score.text = "Score: 0";
         twoWayValves = UnityEngine.Object.FindObjectsOfType<TwoWayValve>();
         threeWayValves = UnityEngine.Object.FindObjectsOfType<ThreeWayValve>();
         circleValves = UnityEngine.Object.FindObjectsOfType<CircleValve>();
@@ -40,9 +48,24 @@ public class SystemState : MonoBehaviour
     }
 
     private void Update() {
-        timeStart += Time.deltaTime;
-        TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
-        timer.text = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+        if (partOneComplete && partTwoComplete && partThreeComplete) {
+            TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
+            finalScore.text = "Score: " + currentScore;
+            timePlayed.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
+            endScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+        } else {
+            timeStart += Time.deltaTime;
+            TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
+            timer.text = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+        }
+
+        // for testing only (completes all procedures)
+        if (Input.GetKeyDown("v")) {
+            partOneComplete = true;
+            partTwoComplete = true;
+            partThreeComplete = true;
+        }
 
         if (Input.GetKeyDown("c")) {
             if (section == 1) {
@@ -79,6 +102,16 @@ public class SystemState : MonoBehaviour
                 partOne();
             }
         }
+    }
+
+    public void restart() {
+        partOneComplete = false;
+        partTwoComplete = false;
+        partThreeComplete = false;
+        timeStart = 0;
+        currentScore = 0;
+        endScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void onChange() {
@@ -180,6 +213,7 @@ public class SystemState : MonoBehaviour
                                         statusUI.text = "Part 1: step " + state;
                                         if (checkTurn("PRV10", 3)) {
                                             state = 9;
+                                            partOneComplete = true;
                                             statusUI.text = "Part 1 Complete!" + state;
                                         }
                                     }
@@ -221,6 +255,7 @@ public class SystemState : MonoBehaviour
                                     statusUI.text = "Part 2: step " + state;
                                     if (checkTurn("PRV10", 3)) {
                                         state = 8;
+                                        partTwoComplete = true;
                                         statusUI.text = "Part 2 Complete!" + state;
                                     }
                                 }
@@ -270,6 +305,7 @@ public class SystemState : MonoBehaviour
                                                 statusUI.text = "Part 3: step " + state;
                                                 if (checkTurn("PRV10", 3)) {
                                                     state = 11;
+                                                    partThreeComplete = true;
                                                     statusUI.text = "Part 3 Complete!";
                                                 }
                                             }
