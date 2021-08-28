@@ -34,6 +34,7 @@ public class SystemState : MonoBehaviour
     private Boolean partOneComplete = false;
     private Boolean partTwoComplete = false;
     private Boolean partThreeComplete = false;
+    private Boolean shutDownComplete = false;
 
     private void Start() {
         timer.text = "Time: 00:00.00";
@@ -48,7 +49,7 @@ public class SystemState : MonoBehaviour
     }
 
     private void Update() {
-        if (partOneComplete && partTwoComplete && partThreeComplete) {
+        if (partOneComplete && partTwoComplete && partThreeComplete && shutDownComplete) {
             TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
             finalScore.text = "Score: " + currentScore;
             timePlayed.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
@@ -60,31 +61,22 @@ public class SystemState : MonoBehaviour
             timer.text = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
         }
 
+        updateScore();
+
         // for testing only (completes all procedures)
         if (Input.GetKeyDown("v")) {
             partOneComplete = true;
             partTwoComplete = true;
             partThreeComplete = true;
+            shutDownComplete = true;
         }
 
         if (Input.GetKeyDown("c")) {
-            if (section == 1) {
-                section = 2;
-                textContent = partTwoText.transform;
-                partOneText.SetActive(false);
-                partTwoText.SetActive(true);
-                partThreeText.SetActive(false);
-                shutdownProcedureText.SetActive(false);
-                partTwo();
-            } else if (section == 2) {
-                section = 3;
-                textContent = partThreeText.transform;
-                partOneText.SetActive(false);
-                partTwoText.SetActive(false);
-                partThreeText.SetActive(true);
-                shutdownProcedureText.SetActive(false);
-                partThree();
-            } else if (section == 3){
+            if (
+                (section == 1 && state == 9) || 
+                (section == 2 && state == 8) ||
+                (section == 3 && state == 11)
+            ){
                 section = 4;
                 textContent = shutdownProcedureText.transform;
                 partOneText.SetActive(false);
@@ -92,15 +84,42 @@ public class SystemState : MonoBehaviour
                 partThreeText.SetActive(false);
                 shutdownProcedureText.SetActive(true);
                 shutdown();
-            } else {
-                section = 1;
-                textContent = partOneText.transform;
-                partOneText.SetActive(true);
-                partTwoText.SetActive(false);
-                partThreeText.SetActive(false);
-                shutdownProcedureText.SetActive(false);
-                partOne();
+            } else if (section == 4 && state == 6){
+                if (partOneComplete && partTwoComplete && partThreeComplete) {
+                    shutDownComplete = true;
+                }
+                if (partOneComplete && partTwoComplete) {
+                    section = 3;
+                    textContent = partThreeText.transform;
+                    partOneText.SetActive(false);
+                    partTwoText.SetActive(false);
+                    partThreeText.SetActive(true);
+                    shutdownProcedureText.SetActive(false);
+                    partThree();
+                } else if (partOneComplete) {
+                    section = 2;
+                    textContent = partTwoText.transform;
+                    partOneText.SetActive(false);
+                    partTwoText.SetActive(true);
+                    partThreeText.SetActive(false);
+                    shutdownProcedureText.SetActive(false);
+                    partTwo();
+                }
             }
+        }
+    }
+
+    public void updateScore() {
+        float newScore = state * 100;
+        if (section == 2) {
+            newScore += 900;
+        } else if (section == 3) {
+            newScore += 1700;
+        }
+
+        if (newScore > currentScore) {
+            currentScore = newScore;
+            score.text = "Score: " + currentScore;
         }
     }
 
@@ -214,7 +233,7 @@ public class SystemState : MonoBehaviour
                                         if (checkTurn("PRV10", 3)) {
                                             state = 9;
                                             partOneComplete = true;
-                                            statusUI.text = "Part 1 Complete!" + state;
+                                            statusUI.text = "Part 1 Complete! Press [C] to perform shutdown procedure";
                                         }
                                     }
                                 }
@@ -256,7 +275,7 @@ public class SystemState : MonoBehaviour
                                     if (checkTurn("PRV10", 3)) {
                                         state = 8;
                                         partTwoComplete = true;
-                                        statusUI.text = "Part 2 Complete!" + state;
+                                        statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
                                     }
                                 }
                             }
@@ -306,7 +325,7 @@ public class SystemState : MonoBehaviour
                                                 if (checkTurn("PRV10", 3)) {
                                                     state = 11;
                                                     partThreeComplete = true;
-                                                    statusUI.text = "Part 3 Complete!";
+                                                    statusUI.text = "Part 3 Complete! Press [C] to perform shutdown procedure";
                                                 }
                                             }
                                         }
@@ -326,6 +345,7 @@ public class SystemState : MonoBehaviour
     }
 
     private void shutdown() {
+        statusUI.text = "Shutdown Procedure";
         if (!checkCircle("V111") && checkPosition("V112", Position.top) && checkPosition("V113", Position.top)) {
             state = 1;
             statusUI.text = "Shutdown: step " + state;
@@ -343,7 +363,7 @@ public class SystemState : MonoBehaviour
                             statusUI.text = "Shutdown: step " + state;
                             if (checkPosition("V131", Position.top) && !checkCircle("V133") && !checkCircle("V134")) {
                                 state = 6;
-                                statusUI.text = "Shutdown Complete!";
+                                statusUI.text = "Shutdown Complete! Press [C] to go to next section";
                             }
                         }
                     }
