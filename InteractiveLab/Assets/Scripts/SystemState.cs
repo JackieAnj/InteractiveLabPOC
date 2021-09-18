@@ -131,6 +131,7 @@ public class SystemState : MonoBehaviour
         currentScore = 0;
         endScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        updateScore();
     }
 
     public void onChange() {

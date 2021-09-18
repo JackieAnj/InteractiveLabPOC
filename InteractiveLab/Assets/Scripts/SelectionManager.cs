@@ -10,7 +10,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private string circleValveTag = "CircleValve";
     [SerializeField] private string condensationTrapTag = "CondensationTrap";
     [SerializeField] private string PRVTag = "PRV";
-     [SerializeField] private string ComputerTag = "Computer";
+    [SerializeField] private string ComputerTag = "Computer";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
 
@@ -45,7 +45,7 @@ public class SelectionManager : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, distanceToSee)) {
+        if (Physics.Raycast(ray, out hit, distanceToSee) && !PauseMenu.paused) {
             var selection = hit.transform;
 
             var selectionRenderer = selection.GetComponent<Renderer>();
