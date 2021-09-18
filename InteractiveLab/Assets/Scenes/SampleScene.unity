@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -325,7 +329,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -600,6 +604,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_Wall_Corner_snaps001 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1619585040777286, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4973419872040736, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -659,7 +667,7 @@ PrefabInstance:
     - target: {fileID: 64492712928627388, guid: 2dd6a41bf3754ca45a0c700ba7da1771,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
@@ -1307,6 +1315,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 73813983}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &188369381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8209817799818617532, guid: ca732832743150b40b02f734ae50f8a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 460693278953249297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &188369383
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188369381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15, y: 25, z: 10}
+  m_Center: {x: -5, y: 15, z: -5}
 --- !u!1 &188599779
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,6 +3465,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3497,7 +3528,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -3511,6 +3542,10 @@ PrefabInstance:
     - target: {fileID: 1504971913077320, guid: 3cd7bc5de3ff05f49ab503add0f0f2d0, type: 3}
       propertyPath: m_Name
       value: Classic_WallDoubleDoors_01_snaps001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504971913077320, guid: 3cd7bc5de3ff05f49ab503add0f0f2d0, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4101074943595396, guid: 3cd7bc5de3ff05f49ab503add0f0f2d0, type: 3}
       propertyPath: m_RootOrder
@@ -3571,7 +3606,7 @@ PrefabInstance:
     - target: {fileID: 4792974389375736746, guid: 3cd7bc5de3ff05f49ab503add0f0f2d0,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cd7bc5de3ff05f49ab503add0f0f2d0, type: 3}
@@ -3796,6 +3831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3855,7 +3894,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -8380,6 +8419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8439,7 +8482,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -9336,6 +9379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_Wall_Corner_snaps001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1619585040777286, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4973419872040736, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9395,7 +9442,7 @@ PrefabInstance:
     - target: {fileID: 64492712928627388, guid: 2dd6a41bf3754ca45a0c700ba7da1771,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
@@ -11031,6 +11078,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_Wall_Corner_snaps001 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1619585040777286, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4973419872040736, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -11090,7 +11141,7 @@ PrefabInstance:
     - target: {fileID: 64492712928627388, guid: 2dd6a41bf3754ca45a0c700ba7da1771,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
@@ -12840,6 +12891,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -12899,7 +12954,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -13674,6 +13729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatDistillation
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd7c932f0420e4e49ac4769c2281a14c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd7c932f0420e4e49ac4769c2281a14c, type: 3}
 --- !u!1 &1924868171 stripped
@@ -14188,6 +14248,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983941825}
   m_CullTransparentMesh: 0
+--- !u!1 &1989251555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dd7c932f0420e4e49ac4769c2281a14c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1915557946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1989251559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989251555}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1762.4213, y: 6336.043, z: 1214.8674}
+  m_Center: {x: -885.6838, y: 3193.7139, z: 1773.683}
 --- !u!1 &1991155748
 GameObject:
   m_ObjectHideFlags: 0
@@ -14340,6 +14419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_Wall_Corner_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 1619585040777286, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4973419872040736, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -14399,7 +14482,7 @@ PrefabInstance:
     - target: {fileID: 64492712928627388, guid: 2dd6a41bf3754ca45a0c700ba7da1771,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dd6a41bf3754ca45a0c700ba7da1771, type: 3}
@@ -14553,6 +14636,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -14612,7 +14699,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -14761,6 +14848,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -14820,7 +14911,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -15185,6 +15276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Classic_WallWindowFrame_02_snaps001 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133037755064556, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -15244,7 +15339,7 @@ PrefabInstance:
     - target: {fileID: 2175160453246072639, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
@@ -18374,6 +18469,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d563bd7133e313644b549f9f506fde58, type: 2}
+    - target: {fileID: 8209817799818617532, guid: ca732832743150b40b02f734ae50f8a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8233456939999968814, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
