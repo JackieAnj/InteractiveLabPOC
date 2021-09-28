@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public GameObject HXPivot;
     private bool freeControl = true;
     public float speed = 50f;
+    public float rotateSpeed = 50f;
     Vector3 playerPosition;
     Vector3 HXPosition;
 
@@ -40,11 +41,11 @@ public class Movement : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
         } else {
             if (Input.GetKey("a")) {
-                HX.transform.RotateAround(HXPivot.transform.position, Vector3.up, speed * Time.deltaTime);
+                HX.transform.RotateAround(HXPivot.transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
             }
             
             if (Input.GetKey("d")) {
-                HX.transform.RotateAround(HXPivot.transform.position, Vector3.up, -speed * Time.deltaTime);
+                HX.transform.RotateAround(HXPivot.transform.position, Vector3.up, -rotateSpeed * Time.deltaTime);
             }
         }
     }

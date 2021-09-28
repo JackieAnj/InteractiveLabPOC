@@ -4,13 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - System
   - TwoWayValve
   - ThreeWayValve
   - CircleValve
   - CondensationTrap
   - PRV
   - Computer
+  - HX
+  - PD
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SystemState : MonoBehaviour
+public class HXSystemState : MonoBehaviour
 {
     private int state = -1;
     private int oldState = -1;
@@ -107,6 +107,10 @@ public class SystemState : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnDisable() {
+        restart();
     }
 
     public void updateScore() {

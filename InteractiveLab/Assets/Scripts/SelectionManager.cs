@@ -13,20 +13,16 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private string ComputerTag = "Computer";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
-
     public float distanceToSee;
-
     public Text interactCaption;
     public Image captionBackground;
     public GameObject videoPanel;
-
     public GameObject DeltaV;
+    public GameObject stateManager;
     private Transform _selection;
-    private GameObject system;
 
     private void Start() {
         interactCaption.text = "";
-        system = GameObject.FindWithTag("System");
     }
 
     private void Update() {
@@ -69,7 +65,7 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<TwoWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    system.GetComponent<SystemState>().onChange();
+                    stateManager.GetComponent<StateManager>().onChange();
                 }
             }
 
@@ -81,7 +77,7 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<ThreeWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    system.GetComponent<SystemState>().onChange();
+                    stateManager.GetComponent<StateManager>().onChange();
                 }
             }
 
@@ -99,7 +95,7 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<CircleValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    system.GetComponent<SystemState>().onChange();
+                    stateManager.GetComponent<StateManager>().onChange();
                 }
             }
 
@@ -115,13 +111,13 @@ public class SelectionManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("right");
-                    system.GetComponent<SystemState>().onChange();
+                    stateManager.GetComponent<StateManager>().onChange();
                 }
 
                 if (Input.GetMouseButtonDown(1)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("left");
-                    system.GetComponent<SystemState>().onChange();
+                    stateManager.GetComponent<StateManager>().onChange();
                 }
             }
 
