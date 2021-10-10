@@ -14,6 +14,7 @@ public class HXSystemState : MonoBehaviour
     public GameObject CondensationTrapTwo;
     public Text statusUI;
     public Text timer; // time to be displayed in game
+    public Text timerVR;
     public Text score; // score to be displayed in game
     public GameObject partOneText;
     public GameObject partTwoText;
@@ -38,6 +39,7 @@ public class HXSystemState : MonoBehaviour
 
     private void Start() {
         timer.text = "Time: 00:00.00";
+        timerVR.text = timer.text;
         score.text = "Score: 0";
         twoWayValves = UnityEngine.Object.FindObjectsOfType<TwoWayValve>();
         threeWayValves = UnityEngine.Object.FindObjectsOfType<ThreeWayValve>();
@@ -59,6 +61,7 @@ public class HXSystemState : MonoBehaviour
             timeStart += Time.deltaTime;
             TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
             timer.text = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+            timerVR.text = timer.text;
         }
 
         updateScore();
