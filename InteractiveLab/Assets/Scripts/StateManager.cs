@@ -5,7 +5,9 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     public GameObject HeatExchange;
+    public GameObject HXProcedure;
     public GameObject PackedGreen;
+    public GameObject PDProcedure;
     public static string activeSystem = "HX";
 
     // Start is called before the first frame update
@@ -20,10 +22,14 @@ public class StateManager : MonoBehaviour
         if (Input.GetKeyDown("1")) {
             PackedGreen.GetComponent<PDSystemState>().enabled = false;
             HeatExchange.GetComponent<HXSystemState>().enabled = true;
+            PDProcedure.SetActive(false);
+            HXProcedure.SetActive(true);
             activeSystem = "HX";
         } else if (Input.GetKeyDown("2")) {
             HeatExchange.GetComponent<HXSystemState>().enabled = false;
             PackedGreen.GetComponent<PDSystemState>().enabled = true;
+            PDProcedure.SetActive(true);
+            HXProcedure.SetActive(false);
             activeSystem = "PD";
         }
     }
