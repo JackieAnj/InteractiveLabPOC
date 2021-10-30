@@ -926,7 +926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &21806668
 Transform:
   m_ObjectHideFlags: 0
@@ -8401,7 +8401,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 411941607170898886, guid: ba32e8bc2bd0a164785bb7de444cf8e8,
+  m_ModelPrefab: {fileID: 3487785359498618336, guid: 15a0a74003fdbc048bcc7a2499feaac0,
     type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
@@ -8526,7 +8526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &547637998
 Transform:
   m_ObjectHideFlags: 0
@@ -22826,7 +22826,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 411941607170898886, guid: ba32e8bc2bd0a164785bb7de444cf8e8,
+  m_ModelPrefab: {fileID: 3487785359498618336, guid: d78c4670f7f905a40a70757370b1bda5,
     type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
