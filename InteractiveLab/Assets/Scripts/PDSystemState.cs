@@ -109,37 +109,26 @@ public class PDSystemState : MonoBehaviour
     }
 
     private void partOne() {
-        if (checkPosition("V122", Position.left)) {
+        if (checkPosition("HV700", Position.left)) {
             state = 1;
             statusUI.text = "Part 1: step " + state;
-            if (checkCircle("V121")) {
+            if (checkPosition("HV701", Position.left)) {
                 state = 2;
                 statusUI.text = "Part 1: step " + state;
-                if (checkPosition("V131", Position.left)) {
+                if (checkTurn("FIC703", 1)) {
                     state = 3;
                     statusUI.text = "Part 1: step " + state;
-                    if (checkPosition("V119", Position.left) && checkPosition("V123", Position.left)) {
+                    if (checkPosition("HV806", Position.left)) {
                         state = 4;
                         statusUI.text = "Part 1: step " + state;
-                        if (checkPosition("V124", Position.left) && checkOpen("V125")) {
+                        if (checkTurn("PRV807", 1)) {
                             state = 5;
                             statusUI.text = "Part 1: step " + state;
-                            if (checkCircle("V132")) {
+                            if (checkOpen("HV704") && checkOpen("HV705")) {
                                 state = 6;
-                                statusUI.text = "Part 1: step " + state;
-                                if (checkTurn("PRV10", 1)) {
-                                    state = 7;
-                                    statusUI.text = "Part 1: step " + state;
-                                    if (checkCircle("V111")) {
-                                        state = 8;
-                                        statusUI.text = "Part 1: step " + state;
-                                        if (checkTurn("PRV10", 3)) {
-                                            state = 9;
-                                            partOneComplete = true;
-                                            statusUI.text = "Part 1 Complete! Press [C] to perform shutdown procedure";
-                                        }
-                                    }
-                                }
+                                // statusUI.text = "Part 1: step " + state;
+                                partOneComplete = true;
+                                statusUI.text = "Part 1 Complete! Press [C] to perform shutdown procedure";
                             }
                         }
                     }
