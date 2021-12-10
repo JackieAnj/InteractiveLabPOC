@@ -13,4 +13,8 @@ public class CircleValve : MonoBehaviour
         FindObjectOfType<SoundManager>().Play("TurnCircleValve");
         open = !open;
     }
+
+    public void Reset() {
+        open = false;
+    }
 }

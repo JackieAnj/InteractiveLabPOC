@@ -20,4 +20,8 @@ public class PRVValve : MonoBehaviour
             turn++;
         }
     }
+
+    public void Reset() {
+        turn = 0;
+    }
 }

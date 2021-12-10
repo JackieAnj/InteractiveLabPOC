@@ -45,4 +45,18 @@ public class TwoWayValve : MonoBehaviour
             }
         }
     }
+
+    public void Reset() {
+        if (open) {
+            if (rotateVertical) {
+                transform.RotateAround(target.transform.position, Vector3.right, 90f);
+            } else if (rotateHorizontal) {
+                transform.RotateAround(target.transform.position, Vector3.back, 90f);
+            } else {
+                transform.RotateAround(target.transform.position, Vector3.down, 90f);
+            }
+
+            open = false;
+        }
+    }
 }

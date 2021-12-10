@@ -74,6 +74,39 @@ public class HXSystemState : MonoBehaviour
             shutDownComplete = true;
         }
 
+        // completes individual procedures
+        if (Input.GetKeyDown("j")) {
+            partOneText.SetActive(true);
+            partTwoText.SetActive(false);
+            partThreeText.SetActive(false);
+            shutdownProcedureText.SetActive(false);
+            resetValves();
+            section = 1;
+            state = 1;
+            textContent = partOneText.transform;
+        } else if (Input.GetKeyDown("k")) {
+            partOneComplete = true;
+            partOneText.SetActive(false);
+            partTwoText.SetActive(true);
+            partThreeText.SetActive(false);
+            shutdownProcedureText.SetActive(false);
+            resetValves();
+            section = 2;
+            state = 1;
+            textContent = partTwoText.transform;
+        } else if (Input.GetKeyDown("l")) {
+            partOneComplete = true;
+            partTwoComplete = true;
+            partOneText.SetActive(false);
+            partTwoText.SetActive(false);
+            partThreeText.SetActive(true);
+            shutdownProcedureText.SetActive(false);
+            resetValves();
+            section = 3;
+            state = 1;
+            textContent = partThreeText.transform;
+        }
+
         if (Input.GetKeyDown("c")) {
             if (
                 (section == 1 && state == 9) || 
@@ -382,6 +415,29 @@ public class HXSystemState : MonoBehaviour
         }
 
         updateStatus();
+    }
+
+    // reset valves
+    private void resetValves() {
+        foreach (var valve in circleValves)
+        {
+            valve.Reset();
+        }
+
+        foreach (var valve in PRVs)
+        {
+            valve.Reset();
+        }
+
+        foreach (var valve in twoWayValves)
+        {
+            valve.Reset();
+        }
+
+        foreach (var valve in threeWayValves)
+        {
+            valve.Reset();
+        }
     }
 
     // check if a two way valve is open given valve id
