@@ -50,6 +50,42 @@ public class HXSystemState : MonoBehaviour
         startupCheck();
     }
 
+    public void changeTube() {
+        partOneText.SetActive(true);
+        partTwoText.SetActive(false);
+        partThreeText.SetActive(false);
+        shutdownProcedureText.SetActive(false);
+        resetValves();
+        section = 1;
+        state = 1;
+        textContent = partOneText.transform;
+    }
+
+    public void changePlate() {
+        partOneComplete = true;
+        partOneText.SetActive(false);
+        partTwoText.SetActive(true);
+        partThreeText.SetActive(false);
+        shutdownProcedureText.SetActive(false);
+        resetValves();
+        section = 2;
+        state = 1;
+        textContent = partTwoText.transform;
+    }
+
+    public void changeColumn() {
+        partOneComplete = true;
+        partTwoComplete = true;
+        partOneText.SetActive(false);
+        partTwoText.SetActive(false);
+        partThreeText.SetActive(true);
+        shutdownProcedureText.SetActive(false);
+        resetValves();
+        section = 3;
+        state = 1;
+        textContent = partThreeText.transform;
+    }
+
     private void Update() {
         if (partOneComplete && partTwoComplete && partThreeComplete && shutDownComplete) {
             TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);

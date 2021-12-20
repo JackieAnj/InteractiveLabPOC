@@ -59,4 +59,8 @@ public class PauseMenu : MonoBehaviour
         paused = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
+
+    public void Exit() {
+        Application.Quit();
+    }
 }
