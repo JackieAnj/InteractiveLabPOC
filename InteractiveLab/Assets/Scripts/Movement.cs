@@ -38,6 +38,10 @@ public class Movement : MonoBehaviour
 
             Vector3 move = transform.right * x + transform.forward * z;
 
+            if (controller.isGrounded == false) {
+                move += Physics.gravity;
+            }
+
             controller.Move(move * speed * Time.deltaTime);
         } else {
             if (Input.GetKey("a")) {
