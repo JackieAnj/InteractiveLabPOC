@@ -126,9 +126,12 @@ public class PDSystemState : MonoBehaviour
                             statusUI.text = "Part 1: step " + state;
                             if (checkOpen("HV704") && checkOpen("HV705")) {
                                 state = 6;
-                                // statusUI.text = "Part 1: step " + state;
-                                partOneComplete = true;
-                                statusUI.text = "Part 1 Complete! Press [C] to perform shutdown procedure";
+                                statusUI.text = "Part 1: step " + state;
+                                if (checkOpen("HV901")) {
+                                    state = 7;
+                                    partOneComplete = true;
+                                    statusUI.text = "Part 1 Complete! Press [C] to perform part 2";
+                                }
                             }
                         }
                     }
@@ -141,7 +144,38 @@ public class PDSystemState : MonoBehaviour
         updateStatus();
     }
 
-    private void partTwo() {}
+    private void partTwo() {
+        if (checkOpen("HV203")) {
+            state = 1;
+            statusUI.text = "Part 2: step " + state;
+            if (checkTurn("FIC204", 1)) {
+                state = 2;
+                statusUI.text = "Part 2: step " + state;
+                if (!checkOpen("HV403") && checkOpen("HV402") && checkOpen("HV404")) {
+                    state = 3;
+                    statusUI.text = "Part 2: step " + state;
+                    if (checkTurn("FIC401", 1)) {
+                        state = 4;
+                        statusUI.text = "Part 2: step " + state;
+                        if (checkOpen("HV802")) {
+                            state = 5;
+                            statusUI.text = "Part 2: step " + state;
+                            if (checkTurn("PRV803", 1)) {
+                                state = 6;
+                                statusUI.text = "Part 2: step " + state;
+                                partTwoComplete = true;
+                                statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            state = 0;
+        }
+
+        updateStatus();
+    }
 
     private void partThree() {}
 
