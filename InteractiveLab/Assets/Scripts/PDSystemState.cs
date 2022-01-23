@@ -177,7 +177,43 @@ public class PDSystemState : MonoBehaviour
         updateStatus();
     }
 
-    private void partThree() {}
+    private void partThree() {
+        statusUI.text = "Shutdown Procedure";
+        if (!checkOpen("FIC401")) {
+            state = 1;
+            statusUI.text = "Shutdown Procedure: step " + state;
+            if (checkTurn("FIC204", 0)) {
+                state = 2;
+                statusUI.text = "Shutdown Procedure: step " + state;
+                if (!checkOpen("HV203")) {
+                    state = 3;
+                    statusUI.text = "Shutdown Procedure: step " + state;
+                    if (!checkOpen("HS201")) {
+                        state = 4;
+                        statusUI.text = "Shutdown Procedure: step " + state;
+                        if (checkOpen("HV303")) {
+                            state = 5;
+                            statusUI.text = "Shutdown Procedure: step " + state;
+                            if (!checkOpen("HV402") && checkOpen("HV403") && checkTurn("HS301", 1)) {
+                                state = 6;
+                                statusUI.text = "Shutdown Procedure: Step " + state;
+                                if (!checkOpen("FIC703") && !checkOpen("HV701")) {
+                                    state = 7;
+                                    statusUI.text = "Shutdown Procedure: step " + state;
+                                    partThreeComplete = true;
+                                    statusUI.text = "Shutdown Procedure Complete!";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            state = 0;
+        }
+
+        updateStatus();
+    }
 
     // check if a two way valve is open given valve id
     private bool checkOpen(string id) {
