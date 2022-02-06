@@ -12,6 +12,8 @@ TagManager:
   - Computer
   - HX
   - PD
+  - System
+  - InfoGauge
   layers:
   - Default
   - TransparentFX

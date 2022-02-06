@@ -32,6 +32,7 @@ public class HXSystemState : MonoBehaviour
     private ThreeWayValve[] threeWayValves;
     private CircleValve[] circleValves;
     private PRVValve[] PRVs;
+    private InfoGauge[] infoGauges;
     private Boolean partOneComplete = false;
     private Boolean partTwoComplete = false;
     private Boolean partThreeComplete = false;
@@ -45,6 +46,7 @@ public class HXSystemState : MonoBehaviour
         threeWayValves = UnityEngine.Object.FindObjectsOfType<ThreeWayValve>();
         circleValves = UnityEngine.Object.FindObjectsOfType<CircleValve>();
         PRVs = UnityEngine.Object.FindObjectsOfType<PRVValve>();
+        infoGauges = UnityEngine.Object.FindObjectsOfType<InfoGauge>();
         textContent = partOneText.transform;
 
         startupCheck();
@@ -289,6 +291,7 @@ public class HXSystemState : MonoBehaviour
             if (checkCircle("V121")) {
                 state = 2;
                 statusUI.text = "Part 1: step " + state;
+                updateGaugeValue("TI13", 30);
                 if (checkPosition("V131", Position.left)) {
                     state = 3;
                     statusUI.text = "Part 1: step " + state;
@@ -494,6 +497,12 @@ public class HXSystemState : MonoBehaviour
     // check if a PRV has at least x number of turns
     private bool checkTurn(string id, int turn) {
         return Array.Find(PRVs, v => v.id == id).turn >= turn;
+    }
+
+    // update the value of an info gauge
+    private void updateGaugeValue(string id, int value) {
+        InfoGauge target = Array.Find(infoGauges, g => g.id == id);
+        target.updateValue(value);
     }
 
     private void updateStatus() {

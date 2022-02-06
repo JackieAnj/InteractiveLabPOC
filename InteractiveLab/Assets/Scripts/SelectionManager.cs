@@ -11,6 +11,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private string condensationTrapTag = "CondensationTrap";
     [SerializeField] private string PRVTag = "PRV";
     [SerializeField] private string ComputerTag = "Computer";
+    [SerializeField] private string InfoGaugeTag = "InfoGauge";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
     public float distanceToSee;
@@ -50,6 +51,10 @@ public class SelectionManager : MonoBehaviour
             }
             _selection = selection;
 
+            if (selection.CompareTag(InfoGaugeTag)) {
+                interactCaption.text = hit.collider.gameObject.GetComponent<InfoGauge>().description + hit.collider.gameObject.GetComponent<InfoGauge>().value;
+                captionBackground.enabled = true;
+            }
 
             if (selection.CompareTag(twoWayValveTag)) {
                 var action = "";
