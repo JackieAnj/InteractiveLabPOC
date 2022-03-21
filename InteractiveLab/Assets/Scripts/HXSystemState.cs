@@ -21,6 +21,7 @@ public class HXSystemState : MonoBehaviour
     public GameObject partThreeText;
     public GameObject shutdownProcedureText;
     public GameObject endScreen;
+    public MeterValues meters;
     public Text finalScore; // final score to be displayed in end screen
     public Text timePlayed; // final time to be displayed in end screen
     private float timeStart; // internal time variable
@@ -288,9 +289,13 @@ public class HXSystemState : MonoBehaviour
         if (checkPosition("V122", Position.left)) {
             state = 1;
             statusUI.text = "Part 1: step " + state;
+            meters.changeValue(0, "70.0");
+            meters.changeValue(1, "6.0");
             if (checkCircle("V121")) {
                 state = 2;
                 statusUI.text = "Part 1: step " + state;
+                meters.changeValue(0, "78.0");
+                meters.changeValue(1, "8.0");
                 updateGaugeValue("TI13", 30);
                 if (checkPosition("V131", Position.left)) {
                     state = 3;

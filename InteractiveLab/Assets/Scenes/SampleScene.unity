@@ -3249,20 +3249,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137924943}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 960779983}
   - {fileID: 90830913}
   - {fileID: 1616684272}
-  m_Father: {fileID: 184068687}
-  m_RootOrder: 9
+  m_Father: {fileID: 1399445905}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -776, y: -496.76736}
+  m_SizeDelta: {x: 1595.3755, y: 1127.7214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &137924945
 MonoBehaviour:
@@ -4180,7 +4180,6 @@ RectTransform:
   - {fileID: 561578538}
   - {fileID: 491270236}
   - {fileID: 1399445905}
-  - {fileID: 137924944}
   - {fileID: 1620813192}
   m_Father: {fileID: 547637998}
   m_RootOrder: 0
@@ -24188,6 +24187,7 @@ GameObject:
   - component: {fileID: 960779983}
   - component: {fileID: 960779985}
   - component: {fileID: 960779984}
+  - component: {fileID: 960779986}
   m_Layer: 5
   m_Name: controlPanel
   m_TagString: Untagged
@@ -24264,6 +24264,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960779982}
   m_CullTransparentMesh: 0
+--- !u!114 &960779986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960779982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47dec5903d77528458f8960aaad99778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FIT16: {fileID: 1763607466}
+  PI16: {fileID: 1472739791}
+  TI16: {fileID: 2063846548}
+  FT17: {fileID: 834750419}
+  FT18: {fileID: 1095499942}
+  TE42: {fileID: 1857602682}
+  TE43: {fileID: 60357914}
+  TE44: {fileID: 1522595441}
+  TE45: {fileID: 1647951954}
+  TE46: {fileID: 564710815}
+  meterList: []
 --- !u!1001 &961276963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33491,7 +33514,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 137924944}
   m_Father: {fileID: 184068687}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37255,7 +37279,7 @@ RectTransform:
   - {fileID: 1733137763}
   - {fileID: 1476930342}
   m_Father: {fileID: 184068687}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -51789,6 +51813,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 491270237}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
+      propertyPath: meters
+      value: 
+      objectReference: {fileID: 960779986}
+    - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: timerVR
       value: 
       objectReference: {fileID: 1215960928}
@@ -51812,6 +51840,10 @@ PrefabInstance:
       propertyPath: timePlayed
       value: 
       objectReference: {fileID: 1733137764}
+    - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
+      propertyPath: meterValues
+      value: 
+      objectReference: {fileID: 960779982}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: partOneText
       value: 
