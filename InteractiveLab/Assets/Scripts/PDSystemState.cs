@@ -27,6 +27,7 @@ public class PDSystemState : MonoBehaviour
     private ThreeWayValve[] threeWayValves;
     private CircleValve[] circleValves;
     private PRVValve[] PRVs;
+    private InfoGauge[] infoGauges;
     private Boolean partOneComplete = false;
     private Boolean partTwoComplete = false;
     private Boolean partThreeComplete = false;
@@ -41,6 +42,7 @@ public class PDSystemState : MonoBehaviour
         circleValves = UnityEngine.Object.FindObjectsOfType<CircleValve>();
         PRVs = UnityEngine.Object.FindObjectsOfType<PRVValve>();
         textContent = partOneText.transform;
+        infoGauges = UnityEngine.Object.FindObjectsOfType<InfoGauge>();
     }
 
     // Update is called once per frame
@@ -118,13 +120,14 @@ public class PDSystemState : MonoBehaviour
                 if (checkTurn("FIC703", 1)) {
                     state = 3;
                     statusUI.text = "Part 1: step " + state;
-                    if (checkPosition("HV806", Position.left)) {
+                    if (checkTurn("HV806", 1)) {
                         state = 4;
                         statusUI.text = "Part 1: step " + state;
                         if (checkTurn("PRV807", 1)) {
                             state = 5;
                             statusUI.text = "Part 1: step " + state;
-                            if (checkOpen("HV704") && checkOpen("HV705")) {
+                            updateGaugeValue("PI802", 10);
+                            if (checkCircle("HV704") && checkCircle("HV705")) {
                                 state = 6;
                                 statusUI.text = "Part 1: step " + state;
                                 if (checkOpen("HV901")) {
@@ -163,6 +166,7 @@ public class PDSystemState : MonoBehaviour
                             if (checkTurn("PRV803", 1)) {
                                 state = 6;
                                 statusUI.text = "Part 2: step " + state;
+                                updateGaugeValue("PI801", 3);
                                 partTwoComplete = true;
                                 statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
                             }
@@ -233,6 +237,12 @@ public class PDSystemState : MonoBehaviour
     // check if a PRV has at least x number of turns
     private bool checkTurn(string id, int turn) {
         return Array.Find(PRVs, v => v.id == id).turn >= turn;
+    }
+
+    // update the value of an info gauge
+    private void updateGaugeValue(string id, int value) {
+        InfoGauge target = Array.Find(infoGauges, g => g.id == id);
+        target.updateValue(value);
     }
 
     private void updateStatus() {
