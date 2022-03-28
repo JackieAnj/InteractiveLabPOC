@@ -23830,7 +23830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &960779983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23922,7 +23922,17 @@ MonoBehaviour:
   TE44: {fileID: 1522595441}
   TE45: {fileID: 1647951954}
   TE46: {fileID: 564710815}
-  meterList: []
+  meterList:
+  - {fileID: 1763607466}
+  - {fileID: 1472739791}
+  - {fileID: 2063846548}
+  - {fileID: 834750419}
+  - {fileID: 1095499942}
+  - {fileID: 1857602682}
+  - {fileID: 60357914}
+  - {fileID: 1522595441}
+  - {fileID: 1647951954}
+  - {fileID: 564710815}
 --- !u!1001 &961276963
 PrefabInstance:
   m_ObjectHideFlags: 0
