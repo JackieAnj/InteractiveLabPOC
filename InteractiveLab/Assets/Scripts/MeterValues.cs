@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,23 @@ public class MeterValues : MonoBehaviour
         // TE45.text = "18.5";
         // TE46.text = "9.4";
         // meterList = new Text[] {FIT16, PI16, TI16, FT17, FT18, TE42, TE43, TE44, TE45, TE46};
+    }
+
+    private float nextActionTime = 0.0f;
+    private float period = 3.0f;
+
+    void Update () {
+        // fluctuate the value within +/- 3 of the previous value
+        if (Time.time > nextActionTime) {
+            nextActionTime += period;
+            foreach(Text meterText in meterList) {
+                float newVal = Single.Parse(meterText.text) + UnityEngine.Random.Range(-3, 3);
+
+                if (newVal > 0) {
+                    meterText.text = newVal.ToString();
+                }
+            }
+        }
     }
 
     public void changeValue(int id, string val) {
