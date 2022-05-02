@@ -114,6 +114,7 @@ public class PDSystemState : MonoBehaviour
         if (checkPosition("HV700", Position.left)) {
             state = 1;
             statusUI.text = "Part 1: step " + state;
+            updateGaugeValue("Temp", 10);
             if (checkPosition("HV701", Position.left)) {
                 state = 2;
                 statusUI.text = "Part 1: step " + state;
