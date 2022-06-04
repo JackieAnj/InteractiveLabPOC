@@ -19,6 +19,10 @@ public class PRVValve : MonoBehaviour
         if (direction == "right" && turn < 4) {
             turn++;
         }
+
+        if (direction == "right" && turn >= 4) {
+            turn = 0;
+        }
     }
 
     public void Reset() {

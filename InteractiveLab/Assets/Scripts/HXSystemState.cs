@@ -296,7 +296,7 @@ public class HXSystemState : MonoBehaviour
                 statusUI.text = "Part 1: step " + state;
                 meters.changeValue(0, "78.0");
                 meters.changeValue(1, "8.0");
-                updateGaugeValue("TI13", 30);
+                // updateGaugeValue("TI13", 30);
                 if (checkPosition("V131", Position.left)) {
                     state = 3;
                     statusUI.text = "Part 1: step " + state;
