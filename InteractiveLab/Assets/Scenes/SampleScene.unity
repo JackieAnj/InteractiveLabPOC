@@ -13105,7 +13105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeatExchange: {fileID: 1924868171}
-  HXProcedure: {fileID: 1782563386}
+  HXProcedure: {fileID: 36322934}
   PackedGreen: {fileID: 539039218}
   PDProcedure: {fileID: 596457998}
 --- !u!4 &507942908
@@ -23086,7 +23086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822474043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.438, z: -1.082}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1208761602}
@@ -31616,7 +31616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208761601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.301, z: -1.109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 822474047}
@@ -58932,7 +58932,7 @@ PrefabInstance:
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: statusUI
       value: 
-      objectReference: {fileID: 1190326983}
+      objectReference: {fileID: 619824616}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: endScreen
       value: 
@@ -58956,19 +58956,19 @@ PrefabInstance:
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: partOneText
       value: 
-      objectReference: {fileID: 1630042168}
+      objectReference: {fileID: 919036303}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: partTwoText
       value: 
-      objectReference: {fileID: 1256731241}
+      objectReference: {fileID: 1817968876}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: partThreeText
       value: 
-      objectReference: {fileID: 1519850278}
+      objectReference: {fileID: 1225133157}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: shutdownProcedureText
       value: 
-      objectReference: {fileID: 1749554945}
+      objectReference: {fileID: 304861520}
     - target: {fileID: 2006051457, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: m_Size.x
       value: 15.514192
