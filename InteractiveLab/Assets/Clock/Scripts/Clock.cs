@@ -30,9 +30,9 @@ public class Clock : MonoBehaviour {
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void Start() 
 {
-    pointerSeconds = transform.Find("rotation_axis_pointer_seconds").gameObject;
+    //pointerSeconds = transform.Find("rotation_axis_pointer_seconds").gameObject;
     pointerMinutes = transform.Find("rotation_axis_pointer_minutes").gameObject;
-    pointerHours   = transform.Find("rotation_axis_pointer_hour").gameObject;
+    // pointerHours   = transform.Find("rotation_axis_pointer_hour").gameObject;
 
     msecs = 0.0f;
     seconds = 0;
@@ -69,9 +69,9 @@ void Update()
     float rotationHours   = ((360.0f / 12.0f) * hour) + ((360.0f / (60.0f * 12.0f)) * minutes);
 
     //-- draw pointers
-    pointerSeconds.transform.localEulerAngles = new Vector3(0.0f, 0.0f, rotationSeconds);
+    //pointerSeconds.transform.localEulerAngles = new Vector3(0.0f, 0.0f, rotationSeconds);
     pointerMinutes.transform.localEulerAngles = new Vector3(0.0f, 0.0f, rotationMinutes);
-    pointerHours.transform.localEulerAngles   = new Vector3(0.0f, 0.0f, rotationHours);
+    //pointerHours.transform.localEulerAngles   = new Vector3(0.0f, 0.0f, rotationHours);
 
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------
