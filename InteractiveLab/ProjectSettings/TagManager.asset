@@ -14,6 +14,7 @@ TagManager:
   - PD
   - System
   - InfoGauge
+  - LS
   layers:
   - Default
   - TransparentFX

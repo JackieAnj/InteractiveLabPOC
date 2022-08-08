@@ -8,7 +8,7 @@ public class StateManager : MonoBehaviour
     public GameObject HXProcedure;
     public GameObject PackedGreen;
     public GameObject PDProcedure;
-    public static string activeSystem = "HX";
+    public static string activeSystem = "LS";
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +36,17 @@ public class StateManager : MonoBehaviour
 
     public void onChange()
     {
-        if (activeSystem == "HX") {
+        if (activeSystem == "HX")
+        {
             GameObject.FindWithTag("HX").GetComponent<HXSystemState>().onChange();
-        } else if (activeSystem == "PD") {
+        }
+        else if (activeSystem == "PD")
+        {
             GameObject.FindWithTag("PD").GetComponent<PDSystemState>().onChange();
+        }
+        else if (activeSystem == "LS")
+        {
+            GameObject.FindWithTag("LS").GetComponent<LeachingSystem>().onChange();
         }
     }
 }

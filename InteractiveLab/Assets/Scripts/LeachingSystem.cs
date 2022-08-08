@@ -136,23 +136,22 @@ public class LeachingSystem : MonoBehaviour
         }
 
         if (Input.GetKeyDown("c")) {
-            if (section == 4 && state == 6){
-                if (partOneComplete && partTwoComplete) {
-                    section = 3;
-                    textContent = BShutDown.transform;
-                    BStartup.SetActive(false);
-                    BProcedure.SetActive(false);
-                    BShutDown.SetActive(true);
-                    partThree();
-                } else if (partOneComplete) {
-                    section = 2;
-                    textContent = BProcedure.transform;
-                    BStartup.SetActive(false);
-                    BProcedure.SetActive(true);
-                    BShutDown.SetActive(false);
-                    partTwo();
-                }
+            if (partOneComplete && partTwoComplete) {
+                section = 3;
+                textContent = BShutDown.transform;
+                BStartup.SetActive(false);
+                BProcedure.SetActive(false);
+                BShutDown.SetActive(true);
+                partThree();
+            } else if (partOneComplete) {
+                section = 2;
+                textContent = BProcedure.transform;
+                BStartup.SetActive(false);
+                BProcedure.SetActive(true);
+                BShutDown.SetActive(false);
+                partTwo();
             }
+           
         }
     }
 

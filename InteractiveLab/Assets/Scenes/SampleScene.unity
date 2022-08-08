@@ -49142,7 +49142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1695264791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59986,6 +59986,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leaching
       objectReference: {fileID: 0}
+    - target: {fileID: 1074971816172904129, guid: d006712785e4a3a48855233ba814c43c,
+        type: 3}
+      propertyPath: m_TagString
+      value: LS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316304278175163468, guid: d006712785e4a3a48855233ba814c43c,
+        type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1622744052}
+    - target: {fileID: 1316304278175163468, guid: d006712785e4a3a48855233ba814c43c,
+        type: 3}
+      propertyPath: m_OnSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1900939651}
+    - target: {fileID: 1316304278175163468, guid: d006712785e4a3a48855233ba814c43c,
+        type: 3}
+      propertyPath: m_OnSelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 507942907}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006712785e4a3a48855233ba814c43c, type: 3}
 --- !u!1001 &460693278953249297
