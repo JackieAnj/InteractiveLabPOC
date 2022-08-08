@@ -17,6 +17,12 @@ public class LeachingSystem : MonoBehaviour
     public GameObject BStartup;
     public GameObject BProcedure;
     public GameObject BShutDown;
+    public GameObject CStartup;
+    public GameObject CProcedure;
+    public GameObject CShutDown;
+    public GameObject DStartup;
+    public GameObject DProcedure;
+    public GameObject DShutDown;
     public GameObject endScreen;
     public MeterValues meters;
     public Text finalScore; // final score to be displayed in end screen
@@ -34,6 +40,12 @@ public class LeachingSystem : MonoBehaviour
     private Boolean partOneComplete = false;
     private Boolean partTwoComplete = false;
     private Boolean partThreeComplete = false;
+    private Boolean partFourComplete = false;
+    private Boolean partFiveComplete = false;
+    private Boolean partSixComplete = false;
+    private Boolean partSevenComplete = false;
+    private Boolean partEightComplete = false;
+    private Boolean partNineComplete = false;
 
     private void Start() {
         timer.text = "Time: 00:00.00";
@@ -53,37 +65,147 @@ public class LeachingSystem : MonoBehaviour
         BStartup.SetActive(true);
         BProcedure.SetActive(false);
         BShutDown.SetActive(false);
-        resetValves();
+        CStartup.SetActive(false);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(false);
         section = 1;
         state = 1;
         textContent = BStartup.transform;
     }
 
     public void PerformBProcedure() {
-        partOneComplete = true;
         BStartup.SetActive(false);
         BProcedure.SetActive(true);
         BShutDown.SetActive(false);
-        resetValves();
+        CStartup.SetActive(false);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(false);
         section = 2;
         state = 1;
         textContent = BProcedure.transform;
     }
 
     public void PerformBShutDown() {
-        partOneComplete = true;
-        partTwoComplete = true;
         BStartup.SetActive(false);
         BProcedure.SetActive(false);
         BShutDown.SetActive(true);
-        resetValves();
+        CStartup.SetActive(false);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(false);
         section = 3;
         state = 1;
         textContent = BShutDown.transform;
     }
 
+    public void PerformCStartUp()
+    {
+        BStartup.SetActive(false);
+        BProcedure.SetActive(false);
+        BShutDown.SetActive(false);
+        CStartup.SetActive(true);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(false);
+        section = 4;
+        state = 1;
+        textContent = BStartup.transform;
+    }
+
+    public void PerformCProcedure()
+    {
+        BStartup.SetActive(false);
+        BProcedure.SetActive(false);
+        BShutDown.SetActive(false);
+        CStartup.SetActive(false);
+        CProcedure.SetActive(true);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(false);
+        section = 5;
+        state = 1;
+        textContent = BProcedure.transform;
+    }
+
+    public void PerformCShutDown()
+    {
+        BStartup.SetActive(false);
+        BProcedure.SetActive(false);
+        BShutDown.SetActive(false);
+        CStartup.SetActive(false);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(true);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(false);
+        section = 6;
+        state = 1;
+        textContent = BShutDown.transform;
+    }
+
+    public void PerformDStartUp()
+    {
+        BStartup.SetActive(false);
+        BProcedure.SetActive(false);
+        BShutDown.SetActive(false);
+        CStartup.SetActive(false);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(true);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(false);
+        section = 7;
+        state = 1;
+        textContent = BStartup.transform;
+    }
+
+    public void PerformDProcedure()
+    {
+        BStartup.SetActive(false);
+        BProcedure.SetActive(false);
+        BShutDown.SetActive(false);
+        CStartup.SetActive(false);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(true);
+        DShutDown.SetActive(false);
+        section = 8;
+        state = 1;
+        textContent = BProcedure.transform;
+    }
+
+    public void PerformDShutDown()
+    {   
+        BStartup.SetActive(false);
+        BProcedure.SetActive(false);
+        BShutDown.SetActive(false);
+        CStartup.SetActive(false);
+        CProcedure.SetActive(false);
+        CShutDown.SetActive(false);
+        DStartup.SetActive(false);
+        DProcedure.SetActive(false);
+        DShutDown.SetActive(true);
+        section = 9;
+        state = 1;
+        textContent = BShutDown.transform;
+    }
+
     private void Update() {
-        if (partOneComplete && partTwoComplete && partThreeComplete) {
+        if (partOneComplete && partTwoComplete && partThreeComplete &&
+            partFourComplete && partFiveComplete && partSixComplete &&
+            partSevenComplete && partEightComplete && partNineComplete) {
             TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
             finalScore.text = "Score: " + currentScore;
             timePlayed.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
@@ -136,22 +258,39 @@ public class LeachingSystem : MonoBehaviour
         }
 
         if (Input.GetKeyDown("c")) {
-            if (partOneComplete && partTwoComplete) {
-                section = 3;
-                textContent = BShutDown.transform;
-                BStartup.SetActive(false);
-                BProcedure.SetActive(false);
-                BShutDown.SetActive(true);
+             if (partEightComplete) {
+                PerformDShutDown();
                 partThree();
-            } else if (partOneComplete) {
-                section = 2;
-                textContent = BProcedure.transform;
-                BStartup.SetActive(false);
-                BProcedure.SetActive(true);
-                BShutDown.SetActive(false);
+            } else if (partSevenComplete)
+            {
+                PerformDProcedure();
+                partTwo();
+            } else if (partSixComplete)
+            {
+                PerformDStartUp();
+                partOne();
+            } else if (partFiveComplete)
+            {
+                PerformCShutDown();
+                partThree();
+            } else if (partFourComplete)
+            {
+                PerformCProcedure();
+                partTwo();
+            } else if (partThreeComplete)
+            {
+                PerformCStartUp();
+                partOne();
+            } else if (partTwoComplete)
+            {
+                PerformBShutDown();
+                partThree();
+            } else if (partOneComplete)
+            {
+                PerformBProcedure();
                 partTwo();
             }
-           
+
         }
     }
 
@@ -177,6 +316,12 @@ public class LeachingSystem : MonoBehaviour
         partOneComplete = false;
         partTwoComplete = false;
         partThreeComplete = false;
+        partFourComplete = false;
+        partFiveComplete = false;
+        partSixComplete = false;
+        partSevenComplete = false;
+        partEightComplete = false;
+        partNineComplete = false;
         timeStart = 0;
         currentScore = 0;
         endScreen.SetActive(false);
@@ -198,7 +343,30 @@ public class LeachingSystem : MonoBehaviour
                 partTwo();
             } else if (section == 3) {
                 partThree();
-            } 
+            } else if (section == 4)
+            {
+                partOne();
+            }
+            else if (section == 5)
+            {
+                partTwo();
+            }
+            else if (section == 6)
+            {
+                partThree();
+            }
+            else if (section == 7)
+            {
+                partOne();
+            }
+            else if (section == 8)
+            {
+                partTwo();
+            }
+            else if (section == 9)
+            {
+                partThree();
+            }
         }
 
         if (oldState > state) {
@@ -340,7 +508,7 @@ public class LeachingSystem : MonoBehaviour
 
 
     // reset valves
-    private void resetValves() {
+    public void resetValves() {
         foreach (var valve in circleValves)
         {
             valve.Reset();

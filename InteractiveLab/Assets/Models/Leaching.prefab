@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 1632362201}
   m_Layer: 0
   m_Name: Leaching
-  m_TagString: Untagged
+  m_TagString: LS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -573,6 +573,12 @@ MonoBehaviour:
   BStartup: {fileID: 0}
   BProcedure: {fileID: 0}
   BShutDown: {fileID: 0}
+  CStartup: {fileID: 0}
+  CProcedure: {fileID: 0}
+  CShutDown: {fileID: 0}
+  DStartup: {fileID: 0}
+  DProcedure: {fileID: 0}
+  DShutDown: {fileID: 0}
   endScreen: {fileID: 0}
   meters: {fileID: 0}
   finalScore: {fileID: 0}
