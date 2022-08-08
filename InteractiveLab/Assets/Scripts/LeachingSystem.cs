@@ -198,9 +198,7 @@ public class LeachingSystem : MonoBehaviour
                 partTwo();
             } else if (section == 3) {
                 partThree();
-            } else {
-                shutdown();
-            }
+            } 
         }
 
         if (oldState > state) {
@@ -276,31 +274,30 @@ public class LeachingSystem : MonoBehaviour
     }
 
     private void partTwo() {
-        if (checkPosition("V122", Position.left)) {
+        if (checkCircle("V101")) { 
             state = 1;
-            statusUI.text = "Part 2: step " + state;
-            if (checkCircle("V121")) {
+            statusUI.text = "B Procedure: step " + state;
+            if (checkCircle("V101"))
+            { // placeholder for now, no switch found
                 state = 2;
-                statusUI.text = "Part 2: step " + state;
-                if (checkPosition("V119", Position.left)) {
-                    state = 3;
-                    statusUI.text = "Part 2: step " + state;
-                    if (checkPosition("V123", Position.left)) {
-                        state = 4;
-                        statusUI.text = "Part 2: step " + state;
-                        if (checkCircle("V132")) {
-                            state = 5;
-                            statusUI.text = "Part 2: step " + state;
-                            if (checkTurn("PRV10", 1)) {
-                                state = 6;
-                                statusUI.text = "Part 2: step " + state;
-                                if (checkCircle("V111")) {
-                                    state = 7;
-                                    statusUI.text = "Part 2: step " + state;
-                                    if (checkTurn("PRV10", 3)) {
-                                        state = 8;
+                statusUI.text = "B Procedure: step " + state;
+                if (!checkCircle("V103") && checkCircle("V101")) { //pump part unimplemented, no switch
+                    if (!checkCircle("V103") && checkCircle("V101")) { //liquid drained condition unimplemented, pump no switch
+                        state = 3;
+                        statusUI.text = "B Procedure: step " + state;
+                        if (checkCircle("V101")) { //placeholder, no adjustment yet
+                            state = 4;
+                            statusUI.text = "B Procedure: step " + state;
+                            if (checkCircle("V105")) { //placeholder, no adjustment on circle valve yet
+                                state = 5;
+                                statusUI.text = "B Procedure: step " + state;
+                                if (checkCircle("V106")) { //check level to be implemented
+                                    state = 6;
+                                    statusUI.text = "B Procedure: step " + state;
+                                    if (checkCircle("V106")) { //placeholder
+                                        state = 7;
                                         partTwoComplete = true;
-                                        statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
+                                        statusUI.text = "B Procedure Complete! Press [C] to perform B Shutdown procedure";
                                     }
                                 }
                             }
@@ -317,47 +314,19 @@ public class LeachingSystem : MonoBehaviour
     }
 
     private void partThree() {
-        if (checkPosition("V112", Position.left) && (checkPosition("V113", Position.left))) {
+        if (!checkCircle("V101")) { //placeholder for pump
             state = 1;
-            statusUI.text = "Part 3: step " + state;
-            if (!checkOpen("V115") && !checkOpen("V116")) {
+            statusUI.text = "B Shutdown: step " + state;
+            if (!checkCircle("V101")) {
                 state = 2;
-                statusUI.text = "Part 3: step " + state;
-                if (checkCircle("V128") && checkTurn("PRV12", 1)) {
+                statusUI.text = "B Shutdown: step " + state;
+                if (!checkCircle("V103")) { //placeholder for liquidline drainage condition
                     state = 3;
-                    statusUI.text = "Part 3: step " + state;
-                    if (checkPosition("V131", Position.left)) {
+                    statusUI.text = "B Shutdown: step " + state;
+                    if (!checkCircle("V106")) { //placeholder for drainage of leaching vessel condition
                         state = 4;
-                        statusUI.text = "Part 3: step " + state;
-                        if (checkOpen("V126")) {
-                            state = 5;
-                            statusUI.text = "Part 3: step " + state;
-                            if (checkPosition("V118", Position.left)) {
-                                state = 6;
-                                statusUI.text = "Part 3: step " + state;
-                                if (checkCircle("V130")) {
-                                    state = 7;
-                                    statusUI.text = "Part 3: step " + state;
-                                    if (checkTurn("PRV10", 3)) {
-                                        state = 8;
-                                        statusUI.text = "Part 3: step " + state;
-                                        if (checkTurn("PRV10", 1)) {
-                                            state = 9;
-                                            statusUI.text = "Part 3: step " + state;
-                                            if (checkCircle("V111")) {
-                                                state = 10;
-                                                statusUI.text = "Part 3: step " + state;
-                                                if (checkTurn("PRV10", 3)) {
-                                                    state = 11;
-                                                    partThreeComplete = true;
-                                                    statusUI.text = "Part 3 Complete! Press [C] to perform shutdown procedure";
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        partThreeComplete = true;
+                        statusUI.text = "B Shutdown Complete! Press [C] to go to next section";
                     }
                 }
             }
@@ -369,37 +338,6 @@ public class LeachingSystem : MonoBehaviour
         updateStatus();
     }
 
-    private void shutdown() {
-        statusUI.text = "Shutdown Procedure";
-        if (!checkCircle("V111") && checkPosition("V112", Position.top) && checkPosition("V113", Position.top)) {
-            state = 1;
-            statusUI.text = "Shutdown: step " + state;
-            if (!checkOpen("V115") && !checkOpen("V116") && checkPosition("V118", Position.top)) {
-                state = 2;
-                statusUI.text = "Shutdown: step " + state;
-                if (checkPosition("V122", Position.top) && checkPosition("V123", Position.top) && checkPosition("V124", Position.top)) {
-                    state = 3;
-                    statusUI.text = "Shutdown: step " + state;
-                    if (!checkOpen("V125") && !checkOpen("V126")) {
-                        state = 4;
-                        statusUI.text = "Shutdown: step " + state;
-                        if (!checkCircle("V128") && !checkCircle("V130")) {
-                            state = 5;
-                            statusUI.text = "Shutdown: step " + state;
-                            if (checkPosition("V131", Position.top) && !checkCircle("V133") && !checkCircle("V134")) {
-                                state = 6;
-                                statusUI.text = "Shutdown Complete! Press [C] to go to next section";
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            state = 0;
-        }
-
-        updateStatus();
-    }
 
     // reset valves
     private void resetValves() {
