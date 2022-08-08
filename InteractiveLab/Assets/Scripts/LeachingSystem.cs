@@ -260,27 +260,27 @@ public class LeachingSystem : MonoBehaviour
         if (Input.GetKeyDown("c")) {
              if (partEightComplete) {
                 PerformDShutDown();
-                partThree();
+                partNine();
             } else if (partSevenComplete)
             {
                 PerformDProcedure();
-                partTwo();
+                partEight();
             } else if (partSixComplete)
             {
                 PerformDStartUp();
-                partOne();
+                partSeven();
             } else if (partFiveComplete)
             {
                 PerformCShutDown();
-                partThree();
+                partSix();
             } else if (partFourComplete)
             {
                 PerformCProcedure();
-                partTwo();
+                partFive();
             } else if (partThreeComplete)
             {
                 PerformCStartUp();
-                partOne();
+                partFour();
             } else if (partTwoComplete)
             {
                 PerformBShutDown();
@@ -345,27 +345,27 @@ public class LeachingSystem : MonoBehaviour
                 partThree();
             } else if (section == 4)
             {
-                partOne();
+                partFour();
             }
             else if (section == 5)
             {
-                partTwo();
+                partFive();
             }
             else if (section == 6)
             {
-                partThree();
+                partSix();
             }
             else if (section == 7)
             {
-                partOne();
+                partSeven();
             }
             else if (section == 8)
             {
-                partTwo();
+                partEight();
             }
             else if (section == 9)
             {
-                partThree();
+                partNine();
             }
         }
 
@@ -400,33 +400,163 @@ public class LeachingSystem : MonoBehaviour
             state = 0;
         }
 
-        statusUI.text = "Start up checklist met";
+        statusUI.text = "";
         return true;
     }
 
-    private void partOne() {
-        if (!checkCircle("V102")) { //temp placeholder
+    private void partOne()
+    {
+        if (!checkCircle("V102"))
+        { //temp placeholder
             state = 1;
             statusUI.text = "B Start Up: step " + state;
-            if (!checkCircle("V102")) {
+            if (!checkCircle("V102"))
+            {
                 state = 2;
                 statusUI.text = "B Start Up: step " + state;
-                if (!checkCircle("V103")) {
+                if (!checkCircle("V103"))
+                {
                     state = 3;
                     statusUI.text = "B Start Up: step " + state;
-                    if (!checkOpen("V104")) { //verify direction and valve type
+                    if (!checkOpen("V104"))
+                    { //verify direction and valve type
                         state = 4;
                         statusUI.text = "B Start Up: step " + state;
-                        if (checkCircle("V105")) {
+                        if (checkCircle("V105"))
+                        {
                             state = 5;
                             statusUI.text = "B Start Up: step " + state;
-                            if (!checkCircle("V106")) {
+                            if (!checkCircle("V106"))
+                            {
                                 state = 6;
                                 statusUI.text = "B Start Up: step " + state;
-                                if (!checkCircle("V102")) { //temp placeholder
+                                if (!checkCircle("V102"))
+                                { //temp placeholder
                                     state = 7;
                                     partOneComplete = true;
                                     statusUI.text = "B Start Up Complete! Press [C] to perform B procedure";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            state = 0;
+            startupCheck();
+        }
+
+        updateStatus();
+    }
+
+    private void partTwo()
+    {
+        if (checkCircle("V101"))
+        {
+            state = 1;
+            statusUI.text = "B Procedure: step " + state;
+            if (checkCircle("V101"))
+            { // placeholder for now, no switch found
+                state = 2;
+                statusUI.text = "B Procedure: step " + state;
+                if (!checkCircle("V103") && checkCircle("V101"))
+                { //pump part unimplemented, no switch
+                    if (!checkCircle("V103") && checkCircle("V101"))
+                    { //liquid drained condition unimplemented, pump no switch
+                        state = 3;
+                        statusUI.text = "B Procedure: step " + state;
+                        if (checkCircle("V101"))
+                        { //placeholder, no adjustment yet
+                            state = 4;
+                            statusUI.text = "B Procedure: step " + state;
+                            if (checkCircle("V105"))
+                            { //placeholder, no adjustment on circle valve yet
+                                state = 5;
+                                statusUI.text = "B Procedure: step " + state;
+                                if (checkCircle("V106"))
+                                { //check level to be implemented
+                                    state = 6;
+                                    statusUI.text = "B Procedure: step " + state;
+                                    if (checkCircle("V106"))
+                                    { //placeholder
+                                        state = 7;
+                                        partTwoComplete = true;
+                                        statusUI.text = "B Procedure Complete! Press [C] to perform B Shutdown procedure";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            state = 0;
+            startupCheck();
+        }
+
+        updateStatus();
+    }
+
+    private void partThree()
+    {
+        if (!checkCircle("V101"))
+        { //placeholder for pump
+            state = 1;
+            statusUI.text = "B Shutdown: step " + state;
+            if (!checkCircle("V101"))
+            {
+                state = 2;
+                statusUI.text = "B Shutdown: step " + state;
+                if (!checkCircle("V103"))
+                { //placeholder for liquidline drainage condition
+                    state = 3;
+                    statusUI.text = "B Shutdown: step " + state;
+                    if (!checkCircle("V106"))
+                    { //placeholder for drainage of leaching vessel condition
+                        state = 4;
+                        partThreeComplete = true;
+                        statusUI.text = "B Shutdown Complete! Press [C] to go to section C. All Valves have been reset.";
+                        resetValves();
+                    }
+                }
+            }
+        }
+        else
+        {
+            state = 0;
+            startupCheck();
+        }
+
+        updateStatus();
+    }
+
+    private void partFour() {
+        if (!checkCircle("V102")) { //temp placeholder
+            state = 1;
+            statusUI.text = "C Start Up: step " + state;
+            if (!checkCircle("V102")) {
+                state = 2;
+                statusUI.text = "C Start Up: step " + state;
+                if (!checkCircle("V103")) {
+                    state = 3;
+                    statusUI.text = "C Start Up: step " + state;
+                    if (!checkOpen("V104")) { //verify direction and valve type
+                        state = 4;
+                        statusUI.text = "C Start Up: step " + state;
+                        if (checkCircle("V105")) {
+                            state = 5;
+                            statusUI.text = "C Start Up: step " + state;
+                            if (!checkCircle("V106")) {
+                                state = 6;
+                                statusUI.text = "C Start Up: step " + state;
+                                if (!checkCircle("V102")) { //temp placeholder
+                                    state = 7;
+                                    partFourComplete = true;
+                                    statusUI.text = "C Start Up Complete! Press [C] to perform C procedure";
                                 }
                             }
                         }
@@ -441,31 +571,31 @@ public class LeachingSystem : MonoBehaviour
         updateStatus();
     }
 
-    private void partTwo() {
+    private void partFive() {
         if (checkCircle("V101")) { 
             state = 1;
-            statusUI.text = "B Procedure: step " + state;
+            statusUI.text = "C Procedure: step " + state;
             if (checkCircle("V101"))
             { // placeholder for now, no switch found
                 state = 2;
-                statusUI.text = "B Procedure: step " + state;
+                statusUI.text = "C Procedure: step " + state;
                 if (!checkCircle("V103") && checkCircle("V101")) { //pump part unimplemented, no switch
                     if (!checkCircle("V103") && checkCircle("V101")) { //liquid drained condition unimplemented, pump no switch
                         state = 3;
-                        statusUI.text = "B Procedure: step " + state;
+                        statusUI.text = "C Procedure: step " + state;
                         if (checkCircle("V101")) { //placeholder, no adjustment yet
                             state = 4;
-                            statusUI.text = "B Procedure: step " + state;
+                            statusUI.text = "C Procedure: step " + state;
                             if (checkCircle("V105")) { //placeholder, no adjustment on circle valve yet
                                 state = 5;
-                                statusUI.text = "B Procedure: step " + state;
+                                statusUI.text = "C Procedure: step " + state;
                                 if (checkCircle("V106")) { //check level to be implemented
                                     state = 6;
-                                    statusUI.text = "B Procedure: step " + state;
+                                    statusUI.text = "C Procedure: step " + state;
                                     if (checkCircle("V106")) { //placeholder
                                         state = 7;
-                                        partTwoComplete = true;
-                                        statusUI.text = "B Procedure Complete! Press [C] to perform B Shutdown procedure";
+                                        partFiveComplete = true;
+                                        statusUI.text = "C Procedure Complete! Press [C] to perform C Shutdown procedure";
                                     }
                                 }
                             }
@@ -481,24 +611,155 @@ public class LeachingSystem : MonoBehaviour
         updateStatus();
     }
 
-    private void partThree() {
+    private void partSix() {
         if (!checkCircle("V101")) { //placeholder for pump
             state = 1;
-            statusUI.text = "B Shutdown: step " + state;
+            statusUI.text = "C Shutdown: step " + state;
             if (!checkCircle("V101")) {
                 state = 2;
-                statusUI.text = "B Shutdown: step " + state;
+                statusUI.text = "C Shutdown: step " + state;
                 if (!checkCircle("V103")) { //placeholder for liquidline drainage condition
                     state = 3;
-                    statusUI.text = "B Shutdown: step " + state;
+                    statusUI.text = "C Shutdown: step " + state;
                     if (!checkCircle("V106")) { //placeholder for drainage of leaching vessel condition
                         state = 4;
-                        partThreeComplete = true;
-                        statusUI.text = "B Shutdown Complete! Press [C] to go to next section";
+                        partSixComplete = true;
+                        statusUI.text = "C Shutdown Complete! Press [C] to go to section D. All Valves have been reset.";
+                        resetValves();
                     }
                 }
             }
         } else {
+            state = 0;
+            startupCheck();
+        }
+
+        updateStatus();
+    }
+
+    private void partSeven()
+    {
+        if (!checkCircle("V102"))
+        { //temp placeholder
+            state = 1;
+            statusUI.text = "D Start Up: step " + state;
+            if (!checkCircle("V102"))
+            {
+                state = 2;
+                statusUI.text = "D Start Up: step " + state;
+                if (!checkCircle("V103"))
+                {
+                    state = 3;
+                    statusUI.text = "D Start Up: step " + state;
+                    if (!checkOpen("V104"))
+                    { //verify direction and valve type
+                        state = 4;
+                        statusUI.text = "D Start Up: step " + state;
+                        if (checkCircle("V105"))
+                        {
+                            state = 5;
+                            statusUI.text = "D Start Up: step " + state;
+                            if (!checkCircle("V106"))
+                            {
+                                state = 6;
+                                statusUI.text = "D Start Up: step " + state;
+                                if (!checkCircle("V102"))
+                                { //temp placeholder
+                                    state = 7;
+                                    partSevenComplete = true;
+                                    statusUI.text = "D Start Up Complete! Press [C] to perform D procedure";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            state = 0;
+            startupCheck();
+        }
+
+        updateStatus();
+    }
+
+    private void partEight()
+    {
+        if (checkCircle("V101"))
+        {
+            state = 1;
+            statusUI.text = "D Procedure: step " + state;
+            if (checkCircle("V101"))
+            { // placeholder for now, no switch found
+                state = 2;
+                statusUI.text = "D Procedure: step " + state;
+                if (!checkCircle("V103") && checkCircle("V101"))
+                { //pump part unimplemented, no switch
+                    if (!checkCircle("V103") && checkCircle("V101"))
+                    { //liquid drained condition unimplemented, pump no switch
+                        state = 3;
+                        statusUI.text = "D Procedure: step " + state;
+                        if (checkCircle("V101"))
+                        { //placeholder, no adjustment yet
+                            state = 4;
+                            statusUI.text = "D Procedure: step " + state;
+                            if (checkCircle("V105"))
+                            { //placeholder, no adjustment on circle valve yet
+                                state = 5;
+                                statusUI.text = "D Procedure: step " + state;
+                                if (checkCircle("V106"))
+                                { //check level to be implemented
+                                    state = 6;
+                                    statusUI.text = "D Procedure: step " + state;
+                                    if (checkCircle("V106"))
+                                    { //placeholder
+                                        state = 7;
+                                        partEightComplete = true;
+                                        statusUI.text = "D Procedure Complete!";
+                                        resetValves();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            state = 0;
+            startupCheck();
+        }
+
+        updateStatus();
+    }
+
+    private void partNine()
+    {
+        if (!checkCircle("V101"))
+        { //placeholder for pump
+            state = 1;
+            statusUI.text = "D Shutdown: step " + state;
+            if (!checkCircle("V101"))
+            {
+                state = 2;
+                statusUI.text = "D Shutdown: step " + state;
+                if (!checkCircle("V103"))
+                { //placeholder for liquidline drainage condition
+                    state = 3;
+                    statusUI.text = "D Shutdown: step " + state;
+                    if (!checkCircle("V106"))
+                    { //placeholder for drainage of leaching vessel condition
+                        state = 4;
+                        partNineComplete = true;
+                        statusUI.text = "D Shutdown Complete! Press [C] to go to next section";
+                    }
+                }
+            }
+        }
+        else
+        {
             state = 0;
             startupCheck();
         }
