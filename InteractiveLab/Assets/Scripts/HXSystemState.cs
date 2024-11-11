@@ -295,11 +295,14 @@ public class HXSystemState : MonoBehaviour
     }
 
     private void ResetToStartup() {
+        Debug.Log("Reset to start up!!!");
+        Debug.Log("=================");
         state = 0;
         StartupCheck();
     }
 
     private void PartOne() {
+        Debug.Log("In Part One");
         var steps = new List<(Func<bool> condition, Action action)> {
             (() => CheckPosition("V122", Position.left), () => SetState(1, "70.0", "6.0")),
             (() => CheckCircle("V121"), () => SetState(2, "78.0", "8.0")),
@@ -313,17 +316,18 @@ public class HXSystemState : MonoBehaviour
         };
 
         foreach (var (condition, action) in steps) {
-            if (!condition()) {
-                ResetToStartup();
-                return;
-            }
+            if (!condition())
+                break;
+            
             action();
         }
-
         UpdateStatus();
+        Debug.Log("===============================");
     }
 
     private void PartTwo() {
+        Debug.Log("In Part Two");
+        
         // Define each step with conditions and actions in a sequence for Part 2
         var steps = new List<(Func<bool> condition, Action action)> {
             (() => CheckPosition("V122", Position.left), () => SetState(1)),
@@ -337,17 +341,18 @@ public class HXSystemState : MonoBehaviour
         };
 
         foreach (var (condition, action) in steps) {
-            if (!condition()) {
-                ResetToStartup();
-                return;
-            }
+            if (!condition())
+                break;
+            
             action();
         }
-
         UpdateStatus();
+        Debug.Log("===============================");
     }
 
     private void PartThree() {
+        Debug.Log("In Part Three");
+        
         // Define each step with conditions and actions for Part 3
         var steps = new List<(Func<bool> condition, Action action)> {
             (() => CheckPosition("V112", Position.left) && CheckPosition("V113", Position.left), () => SetState(1)),
@@ -364,14 +369,38 @@ public class HXSystemState : MonoBehaviour
         };
 
         foreach (var (condition, action) in steps) {
-            if (!condition()) {
-                ResetToStartup();
-                return;
-            }
+            if (!condition())
+                break;
+            
             action();
         }
-
         UpdateStatus();
+        Debug.Log("===============================");
+    }
+
+    private void Shutdown() {
+        Debug.Log("In Shutdown");
+        
+        statusUI.text = "Shutdown Procedure";
+
+        // Define each step with conditions and actions for the Shutdown process
+        var steps = new List<(Func<bool> condition, Action action)> {
+            (() => !CheckCircle("V111") && CheckPosition("V112", Position.top) && CheckPosition("V113", Position.top), () => SetState(1)),
+            (() => !CheckOpen("V115") && !CheckOpen("V116") && CheckPosition("V118", Position.top), () => SetState(2)),
+            (() => CheckPosition("V122", Position.top) && CheckPosition("V123", Position.top) && CheckPosition("V124", Position.top), () => SetState(3)),
+            (() => !CheckOpen("V125") && !CheckOpen("V126"), () => SetState(4)),
+            (() => !CheckCircle("V128") && !CheckCircle("V130"), () => SetState(5)),
+            (() => CheckPosition("V131", Position.top) && !CheckCircle("V133") && !CheckCircle("V134"), CompleteShutdown)
+        };
+
+        foreach (var (condition, action) in steps) {
+            if (!condition())
+                break;
+            
+            action();
+        }
+        UpdateStatus();
+        Debug.Log("===============================");
     }
 
     private void CompletePartOne() {
@@ -390,30 +419,6 @@ public class HXSystemState : MonoBehaviour
         state = 11;
         partThreeComplete = true;
         statusUI.text = "Part 3 Complete! Press [C] to perform shutdown procedure";
-    }
-
-    private void Shutdown() {
-        statusUI.text = "Shutdown Procedure";
-
-        // Define each step with conditions and actions for the Shutdown process
-        var steps = new List<(Func<bool> condition, Action action)> {
-            (() => !CheckCircle("V111") && CheckPosition("V112", Position.top) && CheckPosition("V113", Position.top), () => SetState(1)),
-            (() => !CheckOpen("V115") && !CheckOpen("V116") && CheckPosition("V118", Position.top), () => SetState(2)),
-            (() => CheckPosition("V122", Position.top) && CheckPosition("V123", Position.top) && CheckPosition("V124", Position.top), () => SetState(3)),
-            (() => !CheckOpen("V125") && !CheckOpen("V126"), () => SetState(4)),
-            (() => !CheckCircle("V128") && !CheckCircle("V130"), () => SetState(5)),
-            (() => CheckPosition("V131", Position.top) && !CheckCircle("V133") && !CheckCircle("V134"), CompleteShutdown)
-        };
-
-        foreach (var (condition, action) in steps) {
-            if (!condition()) {
-                state = 0; // Reset state if any step fails
-                return;
-            }
-            action();
-        }
-
-        UpdateStatus();
     }
 
     private void CompleteShutdown() {
@@ -450,18 +455,25 @@ public class HXSystemState : MonoBehaviour
     }
 
     // check if a three way valve is in the right position given valve id and target position
-    private bool CheckPosition(string id, Position p) {
-        return Array.Find(threeWayValves, v => v.id == id).position == p;
+    private bool CheckPosition(string id, Position p)
+    {
+        bool result = Array.Find(threeWayValves, v => v.id == id).position == p;
+        Debug.Log($"In check position, valve {id} is in position {p} : {result}");
+        return result;
     }
 
     // check if a circle valve is open given valve id
     private bool CheckCircle(string id) {
-        return Array.Find(circleValves, v => v.id == id).open;
+        bool result = Array.Find(circleValves, v => v.id == id).open;
+        Debug.Log($"In check circle, valve {id} is open : {result}");
+        return result;
     }
 
     // check if a PRV has at least x number of turns
     private bool CheckTurn(string id, int turn) {
-        return Array.Find(PRVs, v => v.id == id).turn >= turn;
+        bool result = Array.Find(PRVs, v => v.id == id).turn >= turn;
+        Debug.Log($"In check turn, PRV {id} has at least {turn} turns : {result}");
+        return result;
     }
 
     // update the value of an info gauge
@@ -471,6 +483,7 @@ public class HXSystemState : MonoBehaviour
     }
 
     private void UpdateStatus() {
+        Debug.Log($"Update status, current state {state}");
         int index = 0;
         
         for (int i = 1; i < textContent.transform.childCount; ++i) {
