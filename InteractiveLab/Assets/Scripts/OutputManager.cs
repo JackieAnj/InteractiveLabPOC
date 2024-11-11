@@ -31,8 +31,8 @@ public class OutputManager : MonoBehaviour
     {
         _outputTable.AddRow(new TableCell<object>[]
         {
-            new("ComponentID", componentID), 
-            new("ActionOutcome", actionOutcome)
+            new TableCell<object>("ComponentID", componentID), 
+            new TableCell<object>("ActionOutcome", actionOutcome)
         });
     }
 

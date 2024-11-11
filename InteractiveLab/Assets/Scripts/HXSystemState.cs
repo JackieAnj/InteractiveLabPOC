@@ -188,7 +188,7 @@ public class HXSystemState : MonoBehaviour
         Restart();
     }
 
-    public void UpdateScore() {
+    void UpdateScore() {
         float newScore = state * 100;
         if (section == 2) {
             newScore += 900;
@@ -223,7 +223,7 @@ public class HXSystemState : MonoBehaviour
 
         if (state > -1) {
             if (section == 1) {
-                partOne();
+                PartOne();
             } else if (section == 2) {
                 PartTwo();
             } else if (section == 3) {
@@ -284,181 +284,141 @@ public class HXSystemState : MonoBehaviour
             CondensationTrapTwo.GetComponent<CondensationTrap>().ClearLiquidLevel();
         }
     }
+    
+    private void SetState(int newState, string meterValue0 = null, string meterValue1 = null) {
+        Debug.Log($"Part {section} step {newState}");
+        
+        state = newState;
+        statusUI.text = $"Part {section}: step {state}";
+        if (meterValue0 != null) meters.changeValue(0, meterValue0);
+        if (meterValue1 != null) meters.changeValue(1, meterValue1);
+    }
 
-    private void partOne() {
-        if (CheckPosition("V122", Position.left)) {
-            state = 1;
-            statusUI.text = "Part 1: step " + state;
-            meters.changeValue(0, "70.0");
-            meters.changeValue(1, "6.0");
-            if (CheckCircle("V121")) {
-                state = 2;
-                statusUI.text = "Part 1: step " + state;
-                meters.changeValue(0, "78.0");
-                meters.changeValue(1, "8.0");
-                // updateGaugeValue("TI13", 30);
-                if (CheckPosition("V131", Position.left)) {
-                    state = 3;
-                    statusUI.text = "Part 1: step " + state;
-                    if (CheckPosition("V119", Position.left) && CheckPosition("V123", Position.left)) {
-                        state = 4;
-                        statusUI.text = "Part 1: step " + state;
-                        if (CheckPosition("V124", Position.left) && CheckOpen("V125")) {
-                            state = 5;
-                            statusUI.text = "Part 1: step " + state;
-                            if (CheckCircle("V132")) {
-                                state = 6;
-                                statusUI.text = "Part 1: step " + state;
-                                if (CheckTurn("PRV10", 1)) {
-                                    state = 7;
-                                    statusUI.text = "Part 1: step " + state;
-                                    if (CheckCircle("V111")) {
-                                        state = 8;
-                                        statusUI.text = "Part 1: step " + state;
-                                        if (CheckTurn("PRV10", 3)) {
-                                            state = 9;
-                                            partOneComplete = true;
-                                            statusUI.text = "Part 1 Complete! Press [C] to perform shutdown procedure";
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    private void ResetToStartup() {
+        state = 0;
+        StartupCheck();
+    }
+
+    private void PartOne() {
+        var steps = new List<(Func<bool> condition, Action action)> {
+            (() => CheckPosition("V122", Position.left), () => SetState(1, "70.0", "6.0")),
+            (() => CheckCircle("V121"), () => SetState(2, "78.0", "8.0")),
+            (() => CheckPosition("V131", Position.left), () => SetState(3)),
+            (() => CheckPosition("V119", Position.left) && CheckPosition("V123", Position.left), () => SetState(4)),
+            (() => CheckPosition("V124", Position.left) && CheckOpen("V125"), () => SetState(5)),
+            (() => CheckCircle("V132"), () => SetState(6)),
+            (() => CheckTurn("PRV10", 1), () => SetState(7)),
+            (() => CheckCircle("V111"), () => SetState(8)),
+            (() => CheckTurn("PRV10", 3), CompletePartOne)
+        };
+
+        foreach (var (condition, action) in steps) {
+            if (!condition()) {
+                ResetToStartup();
+                return;
             }
-        } else {
-            state = 0;
-            StartupCheck();
+            action();
         }
 
         UpdateStatus();
     }
 
     private void PartTwo() {
-        if (CheckPosition("V122", Position.left)) {
-            state = 1;
-            statusUI.text = "Part 2: step " + state;
-            if (CheckCircle("V121")) {
-                state = 2;
-                statusUI.text = "Part 2: step " + state;
-                if (CheckPosition("V119", Position.left)) {
-                    state = 3;
-                    statusUI.text = "Part 2: step " + state;
-                    if (CheckPosition("V123", Position.left)) {
-                        state = 4;
-                        statusUI.text = "Part 2: step " + state;
-                        if (CheckCircle("V132")) {
-                            state = 5;
-                            statusUI.text = "Part 2: step " + state;
-                            if (CheckTurn("PRV10", 1)) {
-                                state = 6;
-                                statusUI.text = "Part 2: step " + state;
-                                if (CheckCircle("V111")) {
-                                    state = 7;
-                                    statusUI.text = "Part 2: step " + state;
-                                    if (CheckTurn("PRV10", 3)) {
-                                        state = 8;
-                                        partTwoComplete = true;
-                                        statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        // Define each step with conditions and actions in a sequence for Part 2
+        var steps = new List<(Func<bool> condition, Action action)> {
+            (() => CheckPosition("V122", Position.left), () => SetState(1)),
+            (() => CheckCircle("V121"), () => SetState(2)),
+            (() => CheckPosition("V119", Position.left), () => SetState(3)),
+            (() => CheckPosition("V123", Position.left), () => SetState(4)),
+            (() => CheckCircle("V132"), () => SetState(5)),
+            (() => CheckTurn("PRV10", 1), () => SetState(6)),
+            (() => CheckCircle("V111"), () => SetState(7)),
+            (() => CheckTurn("PRV10", 3), CompletePartTwo)
+        };
+
+        foreach (var (condition, action) in steps) {
+            if (!condition()) {
+                ResetToStartup();
+                return;
             }
-        } else {
-            state = 0;
-            StartupCheck();
+            action();
         }
 
         UpdateStatus();
     }
 
     private void PartThree() {
-        if (CheckPosition("V112", Position.left) && (CheckPosition("V113", Position.left))) {
-            state = 1;
-            statusUI.text = "Part 3: step " + state;
-            if (!CheckOpen("V115") && !CheckOpen("V116")) {
-                state = 2;
-                statusUI.text = "Part 3: step " + state;
-                if (CheckCircle("V128") && CheckTurn("PRV12", 1)) {
-                    state = 3;
-                    statusUI.text = "Part 3: step " + state;
-                    if (CheckPosition("V131", Position.left)) {
-                        state = 4;
-                        statusUI.text = "Part 3: step " + state;
-                        if (CheckOpen("V126")) {
-                            state = 5;
-                            statusUI.text = "Part 3: step " + state;
-                            if (CheckPosition("V118", Position.left)) {
-                                state = 6;
-                                statusUI.text = "Part 3: step " + state;
-                                if (CheckCircle("V130")) {
-                                    state = 7;
-                                    statusUI.text = "Part 3: step " + state;
-                                    if (CheckTurn("PRV10", 3)) {
-                                        state = 8;
-                                        statusUI.text = "Part 3: step " + state;
-                                        if (CheckTurn("PRV10", 1)) {
-                                            state = 9;
-                                            statusUI.text = "Part 3: step " + state;
-                                            if (CheckCircle("V111")) {
-                                                state = 10;
-                                                statusUI.text = "Part 3: step " + state;
-                                                if (CheckTurn("PRV10", 3)) {
-                                                    state = 11;
-                                                    partThreeComplete = true;
-                                                    statusUI.text = "Part 3 Complete! Press [C] to perform shutdown procedure";
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        // Define each step with conditions and actions for Part 3
+        var steps = new List<(Func<bool> condition, Action action)> {
+            (() => CheckPosition("V112", Position.left) && CheckPosition("V113", Position.left), () => SetState(1)),
+            (() => !CheckOpen("V115") && !CheckOpen("V116"), () => SetState(2)),
+            (() => CheckCircle("V128") && CheckTurn("PRV12", 1), () => SetState(3)),
+            (() => CheckPosition("V131", Position.left), () => SetState(4)),
+            (() => CheckOpen("V126"), () => SetState(5)),
+            (() => CheckPosition("V118", Position.left), () => SetState(6)),
+            (() => CheckCircle("V130"), () => SetState(7)),
+            (() => CheckTurn("PRV10", 3), () => SetState(8)),
+            (() => CheckTurn("PRV10", 1), () => SetState(9)),
+            (() => CheckCircle("V111"), () => SetState(10)),
+            (() => CheckTurn("PRV10", 3), CompletePartThree)
+        };
+
+        foreach (var (condition, action) in steps) {
+            if (!condition()) {
+                ResetToStartup();
+                return;
             }
-        } else {
-            state = 0;
-            StartupCheck();
+            action();
         }
 
         UpdateStatus();
     }
 
+    private void CompletePartOne() {
+        state = 9;
+        partOneComplete = true;
+        statusUI.text = "Part 1 Complete! Press [C] to perform shutdown procedure";
+    }
+
+    private void CompletePartTwo() {
+        state = 8;
+        partTwoComplete = true;
+        statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
+    }
+
+    private void CompletePartThree() {
+        state = 11;
+        partThreeComplete = true;
+        statusUI.text = "Part 3 Complete! Press [C] to perform shutdown procedure";
+    }
+
     private void Shutdown() {
         statusUI.text = "Shutdown Procedure";
-        if (!CheckCircle("V111") && CheckPosition("V112", Position.top) && CheckPosition("V113", Position.top)) {
-            state = 1;
-            statusUI.text = "Shutdown: step " + state;
-            if (!CheckOpen("V115") && !CheckOpen("V116") && CheckPosition("V118", Position.top)) {
-                state = 2;
-                statusUI.text = "Shutdown: step " + state;
-                if (CheckPosition("V122", Position.top) && CheckPosition("V123", Position.top) && CheckPosition("V124", Position.top)) {
-                    state = 3;
-                    statusUI.text = "Shutdown: step " + state;
-                    if (!CheckOpen("V125") && !CheckOpen("V126")) {
-                        state = 4;
-                        statusUI.text = "Shutdown: step " + state;
-                        if (!CheckCircle("V128") && !CheckCircle("V130")) {
-                            state = 5;
-                            statusUI.text = "Shutdown: step " + state;
-                            if (CheckPosition("V131", Position.top) && !CheckCircle("V133") && !CheckCircle("V134")) {
-                                state = 6;
-                                statusUI.text = "Shutdown Complete! Press [C] to go to next section";
-                            }
-                        }
-                    }
-                }
+
+        // Define each step with conditions and actions for the Shutdown process
+        var steps = new List<(Func<bool> condition, Action action)> {
+            (() => !CheckCircle("V111") && CheckPosition("V112", Position.top) && CheckPosition("V113", Position.top), () => SetState(1)),
+            (() => !CheckOpen("V115") && !CheckOpen("V116") && CheckPosition("V118", Position.top), () => SetState(2)),
+            (() => CheckPosition("V122", Position.top) && CheckPosition("V123", Position.top) && CheckPosition("V124", Position.top), () => SetState(3)),
+            (() => !CheckOpen("V125") && !CheckOpen("V126"), () => SetState(4)),
+            (() => !CheckCircle("V128") && !CheckCircle("V130"), () => SetState(5)),
+            (() => CheckPosition("V131", Position.top) && !CheckCircle("V133") && !CheckCircle("V134"), CompleteShutdown)
+        };
+
+        foreach (var (condition, action) in steps) {
+            if (!condition()) {
+                state = 0; // Reset state if any step fails
+                return;
             }
-        } else {
-            state = 0;
+            action();
         }
 
         UpdateStatus();
+    }
+
+    private void CompleteShutdown() {
+        state = 6;
+        statusUI.text = "Shutdown Complete! Press [C] to go to next section";
     }
 
     // reset valves
@@ -520,6 +480,7 @@ public class HXSystemState : MonoBehaviour
 
             if (index <= state) {
                 content.fontStyle = FontStyles.Strikethrough;
+                Debug.Log("Strikethrough");
             } else {
                 content.fontStyle = FontStyles.Normal;
             }
