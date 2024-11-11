@@ -303,22 +303,25 @@ public class HXSystemState : MonoBehaviour
 
     private void PartOne() {
         Debug.Log("In Part One");
-        var steps = new List<(Func<bool> condition, Action action)> {
-            (() => CheckPosition("V122", Position.left), () => SetState(1, "70.0", "6.0")),
-            (() => CheckCircle("V121"), () => SetState(2, "78.0", "8.0")),
-            (() => CheckPosition("V131", Position.left), () => SetState(3)),
-            (() => CheckPosition("V119", Position.left) && CheckPosition("V123", Position.left), () => SetState(4)),
-            (() => CheckPosition("V124", Position.left) && CheckOpen("V125"), () => SetState(5)),
-            (() => CheckCircle("V132"), () => SetState(6)),
-            (() => CheckTurn("PRV10", 1), () => SetState(7)),
-            (() => CheckCircle("V111"), () => SetState(8)),
-            (() => CheckTurn("PRV10", 3), CompletePartOne)
+        var steps = new List<(int currState, Func<bool> condition, Action action)> {
+            (1, () => CheckPosition("V122", Position.left), () => SetState(1, "70.0", "6.0")),
+            (2, () => CheckCircle("V121"), () => SetState(2, "78.0", "8.0")),
+            (3, () => CheckPosition("V131", Position.left), () => SetState(3)),
+            (4, () => CheckPosition("V119", Position.left) && CheckPosition("V123", Position.left), () => SetState(4)),
+            (5, () => CheckPosition("V124", Position.left) && CheckOpen("V125"), () => SetState(5)),
+            (6, () => CheckCircle("V132"), () => SetState(6)),
+            (7, () => CheckTurn("PRV10", 1), () => SetState(7)),
+            (8, () => CheckCircle("V111"), () => SetState(8)),
+            (9, () => CheckTurn("PRV10", 3), CompletePartOne)
         };
 
-        foreach (var (condition, action) in steps) {
+        foreach (var (currState, condition, action) in steps) {
             if (!condition())
+            {
+                if (currState < state)
+                    ResetToStartup();
                 break;
-            
+            }
             action();
         }
         UpdateStatus();

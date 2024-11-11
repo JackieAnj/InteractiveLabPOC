@@ -67,11 +67,11 @@
      <Compile Include="Assets\Scripts\MeterValues.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
-     <Compile Include="Assets\Scripts\OutputManager.cs" />
-     <Compile Include="Assets\Scripts\OutputManagerEvents.cs" />
      <Compile Include="Assets\Scripts\PDSystemState.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
-     <Compile Include="Assets\Scripts\RecordingTable.cs" />
+     <Compile Include="Assets\Scripts\Recording\OutputManager.cs" />
+     <Compile Include="Assets\Scripts\Recording\OutputManagerEvents.cs" />
+     <Compile Include="Assets\Scripts\Recording\RecordingTable.cs" />
      <Compile Include="Assets\Scripts\SelectionManager.cs" />
      <Compile Include="Assets\Scripts\Sound.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />

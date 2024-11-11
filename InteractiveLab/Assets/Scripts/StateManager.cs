@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Recording;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class StateManager : MonoBehaviour
     void Start()
     {
         ActivateSystem(activeSystem);
+        
+        OutputManagerEvents.SetSystemType(activeSystem.ToString());
     }
 
     void ActivateSystem(SystemType system)

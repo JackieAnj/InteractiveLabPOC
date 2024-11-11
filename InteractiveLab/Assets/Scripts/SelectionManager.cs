@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Recording;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class SelectionManager : MonoBehaviour
     public GameObject DeltaV;
     public GameObject stateManager;
     private Transform _selection;
+
+
 
     private void Start() {
         interactCaption.text = "";
@@ -71,6 +74,9 @@ public class SelectionManager : MonoBehaviour
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
                     stateManager.GetComponent<StateManager>().OnChange();
+                    
+                    // record action
+                    OutputManagerEvents.RecordToOutput(target.id, target.open ? "Open" : "Close");
                 }
             }
 
@@ -83,6 +89,9 @@ public class SelectionManager : MonoBehaviour
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
                     stateManager.GetComponent<StateManager>().OnChange();
+                    
+                    // record action
+                    OutputManagerEvents.RecordToOutput(target.id, target.position.ToString());
                 }
             }
 
@@ -101,6 +110,9 @@ public class SelectionManager : MonoBehaviour
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
                     stateManager.GetComponent<StateManager>().OnChange();
+                    
+                    // record action
+                    OutputManagerEvents.RecordToOutput(target.id, target.open ? "Open" : "Close");
                 }
             }
 
@@ -117,12 +129,18 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("right");
                     stateManager.GetComponent<StateManager>().OnChange();
+                    
+                    // record action
+                    OutputManagerEvents.RecordToOutput(target.id, "Right");
                 }
 
                 if (Input.GetMouseButtonDown(1)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("left");
                     stateManager.GetComponent<StateManager>().OnChange();
+                    
+                    // record action
+                    OutputManagerEvents.RecordToOutput(target.id, "Left");
                 }
             }
 

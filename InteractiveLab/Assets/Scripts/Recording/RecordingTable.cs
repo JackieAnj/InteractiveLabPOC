@@ -3,7 +3,9 @@ using System.Data;
 using System.IO;
 using UnityEngine;
 
-public class TableCell<T>
+namespace Recording
+{
+    public class TableCell<T>
 {
     public string Key {get; set;}
     public T Value {get; set;}
@@ -83,19 +85,22 @@ public class RecordingTable //: MonoBehaviour
         return column;
     }
     
-    public void ToCsv(string strFilePath)
+    public void ToCsv(string strFilePath, bool allowOverwrite=false)
     {
-        int fileCount = 0;
-        while (System.IO.File.Exists(strFilePath))
+        if (!allowOverwrite)
         {
-            string fileCountOld = fileCount == 0 ? "" : fileCount.ToString();
-            fileCount++;
+            int fileCount = 0;
+            while (System.IO.File.Exists(strFilePath))
+            {
+                string fileCountOld = fileCount == 0 ? "" : fileCount.ToString();
+                fileCount++;
 
-            string oldChar = $"{fileCountOld}.csv";
-            string newChar = $"{fileCount}.csv";
-            strFilePath = strFilePath.Replace(oldChar, newChar);
+                string oldChar = $"{fileCountOld}.csv";
+                string newChar = $"{fileCount}.csv";
+                strFilePath = strFilePath.Replace(oldChar, newChar);
+            }
         }
-        
+       
         StreamWriter sw = new StreamWriter(strFilePath, false);
         //headers    
         for (int i = 0; i < _table.Columns.Count; i++) {  
@@ -125,3 +130,5 @@ public class RecordingTable //: MonoBehaviour
         sw.Close();  
     }
 }
+}
+
