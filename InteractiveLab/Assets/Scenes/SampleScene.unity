@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 049dd9bd72e274348a31e837a4a144d6,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -547,7 +547,7 @@ Transform:
   - {fileID: 1622744053}
   - {fileID: 1577471608}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &33259314
 GameObject:
@@ -3985,7 +3985,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133305319
 GameObject:
@@ -4684,7 +4684,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_OnHoverEntered:
-OnChangersistentCalls:
+    m_PersistentCalls:
       m_Calls: []
   m_OnHoverExited:
     m_PersistentCalls:
@@ -4694,18 +4694,7 @@ OnChangersistentCalls:
       m_Calls: []
   m_OnSelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 171938924}
-        m_MethodName: TurnValve
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: right
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -4722,15 +4711,15 @@ OnChangersistentCalls:
   m_AttachTransform: {fileID: 0}
   m_AttachEaseInTime: 0.15
   m_MovementType: 1
-  m_TrackPosition: 0
+  m_TrackPosition: 1
   m_SmoothPosition: 0
   m_SmoothPositionAmount: 5
   m_TightenPosition: 0.5
-  m_TrackRotation: 0
+  m_TrackRotation: 1
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 0
+  m_ThrowOnDetach: 1
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -6246,7 +6235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18059,7 +18048,7 @@ Transform:
   - {fileID: 184068687}
   - {fileID: 1833113641}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549293117
 GameObject:
@@ -52611,6 +52600,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff051905aabe8542b2bf09948416d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1633435582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633435584}
+  - component: {fileID: 1633435583}
+  m_Layer: 0
+  m_Name: OutputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1633435583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633435582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320b887dc07c74843adecfe40e4e1790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1633435584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633435582}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1637971638
 GameObject:
   m_ObjectHideFlags: 0

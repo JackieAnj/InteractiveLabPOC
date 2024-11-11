@@ -43,11 +43,11 @@ public class HXSystemState : MonoBehaviour
         timer.text = "Time: 00:00.00";
         timerVR.text = timer.text;
         score.text = "Score: 0";
-        twoWayValves = UnityEngine.Object.FindObjectsOfType<TwoWayValve>();
-        threeWayValves = UnityEngine.Object.FindObjectsOfType<ThreeWayValve>();
-        circleValves = UnityEngine.Object.FindObjectsOfType<CircleValve>();
-        PRVs = UnityEngine.Object.FindObjectsOfType<PRVValve>();
-        infoGauges = UnityEngine.Object.FindObjectsOfType<InfoGauge>();
+        twoWayValves = FindObjectsOfType<TwoWayValve>();
+        threeWayValves = FindObjectsOfType<ThreeWayValve>();
+        circleValves = FindObjectsOfType<CircleValve>();
+        PRVs = FindObjectsOfType<PRVValve>();
+        infoGauges = FindObjectsOfType<InfoGauge>();
         textContent = partOneText.transform;
 
         StartupCheck();
