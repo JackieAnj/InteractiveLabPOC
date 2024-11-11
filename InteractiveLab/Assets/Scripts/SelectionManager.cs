@@ -70,7 +70,7 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<TwoWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    stateManager.GetComponent<StateManager>().onChange();
+                    stateManager.GetComponent<StateManager>().OnChange();
                 }
             }
 
@@ -82,7 +82,7 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<ThreeWayValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    stateManager.GetComponent<StateManager>().onChange();
+                    stateManager.GetComponent<StateManager>().OnChange();
                 }
             }
 
@@ -100,7 +100,7 @@ public class SelectionManager : MonoBehaviour
                     var target = hit.collider.gameObject.GetComponent<CircleValve>();
                     Debug.Log("Hit " + target.id);
                     target.TurnValve();
-                    stateManager.GetComponent<StateManager>().onChange();
+                    stateManager.GetComponent<StateManager>().OnChange();
                 }
             }
 
@@ -116,13 +116,13 @@ public class SelectionManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("right");
-                    stateManager.GetComponent<StateManager>().onChange();
+                    stateManager.GetComponent<StateManager>().OnChange();
                 }
 
                 if (Input.GetMouseButtonDown(1)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
                     target.TurnValve("left");
-                    stateManager.GetComponent<StateManager>().onChange();
+                    stateManager.GetComponent<StateManager>().OnChange();
                 }
             }
 

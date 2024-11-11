@@ -50,40 +50,40 @@ public class HXSystemState : MonoBehaviour
         infoGauges = UnityEngine.Object.FindObjectsOfType<InfoGauge>();
         textContent = partOneText.transform;
 
-        startupCheck();
+        StartupCheck();
     }
 
-    public void changeTube() {
+    public void ChangeTube() {
         partOneText.SetActive(true);
         partTwoText.SetActive(false);
         partThreeText.SetActive(false);
         shutdownProcedureText.SetActive(false);
-        resetValves();
+        ResetValves();
         section = 1;
         state = 1;
         textContent = partOneText.transform;
     }
 
-    public void changePlate() {
+    public void ChangePlate() {
         partOneComplete = true;
         partOneText.SetActive(false);
         partTwoText.SetActive(true);
         partThreeText.SetActive(false);
         shutdownProcedureText.SetActive(false);
-        resetValves();
+        ResetValves();
         section = 2;
         state = 1;
         textContent = partTwoText.transform;
     }
 
-    public void changeColumn() {
+    public void ChangeColumn() {
         partOneComplete = true;
         partTwoComplete = true;
         partOneText.SetActive(false);
         partTwoText.SetActive(false);
         partThreeText.SetActive(true);
         shutdownProcedureText.SetActive(false);
-        resetValves();
+        ResetValves();
         section = 3;
         state = 1;
         textContent = partThreeText.transform;
@@ -103,7 +103,7 @@ public class HXSystemState : MonoBehaviour
             timerVR.text = timer.text;
         }
 
-        updateScore();
+        UpdateScore();
 
         // for testing only (completes all procedures)
         if (Input.GetKeyDown("v")) {
@@ -119,7 +119,7 @@ public class HXSystemState : MonoBehaviour
             partTwoText.SetActive(false);
             partThreeText.SetActive(false);
             shutdownProcedureText.SetActive(false);
-            resetValves();
+            ResetValves();
             section = 1;
             state = 1;
             textContent = partOneText.transform;
@@ -129,7 +129,7 @@ public class HXSystemState : MonoBehaviour
             partTwoText.SetActive(true);
             partThreeText.SetActive(false);
             shutdownProcedureText.SetActive(false);
-            resetValves();
+            ResetValves();
             section = 2;
             state = 1;
             textContent = partTwoText.transform;
@@ -140,7 +140,7 @@ public class HXSystemState : MonoBehaviour
             partTwoText.SetActive(false);
             partThreeText.SetActive(true);
             shutdownProcedureText.SetActive(false);
-            resetValves();
+            ResetValves();
             section = 3;
             state = 1;
             textContent = partThreeText.transform;
@@ -158,7 +158,7 @@ public class HXSystemState : MonoBehaviour
                 partTwoText.SetActive(false);
                 partThreeText.SetActive(false);
                 shutdownProcedureText.SetActive(true);
-                shutdown();
+                Shutdown();
             } else if (section == 4 && state == 6){
                 if (partOneComplete && partTwoComplete && partThreeComplete) {
                     shutDownComplete = true;
@@ -170,7 +170,7 @@ public class HXSystemState : MonoBehaviour
                     partTwoText.SetActive(false);
                     partThreeText.SetActive(true);
                     shutdownProcedureText.SetActive(false);
-                    partThree();
+                    PartThree();
                 } else if (partOneComplete) {
                     section = 2;
                     textContent = partTwoText.transform;
@@ -178,17 +178,17 @@ public class HXSystemState : MonoBehaviour
                     partTwoText.SetActive(true);
                     partThreeText.SetActive(false);
                     shutdownProcedureText.SetActive(false);
-                    partTwo();
+                    PartTwo();
                 }
             }
         }
     }
 
     void OnDisable() {
-        restart();
+        Restart();
     }
 
-    public void updateScore() {
+    public void UpdateScore() {
         float newScore = state * 100;
         if (section == 2) {
             newScore += 900;
@@ -202,7 +202,7 @@ public class HXSystemState : MonoBehaviour
         }
     }
 
-    public void restart() {
+    public void Restart() {
         partOneComplete = false;
         partTwoComplete = false;
         partThreeComplete = false;
@@ -210,26 +210,26 @@ public class HXSystemState : MonoBehaviour
         currentScore = 0;
         endScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-        updateScore();
+        UpdateScore();
     }
 
-    public void onChange() {
-        clearCondensationCheck();
+    public void OnChange() {
+        ClearCondensationCheck();
         oldState = state;
 
         if (state == -1) {
-            startupCheck();
+            StartupCheck();
         }
 
         if (state > -1) {
             if (section == 1) {
                 partOne();
             } else if (section == 2) {
-                partTwo();
+                PartTwo();
             } else if (section == 3) {
-                partThree();
+                PartThree();
             } else {
-                shutdown();
+                Shutdown();
             }
         }
 
@@ -240,7 +240,7 @@ public class HXSystemState : MonoBehaviour
         }
     }
 
-    private bool startupCheck() {
+    private bool StartupCheck() {
         // check all specified valves are closed
         string[] closedValves = {"V111", "V121", "V128", "V114", "V130", "V132", "V134"};
         foreach(TwoWayValve v in twoWayValves) {
@@ -274,48 +274,48 @@ public class HXSystemState : MonoBehaviour
         return true;
     }
 
-    private void clearCondensationCheck() {
+    private void ClearCondensationCheck() {
 
-        if (checkOpen("V125")) {
+        if (CheckOpen("V125")) {
             CondensationTrapOne.GetComponent<CondensationTrap>().ClearLiquidLevel();
         }
 
-        if (checkOpen("V126")) {
+        if (CheckOpen("V126")) {
             CondensationTrapTwo.GetComponent<CondensationTrap>().ClearLiquidLevel();
         }
     }
 
     private void partOne() {
-        if (checkPosition("V122", Position.left)) {
+        if (CheckPosition("V122", Position.left)) {
             state = 1;
             statusUI.text = "Part 1: step " + state;
             meters.changeValue(0, "70.0");
             meters.changeValue(1, "6.0");
-            if (checkCircle("V121")) {
+            if (CheckCircle("V121")) {
                 state = 2;
                 statusUI.text = "Part 1: step " + state;
                 meters.changeValue(0, "78.0");
                 meters.changeValue(1, "8.0");
                 // updateGaugeValue("TI13", 30);
-                if (checkPosition("V131", Position.left)) {
+                if (CheckPosition("V131", Position.left)) {
                     state = 3;
                     statusUI.text = "Part 1: step " + state;
-                    if (checkPosition("V119", Position.left) && checkPosition("V123", Position.left)) {
+                    if (CheckPosition("V119", Position.left) && CheckPosition("V123", Position.left)) {
                         state = 4;
                         statusUI.text = "Part 1: step " + state;
-                        if (checkPosition("V124", Position.left) && checkOpen("V125")) {
+                        if (CheckPosition("V124", Position.left) && CheckOpen("V125")) {
                             state = 5;
                             statusUI.text = "Part 1: step " + state;
-                            if (checkCircle("V132")) {
+                            if (CheckCircle("V132")) {
                                 state = 6;
                                 statusUI.text = "Part 1: step " + state;
-                                if (checkTurn("PRV10", 1)) {
+                                if (CheckTurn("PRV10", 1)) {
                                     state = 7;
                                     statusUI.text = "Part 1: step " + state;
-                                    if (checkCircle("V111")) {
+                                    if (CheckCircle("V111")) {
                                         state = 8;
                                         statusUI.text = "Part 1: step " + state;
-                                        if (checkTurn("PRV10", 3)) {
+                                        if (CheckTurn("PRV10", 3)) {
                                             state = 9;
                                             partOneComplete = true;
                                             statusUI.text = "Part 1 Complete! Press [C] to perform shutdown procedure";
@@ -329,35 +329,35 @@ public class HXSystemState : MonoBehaviour
             }
         } else {
             state = 0;
-            startupCheck();
+            StartupCheck();
         }
 
-        updateStatus();
+        UpdateStatus();
     }
 
-    private void partTwo() {
-        if (checkPosition("V122", Position.left)) {
+    private void PartTwo() {
+        if (CheckPosition("V122", Position.left)) {
             state = 1;
             statusUI.text = "Part 2: step " + state;
-            if (checkCircle("V121")) {
+            if (CheckCircle("V121")) {
                 state = 2;
                 statusUI.text = "Part 2: step " + state;
-                if (checkPosition("V119", Position.left)) {
+                if (CheckPosition("V119", Position.left)) {
                     state = 3;
                     statusUI.text = "Part 2: step " + state;
-                    if (checkPosition("V123", Position.left)) {
+                    if (CheckPosition("V123", Position.left)) {
                         state = 4;
                         statusUI.text = "Part 2: step " + state;
-                        if (checkCircle("V132")) {
+                        if (CheckCircle("V132")) {
                             state = 5;
                             statusUI.text = "Part 2: step " + state;
-                            if (checkTurn("PRV10", 1)) {
+                            if (CheckTurn("PRV10", 1)) {
                                 state = 6;
                                 statusUI.text = "Part 2: step " + state;
-                                if (checkCircle("V111")) {
+                                if (CheckCircle("V111")) {
                                     state = 7;
                                     statusUI.text = "Part 2: step " + state;
-                                    if (checkTurn("PRV10", 3)) {
+                                    if (CheckTurn("PRV10", 3)) {
                                         state = 8;
                                         partTwoComplete = true;
                                         statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
@@ -370,44 +370,44 @@ public class HXSystemState : MonoBehaviour
             }
         } else {
             state = 0;
-            startupCheck();
+            StartupCheck();
         }
 
-        updateStatus();
+        UpdateStatus();
     }
 
-    private void partThree() {
-        if (checkPosition("V112", Position.left) && (checkPosition("V113", Position.left))) {
+    private void PartThree() {
+        if (CheckPosition("V112", Position.left) && (CheckPosition("V113", Position.left))) {
             state = 1;
             statusUI.text = "Part 3: step " + state;
-            if (!checkOpen("V115") && !checkOpen("V116")) {
+            if (!CheckOpen("V115") && !CheckOpen("V116")) {
                 state = 2;
                 statusUI.text = "Part 3: step " + state;
-                if (checkCircle("V128") && checkTurn("PRV12", 1)) {
+                if (CheckCircle("V128") && CheckTurn("PRV12", 1)) {
                     state = 3;
                     statusUI.text = "Part 3: step " + state;
-                    if (checkPosition("V131", Position.left)) {
+                    if (CheckPosition("V131", Position.left)) {
                         state = 4;
                         statusUI.text = "Part 3: step " + state;
-                        if (checkOpen("V126")) {
+                        if (CheckOpen("V126")) {
                             state = 5;
                             statusUI.text = "Part 3: step " + state;
-                            if (checkPosition("V118", Position.left)) {
+                            if (CheckPosition("V118", Position.left)) {
                                 state = 6;
                                 statusUI.text = "Part 3: step " + state;
-                                if (checkCircle("V130")) {
+                                if (CheckCircle("V130")) {
                                     state = 7;
                                     statusUI.text = "Part 3: step " + state;
-                                    if (checkTurn("PRV10", 3)) {
+                                    if (CheckTurn("PRV10", 3)) {
                                         state = 8;
                                         statusUI.text = "Part 3: step " + state;
-                                        if (checkTurn("PRV10", 1)) {
+                                        if (CheckTurn("PRV10", 1)) {
                                             state = 9;
                                             statusUI.text = "Part 3: step " + state;
-                                            if (checkCircle("V111")) {
+                                            if (CheckCircle("V111")) {
                                                 state = 10;
                                                 statusUI.text = "Part 3: step " + state;
-                                                if (checkTurn("PRV10", 3)) {
+                                                if (CheckTurn("PRV10", 3)) {
                                                     state = 11;
                                                     partThreeComplete = true;
                                                     statusUI.text = "Part 3 Complete! Press [C] to perform shutdown procedure";
@@ -423,30 +423,30 @@ public class HXSystemState : MonoBehaviour
             }
         } else {
             state = 0;
-            startupCheck();
+            StartupCheck();
         }
 
-        updateStatus();
+        UpdateStatus();
     }
 
-    private void shutdown() {
+    private void Shutdown() {
         statusUI.text = "Shutdown Procedure";
-        if (!checkCircle("V111") && checkPosition("V112", Position.top) && checkPosition("V113", Position.top)) {
+        if (!CheckCircle("V111") && CheckPosition("V112", Position.top) && CheckPosition("V113", Position.top)) {
             state = 1;
             statusUI.text = "Shutdown: step " + state;
-            if (!checkOpen("V115") && !checkOpen("V116") && checkPosition("V118", Position.top)) {
+            if (!CheckOpen("V115") && !CheckOpen("V116") && CheckPosition("V118", Position.top)) {
                 state = 2;
                 statusUI.text = "Shutdown: step " + state;
-                if (checkPosition("V122", Position.top) && checkPosition("V123", Position.top) && checkPosition("V124", Position.top)) {
+                if (CheckPosition("V122", Position.top) && CheckPosition("V123", Position.top) && CheckPosition("V124", Position.top)) {
                     state = 3;
                     statusUI.text = "Shutdown: step " + state;
-                    if (!checkOpen("V125") && !checkOpen("V126")) {
+                    if (!CheckOpen("V125") && !CheckOpen("V126")) {
                         state = 4;
                         statusUI.text = "Shutdown: step " + state;
-                        if (!checkCircle("V128") && !checkCircle("V130")) {
+                        if (!CheckCircle("V128") && !CheckCircle("V130")) {
                             state = 5;
                             statusUI.text = "Shutdown: step " + state;
-                            if (checkPosition("V131", Position.top) && !checkCircle("V133") && !checkCircle("V134")) {
+                            if (CheckPosition("V131", Position.top) && !CheckCircle("V133") && !CheckCircle("V134")) {
                                 state = 6;
                                 statusUI.text = "Shutdown Complete! Press [C] to go to next section";
                             }
@@ -458,11 +458,11 @@ public class HXSystemState : MonoBehaviour
             state = 0;
         }
 
-        updateStatus();
+        UpdateStatus();
     }
 
     // reset valves
-    private void resetValves() {
+    private void ResetValves() {
         foreach (var valve in circleValves)
         {
             valve.Reset();
@@ -485,32 +485,32 @@ public class HXSystemState : MonoBehaviour
     }
 
     // check if a two way valve is open given valve id
-    private bool checkOpen(string id) {
+    private bool CheckOpen(string id) {
         return Array.Find(twoWayValves, v => v.id == id).open;
     }
 
     // check if a three way valve is in the right position given valve id and target position
-    private bool checkPosition(string id, Position p) {
+    private bool CheckPosition(string id, Position p) {
         return Array.Find(threeWayValves, v => v.id == id).position == p;
     }
 
     // check if a circle valve is open given valve id
-    private bool checkCircle(string id) {
+    private bool CheckCircle(string id) {
         return Array.Find(circleValves, v => v.id == id).open;
     }
 
     // check if a PRV has at least x number of turns
-    private bool checkTurn(string id, int turn) {
+    private bool CheckTurn(string id, int turn) {
         return Array.Find(PRVs, v => v.id == id).turn >= turn;
     }
 
     // update the value of an info gauge
-    private void updateGaugeValue(string id, int value) {
+    private void UpdateGaugeValue(string id, int value) {
         InfoGauge target = Array.Find(infoGauges, g => g.id == id);
         target.updateValue(value);
     }
 
-    private void updateStatus() {
+    private void UpdateStatus() {
         int index = 0;
         
         for (int i = 1; i < textContent.transform.childCount; ++i) {
