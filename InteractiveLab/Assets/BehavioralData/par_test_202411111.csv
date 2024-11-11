@@ -1,0 +1,4 @@
+id,Timestamp,ComponentID,ComponentState,SystemType,ParticipantID,ParticipantSex,ParticipantAge
+0,4.255919,V122,right,HeatExchange,test,Male,0
+1,4.936788,V122,bottom,HeatExchange,test,Male,0
+2,5.461866,V122,left,HeatExchange,test,Male,0

@@ -45,6 +45,18 @@ namespace Recording
             // Create output file name
             _outputFileName = $"{_outputFolder}/par_{participantId}_{DateTime.Now:yyyyMMdd}.csv";
             
+            // check for duplicate files
+            int fileCount = 0;
+            while (System.IO.File.Exists(_outputFileName))
+            {
+                string fileCountOld = fileCount == 0 ? "" : fileCount.ToString();
+                string oldChar = fileCount == 0 ? $"{fileCountOld}.csv" : $"_{fileCountOld}.csv";
+                
+                fileCount++;
+                string newChar = $"_{fileCount}.csv";
+                _outputFileName = _outputFileName.Replace(oldChar, newChar);
+            }
+            
             // EQUIPMENT RECORDING SETUP ========================================
             _outputTable = new RecordingTable();
             _outputTable.AddColumn("ComponentID", Type.GetType("System.String"));

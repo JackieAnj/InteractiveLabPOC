@@ -317,11 +317,8 @@ public class HXSystemState : MonoBehaviour
 
         foreach (var (currState, condition, action) in steps) {
             if (!condition())
-            {
-                if (currState < state)
-                    ResetToStartup();
                 break;
-            }
+            
             action();
         }
         UpdateStatus();
