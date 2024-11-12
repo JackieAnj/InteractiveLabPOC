@@ -4733,15 +4733,15 @@ MonoBehaviour:
   m_AttachTransform: {fileID: 0}
   m_AttachEaseInTime: 0.15
   m_MovementType: 1
-  m_TrackPosition: 1
+  m_TrackPosition: 0
   m_SmoothPosition: 0
   m_SmoothPositionAmount: 5
   m_TightenPosition: 0.5
-  m_TrackRotation: 1
+  m_TrackRotation: 0
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -17696,7 +17696,9 @@ MonoBehaviour:
   partThreeTextVR: {fileID: 1347279899}
   endScreenVR: {fileID: 1040135890}
   finalScore: {fileID: 959219471}
+  finalScoreVR: {fileID: 17832497}
   timePlayed: {fileID: 1733137764}
+  timePlayedVR: {fileID: 1637971640}
 --- !u!1 &541790458
 GameObject:
   m_ObjectHideFlags: 0
@@ -28417,7 +28419,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &841122005
 BoxCollider:
@@ -52855,7 +52857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320b887dc07c74843adecfe40e4e1790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantId: test
+  participantId: test_final
   participantSex: 0
   participantAge: 0
 --- !u!4 &1633435584
@@ -61087,7 +61089,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &1970700422
 BoxCollider:

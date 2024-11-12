@@ -152,7 +152,6 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(PRVTag)) {
-                Debug.Log("PRV Valve hit!");
                 _interactCaptionActive.text = "Turn " + hit.collider.gameObject.GetComponent<PRVValve>().id + "(current: " + hit.collider.gameObject.GetComponent<PRVValve>().turn + ")\n Left [Right Click], Right [Left Click]";
                 _captionBackgroundActive.enabled = true;
 

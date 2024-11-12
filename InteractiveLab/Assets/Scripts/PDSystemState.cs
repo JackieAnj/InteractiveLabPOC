@@ -31,7 +31,13 @@ public class PDSystemState : MonoBehaviour
     private bool _modeIsSet = false;
 
     public Text finalScore; // final score to be displayed in end screen
+    public Text finalScoreVR; // final score to be displayed in end screen
     public Text timePlayed; // final time to be displayed in end screen
+    public Text timePlayedVR; // final time to be displayed in end screen
+
+    private Text _finalScoreActive;
+    private Text _timePlayedActive;
+    
     private float timeStart; // internal time variable
     private float currentScore; // internal score variable
     private Transform textContent;
@@ -58,12 +64,16 @@ public class PDSystemState : MonoBehaviour
                 _partTwoTextActive = partTwoText;
                 _partThreeTextActive = partThreeText;
                 _endScreenActive = endScreen;
+                _finalScoreActive = finalScore;
+                _timePlayedActive = timePlayed;
                 break;
             case TestMode.VR:
                 _partOneTextActive = partOneTextVR;
                 _partTwoTextActive = partTwoTextVR;
                 _partThreeTextActive = partThreeTextVR;
                 _endScreenActive = endScreenVR;
+                _finalScoreActive = finalScoreVR;
+                _timePlayedActive = timePlayedVR;
                 break;
         }
         _modeIsSet = true;
@@ -103,9 +113,9 @@ public class PDSystemState : MonoBehaviour
         
         if (partOneComplete && partTwoComplete && partThreeComplete) {
             TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
-            finalScore.text = "Score: " + currentScore;
-            timePlayed.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
-            endScreen.SetActive(true);
+            _finalScoreActive.text = "Score: " + currentScore;
+            _timePlayedActive.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
+            _endScreenActive.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
         } else {
             timeStart += Time.deltaTime;
@@ -127,7 +137,7 @@ public class PDSystemState : MonoBehaviour
             // state = 0;
             // onChange();
             _endScreenActive.SetActive(true);
-            textContent = endScreen.transform;
+            textContent = _endScreenActive.transform;
             state = 0;
             UpdateEndScreen();
         }
@@ -168,7 +178,7 @@ public class PDSystemState : MonoBehaviour
         partThreeComplete = false;
         timeStart = 0;
         currentScore = 0;
-        endScreen.SetActive(false);
+        _endScreenActive.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         updateScore();
     }
@@ -315,9 +325,9 @@ public class PDSystemState : MonoBehaviour
     private void UpdateEndScreen()
     {
         // update the child components FinalScore and TimePlayed
-        finalScore.text = "Score: " + currentScore;
+        _finalScoreActive.text = "Score: " + currentScore;
         TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
-        timePlayed.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
+        _timePlayedActive.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
     }
 
     private void UpdateStatus() {
