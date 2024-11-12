@@ -16,11 +16,25 @@ public class HXSystemState : MonoBehaviour
     public Text timer; // time to be displayed in game
     public Text timerVR;
     public Text score; // score to be displayed in game
+    
     public GameObject partOneText;
     public GameObject partTwoText;
     public GameObject partThreeText;
     public GameObject shutdownProcedureText;
     public GameObject endScreen;
+
+    public GameObject partOneTextVR;
+    public GameObject partTwoTextVR;
+    public GameObject partThreeTextVR;
+    public GameObject shutdownProcedureTextVR;
+    public GameObject endScreenVR;
+    
+    private GameObject _partOneTextActive;
+    private GameObject _partTwoTextActive;
+    private GameObject _partThreeTextActive;
+    private GameObject _shutdownProcedureTextActive;
+    private GameObject _endScreenActive;
+
     public MeterValues meters;
     public Text finalScore; // final score to be displayed in end screen
     public Text timePlayed; // final time to be displayed in end screen
@@ -39,6 +53,38 @@ public class HXSystemState : MonoBehaviour
     private Boolean partThreeComplete = false;
     private Boolean shutDownComplete = false;
 
+    private void SetTestMode(TestMode testMode)
+    {
+        Debug.Log("Test mode is set in HXSystemState");
+        switch (testMode)
+        {
+            case TestMode.Screen:
+                _partOneTextActive = partOneText;
+                _partTwoTextActive = partTwoText;
+                _partThreeTextActive = partThreeText;
+                _shutdownProcedureTextActive = shutdownProcedureText;
+                _endScreenActive = endScreen;
+                break;
+            case TestMode.VR:
+                _partOneTextActive = partOneTextVR;
+                _partTwoTextActive = partTwoTextVR;
+                _partThreeTextActive = partThreeTextVR;
+                _shutdownProcedureTextActive = shutdownProcedureTextVR;
+                _endScreenActive = endScreenVR;
+                break;
+        }
+    }
+
+    private void OnEnable()
+    {
+        TestMode testMode = ModeManagerEvents.GetCurrentMode();
+        SetTestMode(testMode);
+    }
+    
+    void OnDisable() {
+        Restart();
+    }
+
     private void Start() {
         timer.text = "Time: 00:00.00";
         timerVR.text = timer.text;
@@ -48,45 +94,45 @@ public class HXSystemState : MonoBehaviour
         circleValves = FindObjectsOfType<CircleValve>();
         PRVs = FindObjectsOfType<PRVValve>();
         infoGauges = FindObjectsOfType<InfoGauge>();
-        textContent = partOneText.transform;
+        textContent = _partOneTextActive.transform;
 
         StartupCheck();
     }
 
     public void ChangeTube() {
-        partOneText.SetActive(true);
-        partTwoText.SetActive(false);
-        partThreeText.SetActive(false);
-        shutdownProcedureText.SetActive(false);
+        _partOneTextActive.SetActive(true);
+        _partTwoTextActive.SetActive(false);
+        _partThreeTextActive.SetActive(false);
+        _shutdownProcedureTextActive.SetActive(false);
         ResetValves();
         section = 1;
         state = 1;
-        textContent = partOneText.transform;
+        textContent = _partOneTextActive.transform;
     }
 
     public void ChangePlate() {
         partOneComplete = true;
-        partOneText.SetActive(false);
-        partTwoText.SetActive(true);
-        partThreeText.SetActive(false);
-        shutdownProcedureText.SetActive(false);
+        _partOneTextActive.SetActive(false);
+        _partTwoTextActive.SetActive(true);
+        _partThreeTextActive.SetActive(false);
+        _shutdownProcedureTextActive.SetActive(false);
         ResetValves();
         section = 2;
         state = 1;
-        textContent = partTwoText.transform;
+        textContent = _partTwoTextActive.transform;
     }
 
     public void ChangeColumn() {
         partOneComplete = true;
         partTwoComplete = true;
-        partOneText.SetActive(false);
-        partTwoText.SetActive(false);
-        partThreeText.SetActive(true);
-        shutdownProcedureText.SetActive(false);
+        _partOneTextActive.SetActive(false);
+        _partTwoTextActive.SetActive(false);
+        _partThreeTextActive.SetActive(true);
+        _shutdownProcedureTextActive.SetActive(false);
         ResetValves();
         section = 3;
         state = 1;
-        textContent = partThreeText.transform;
+        textContent = _partThreeTextActive.transform;
     }
 
     private void Update() {
@@ -94,7 +140,7 @@ public class HXSystemState : MonoBehaviour
             TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
             finalScore.text = "Score: " + currentScore;
             timePlayed.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
-            endScreen.SetActive(true);
+            _endScreenActive.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
         } else {
             timeStart += Time.deltaTime;
@@ -115,35 +161,35 @@ public class HXSystemState : MonoBehaviour
 
         // completes individual procedures
         if (Input.GetKeyDown("j")) {
-            partOneText.SetActive(true);
-            partTwoText.SetActive(false);
-            partThreeText.SetActive(false);
-            shutdownProcedureText.SetActive(false);
+            _partOneTextActive.SetActive(true);
+            _partTwoTextActive.SetActive(false);
+            _partThreeTextActive.SetActive(false);
+            _shutdownProcedureTextActive.SetActive(false);
             ResetValves();
             section = 1;
             state = 1;
-            textContent = partOneText.transform;
+            textContent = _partOneTextActive.transform;
         } else if (Input.GetKeyDown("k")) {
             partOneComplete = true;
-            partOneText.SetActive(false);
-            partTwoText.SetActive(true);
-            partThreeText.SetActive(false);
-            shutdownProcedureText.SetActive(false);
+            _partOneTextActive.SetActive(false);
+            _partTwoTextActive.SetActive(true);
+            _partThreeTextActive.SetActive(false);
+            _shutdownProcedureTextActive.SetActive(false);
             ResetValves();
             section = 2;
             state = 1;
-            textContent = partTwoText.transform;
+            textContent = _partTwoTextActive.transform;
         } else if (Input.GetKeyDown("l")) {
             partOneComplete = true;
             partTwoComplete = true;
-            partOneText.SetActive(false);
-            partTwoText.SetActive(false);
-            partThreeText.SetActive(true);
-            shutdownProcedureText.SetActive(false);
+            _partOneTextActive.SetActive(false);
+            _partTwoTextActive.SetActive(false);
+            _partThreeTextActive.SetActive(true);
+            _shutdownProcedureTextActive.SetActive(false);
             ResetValves();
             section = 3;
             state = 1;
-            textContent = partThreeText.transform;
+            textContent = _partThreeTextActive.transform;
         }
 
         if (Input.GetKeyDown("c")) {
@@ -153,11 +199,11 @@ public class HXSystemState : MonoBehaviour
                 (section == 3 && state == 11)
             ){
                 section = 4;
-                textContent = shutdownProcedureText.transform;
-                partOneText.SetActive(false);
-                partTwoText.SetActive(false);
-                partThreeText.SetActive(false);
-                shutdownProcedureText.SetActive(true);
+                textContent = _shutdownProcedureTextActive.transform;
+                _partOneTextActive.SetActive(false);
+                _partTwoTextActive.SetActive(false);
+                _partThreeTextActive.SetActive(false);
+                _shutdownProcedureTextActive.SetActive(true);
                 Shutdown();
             } else if (section == 4 && state == 6){
                 if (partOneComplete && partTwoComplete && partThreeComplete) {
@@ -165,27 +211,23 @@ public class HXSystemState : MonoBehaviour
                 }
                 if (partOneComplete && partTwoComplete) {
                     section = 3;
-                    textContent = partThreeText.transform;
-                    partOneText.SetActive(false);
-                    partTwoText.SetActive(false);
-                    partThreeText.SetActive(true);
-                    shutdownProcedureText.SetActive(false);
+                    textContent = _partThreeTextActive.transform;
+                    _partOneTextActive.SetActive(false);
+                    _partTwoTextActive.SetActive(false);
+                    _partThreeTextActive.SetActive(true);
+                    _shutdownProcedureTextActive.SetActive(false);
                     PartThree();
                 } else if (partOneComplete) {
                     section = 2;
-                    textContent = partTwoText.transform;
-                    partOneText.SetActive(false);
-                    partTwoText.SetActive(true);
-                    partThreeText.SetActive(false);
-                    shutdownProcedureText.SetActive(false);
+                    textContent = _partTwoTextActive.transform;
+                    _partOneTextActive.SetActive(false);
+                    _partTwoTextActive.SetActive(true);
+                    _partThreeTextActive.SetActive(false);
+                    _shutdownProcedureTextActive.SetActive(false);
                     PartTwo();
                 }
             }
         }
-    }
-
-    void OnDisable() {
-        Restart();
     }
 
     void UpdateScore() {
@@ -208,7 +250,7 @@ public class HXSystemState : MonoBehaviour
         partThreeComplete = false;
         timeStart = 0;
         currentScore = 0;
-        endScreen.SetActive(false);
+        _endScreenActive.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         UpdateScore();
     }

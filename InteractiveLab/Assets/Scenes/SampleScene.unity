@@ -538,7 +538,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21806667}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 214.40605, y: 281.40405, z: -1.6290014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -546,8 +546,8 @@ Transform:
   - {fileID: 416946099}
   - {fileID: 1622744053}
   - {fileID: 1577471608}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1353370167}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &33259314
 GameObject:
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   id: PI102
   description: 'Pressure Difference (middle to top): '
   value: 0
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!65 &60053202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6223,7 +6223,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1353370167}
     m_Modifications:
     - target: {fileID: 1572161834460568, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_Name
@@ -6235,7 +6235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6255,15 +6255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8209,7 +8209,7 @@ MonoBehaviour:
   id: PI101
   description: 'Pressure Difference (bottom to middle): '
   value: 0
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!65 &283868062
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9499,8 +9499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb45688db90dc9e4da6fa6fe50d50dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
-  xrNode: 4
+  pauseMenuUI: {fileID: 1933273161}
+  xrNode: 5
 --- !u!114 &322405442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9873,7 +9873,7 @@ MonoBehaviour:
   id: TI11
   description: 'Temperature:'
   value: 0
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!1001 &337096268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10122,7 +10122,7 @@ MonoBehaviour:
   id: TI14
   description: 'Steam line outlet temperature: '
   value: 20
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!65 &343909781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17658,6 +17658,10 @@ MonoBehaviour:
   partTwoText: {fileID: 1738929859}
   partThreeText: {fileID: 1263781132}
   endScreen: {fileID: 1620813191}
+  partOneTextVR: {fileID: 415706258}
+  partTwoTextVR: {fileID: 2070109132}
+  partThreeTextVR: {fileID: 1347279899}
+  endScreenVR: {fileID: 1040135890}
   finalScore: {fileID: 959219471}
   timePlayed: {fileID: 1733137764}
 --- !u!1 &541790458
@@ -18043,14 +18047,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547637997}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 214.40605, y: 281.40405, z: -1.6290014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 184068687}
   - {fileID: 1833113641}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1353370167}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549293117
 GameObject:
@@ -20159,7 +20163,7 @@ MonoBehaviour:
   id: PI801
   description: 'Preheater Steam Pressure:'
   value: 0
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!135 &594741898
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21560,7 +21564,7 @@ MonoBehaviour:
   id: TI13
   description: 'Cold water stream outlet temperature: '
   value: 20
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!4 &636461182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
@@ -28984,7 +28988,7 @@ MonoBehaviour:
   id: FS101
   description: 'Reflex Ratio:'
   value: 0
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!135 &872743582
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -31708,7 +31712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60021017f4831549bfa028ac9427f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 50
+  sensitivity: 200
   playerBody: {fileID: 1833113641}
 --- !u!114 &963194230
 MonoBehaviour:
@@ -43123,6 +43127,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350342754}
   m_CullTransparentMesh: 0
+--- !u!1 &1353370165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1353370167}
+  - component: {fileID: 1353370166}
+  m_Layer: 0
+  m_Name: ModeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1353370166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353370165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95fdea42a149ad4e87abb37f3fb0812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMode: 1
+  nonVRObject: {fileID: 547637997}
+  vRObject: {fileID: 21806667}
+  vRPlayer: {fileID: 1761104824}
+--- !u!4 &1353370167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353370165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 547637998}
+  - {fileID: 21806668}
+  - {fileID: 1761104827}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359515247
 GameObject:
   m_ObjectHideFlags: 0
@@ -44528,7 +44582,7 @@ MonoBehaviour:
   id: TI15
   description: 'Cold water stream inlet temperature: '
   value: 10
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!1 &1422690567
 GameObject:
   m_ObjectHideFlags: 0
@@ -52631,6 +52685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320b887dc07c74843adecfe40e4e1790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testMode: 0
   participantId: test
   participantSex: 0
   participantAge: 0
@@ -53350,7 +53405,7 @@ MonoBehaviour:
   id: PI802
   description: 'Reboiler Steam Pressue:'
   value: 0
-  textValue: {fileID: 0}
+  textValue: {fileID: 500963960}
 --- !u!135 &1663634974
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -55775,6 +55830,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cb042b07d2f2e4585682c3d6afb7bf, type: 3}
+--- !u!1 &1761104824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1572161834460568, guid: fca9d4afb3743274e8f7da14019d7e0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 223974226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1761104827 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4520454903943832, guid: fca9d4afb3743274e8f7da14019d7e0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 223974226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1761464885
 GameObject:
   m_ObjectHideFlags: 0
@@ -59614,7 +59681,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dd7c932f0420e4e49ac4769c2281a14c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd7c932f0420e4e49ac4769c2281a14c, type: 3}
@@ -66300,6 +66367,8 @@ MonoBehaviour:
   distanceToSee: 300
   interactCaption: {fileID: 1570280591}
   captionBackground: {fileID: 1385079568}
+  interactCaptionVR: {fileID: 1140358956}
+  captionBackgroundVR: {fileID: 437946770}
   videoPanel: {fileID: 1025275505}
   DeltaV: {fileID: 137924943}
   stateManager: {fileID: 507942906}
@@ -66719,6 +66788,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Leaching
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074971816172904129, guid: d006712785e4a3a48855233ba814c43c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1316304278175163468, guid: d006712785e4a3a48855233ba814c43c,
         type: 3}
@@ -70469,6 +70543,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1733137764}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
+      propertyPath: endScreenVR
+      value: 
+      objectReference: {fileID: 1040135890}
+    - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: meterValues
       value: 
       objectReference: {fileID: 960779982}
@@ -70481,13 +70559,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1817968876}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
+      propertyPath: partOneTextVR
+      value: 
+      objectReference: {fileID: 1630042168}
+    - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: partThreeText
       value: 
       objectReference: {fileID: 1225133157}
     - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
+      propertyPath: partTwoTextVR
+      value: 
+      objectReference: {fileID: 1256731241}
+    - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
+      propertyPath: partThreeTextVR
+      value: 
+      objectReference: {fileID: 1519850278}
+    - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: shutdownProcedureText
       value: 
       objectReference: {fileID: 304861520}
+    - target: {fileID: 1924868172, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
+      propertyPath: shutdownProcedureTextVR
+      value: 
+      objectReference: {fileID: 1749554945}
     - target: {fileID: 2006051457, guid: 01e89e955be2b8f4284a66592aae63d3, type: 3}
       propertyPath: m_Size.x
       value: 15.514192

@@ -10,7 +10,8 @@ namespace Recording
             Male,
             Female
         }
-        
+
+        public TestMode testMode;
         public string participantId;
         public Sex participantSex;
         public int participantAge;
@@ -62,6 +63,7 @@ namespace Recording
             _outputTable.AddColumn("ComponentID", Type.GetType("System.String"));
             _outputTable.AddColumn("ComponentState", Type.GetType("System.String"));
             _outputTable.AddColumn("SystemType", Type.GetType("System.String"));
+            _outputTable.AddColumn("TestMode", Type.GetType("System.String"));
             _outputTable.AddColumn("ParticipantID", Type.GetType("System.String"));
             _outputTable.AddColumn("ParticipantSex", Type.GetType("System.String"));
             _outputTable.AddColumn("ParticipantAge", Type.GetType("System.Int32"));
@@ -74,6 +76,7 @@ namespace Recording
                 new TableCell<object>("SystemType", _systemType), 
                 new TableCell<object>("ComponentID", componentID), 
                 new TableCell<object>("ComponentState", componentState),
+                new TableCell<object>("TestMode", testMode.ToString()),
                 new TableCell<object>("ParticipantID", participantId),
                 new TableCell<object>("ParticipantSex", participantSex.ToString()),
                 new TableCell<object>("ParticipantAge", participantAge)

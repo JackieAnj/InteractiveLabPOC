@@ -65,6 +65,8 @@
      <Compile Include="Assets\Scripts\LeachingSystem.cs" />
      <Compile Include="Assets\Scripts\LocomotionController.cs" />
      <Compile Include="Assets\Scripts\MeterValues.cs" />
+     <Compile Include="Assets\Scripts\ModeManager.cs" />
+     <Compile Include="Assets\Scripts\ModeManagerEvents.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\PDSystemState.cs" />
@@ -76,6 +78,7 @@
      <Compile Include="Assets\Scripts\Sound.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Scripts\StateManager.cs" />
+     <Compile Include="Assets\Scripts\TestMode.cs" />
      <Compile Include="Assets\Scripts\VideoController.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

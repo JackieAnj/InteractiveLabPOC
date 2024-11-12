@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Recording;
 using UnityEngine;
@@ -16,17 +17,42 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
     public float distanceToSee;
+    
     public Text interactCaption;
     public Image captionBackground;
+
+    public Text interactCaptionVR;
+    public Image captionBackgroundVR;
+
+    private Text _interactCaptionActive;
+    private Image _captionBackgroundActive;
+    
     public GameObject videoPanel;
     public GameObject DeltaV;
     public GameObject stateManager;
     private Transform _selection;
+    
+    private void OnEnable()
+    {
+        TestMode testMode = ModeManagerEvents.GetCurrentMode();
+        SetTestMode(testMode);
+    }
 
-
-
-    private void Start() {
-        interactCaption.text = "";
+    private void SetTestMode(TestMode mode)
+    {
+        switch (mode)
+        {
+            case TestMode.Screen:
+                _interactCaptionActive = interactCaption;
+                _captionBackgroundActive = captionBackground;
+                break;
+            case TestMode.VR:
+                _interactCaptionActive = interactCaptionVR;
+                _captionBackgroundActive = captionBackgroundVR;
+                break;
+        }
+        
+        _interactCaptionActive.text = "";
     }
 
     private void Update() {
@@ -36,10 +62,12 @@ public class SelectionManager : MonoBehaviour
 
         if (_selection != null) {
             var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
-            _selection = null;
-            interactCaption.text = "";
-            captionBackground.enabled = false;
+            if (selectionRenderer != null) {
+                selectionRenderer.material = defaultMaterial;  // Reset material to default
+            }
+            _selection = null;  // Clear the current selection
+            _interactCaptionActive.text = "";  // Clear the interaction caption
+            _captionBackgroundActive.enabled = false;  // Disable the caption background
         }
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
@@ -55,8 +83,8 @@ public class SelectionManager : MonoBehaviour
             _selection = selection;
 
             if (selection.CompareTag(InfoGaugeTag)) {
-                interactCaption.text = hit.collider.gameObject.GetComponent<InfoGauge>().description + hit.collider.gameObject.GetComponent<InfoGauge>().value;
-                captionBackground.enabled = true;
+                _interactCaptionActive.text = hit.collider.gameObject.GetComponent<InfoGauge>().description + hit.collider.gameObject.GetComponent<InfoGauge>().value;
+                _captionBackgroundActive.enabled = true;
             }
 
             if (selection.CompareTag(twoWayValveTag)) {
@@ -66,8 +94,8 @@ public class SelectionManager : MonoBehaviour
                 } else {
                     action = "Open ";
                 }
-                interactCaption.text = action + hit.collider.gameObject.GetComponent<TwoWayValve>().id + " [Left Click]";
-                captionBackground.enabled = true;
+                _interactCaptionActive.text = action + hit.collider.gameObject.GetComponent<TwoWayValve>().id + " [Left Click]";
+                _captionBackgroundActive.enabled = true;
 
                 if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<TwoWayValve>();
@@ -81,8 +109,8 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(threeWayValveTag)) {
-                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + "(" + hit.collider.gameObject.GetComponent<ThreeWayValve>().position + ") [Left Click]";
-                captionBackground.enabled = true;
+                _interactCaptionActive.text = "Turn " + hit.collider.gameObject.GetComponent<ThreeWayValve>().id + "(" + hit.collider.gameObject.GetComponent<ThreeWayValve>().position + ") [Left Click]";
+                _captionBackgroundActive.enabled = true;
 
                 if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<ThreeWayValve>();
@@ -102,8 +130,8 @@ public class SelectionManager : MonoBehaviour
                 } else {
                     action = "Open ";
                 }
-                interactCaption.text = action + hit.collider.gameObject.GetComponent<CircleValve>().id + " [Left Click]";
-                captionBackground.enabled = true;
+                _interactCaptionActive.text = action + hit.collider.gameObject.GetComponent<CircleValve>().id + " [Left Click]";
+                _captionBackgroundActive.enabled = true;
 
                 if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<CircleValve>();
@@ -117,13 +145,13 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(condensationTrapTag)) {
-                interactCaption.text = "Condensation Trap Liquid Level: " + hit.collider.gameObject.GetComponent<CondensationTrap>().liquidLevel + "%";
-                captionBackground.enabled = true;
+                _interactCaptionActive.text = "Condensation Trap Liquid Level: " + hit.collider.gameObject.GetComponent<CondensationTrap>().liquidLevel + "%";
+                _captionBackgroundActive.enabled = true;
             }
 
             if (selection.CompareTag(PRVTag)) {
-                interactCaption.text = "Turn " + hit.collider.gameObject.GetComponent<PRVValve>().id + "(current: " + hit.collider.gameObject.GetComponent<PRVValve>().turn + ")\n Left [Right Click], Right [Left Click]";
-                captionBackground.enabled = true;
+                _interactCaptionActive.text = "Turn " + hit.collider.gameObject.GetComponent<PRVValve>().id + "(current: " + hit.collider.gameObject.GetComponent<PRVValve>().turn + ")\n Left [Right Click], Right [Left Click]";
+                _captionBackgroundActive.enabled = true;
 
                 if (Input.GetMouseButtonDown(0)) {
                     var target = hit.collider.gameObject.GetComponent<PRVValve>();
@@ -145,8 +173,8 @@ public class SelectionManager : MonoBehaviour
             }
 
             if (selection.CompareTag(ComputerTag)) {
-                interactCaption.text = "Access DeltaV [Left Click]";
-                captionBackground.enabled = true;
+                _interactCaptionActive.text = "Access DeltaV [Left Click]";
+                _captionBackgroundActive.enabled = true;
 
                 if (Input.GetMouseButtonDown(0)) {
                     DeltaV.SetActive(true);
