@@ -14,6 +14,15 @@ public class ModeManager : MonoBehaviour
     void Start()
     {
         Debug.Log($"Current test mode: {testMode}");
+        
+        // set the test mode in LateUpdate to ensure all other classes have been enabled and subscribed to the event
+        if (!_testModeSet)
+        {
+            // broadcast the test modes too all other classes
+            ModeManagerEvents.SetTestMode(testMode);
+            _testModeSet = true;
+            Debug.Log("Test mode set");
+        }
 
         switch (testMode)
         {
@@ -32,14 +41,7 @@ public class ModeManager : MonoBehaviour
     
     void LateUpdate()
     {
-        // set the test mode in LateUpdate to ensure all other classes have been enabled and subscribed to the event
-        if (!_testModeSet)
-        {
-            // broadcast the test modes too all other classes
-            ModeManagerEvents.SetTestMode(testMode);
-            _testModeSet = true;
-            Debug.Log("Test mode set");
-        }
+        
     }
     
     

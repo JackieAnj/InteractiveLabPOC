@@ -49,7 +49,7 @@ public class PDSystemState : MonoBehaviour
 
     void SetTestMode(TestMode testMode)
     {
-        Debug.Log("Test mode is set in PDSystemState");
+        Debug.Log($"Test mode is set {testMode} in PDSystemState");
         
         switch (testMode)
         {
@@ -118,12 +118,12 @@ public class PDSystemState : MonoBehaviour
         if (section == 1 && !partOneComplete)
         {
             _partOneTextActive.SetActive(true);
-            textContent = partOneText.transform;
+            textContent = _partOneTextActive.transform;
         } else if (section == 1 && partOneComplete) {
             // section = 2;
             // _partOneTextActive.SetActive(false);
             // _partTwoTextActive.SetActive(true);
-            // textContent = partTwoText.transform;
+            // textContent = _partTwoTextActive.transform;
             // state = 0;
             // onChange();
             _endScreenActive.SetActive(true);
@@ -135,14 +135,14 @@ public class PDSystemState : MonoBehaviour
         //     section = 3;
         //     _partTwoTextActive.SetActive(false);
         //     _partThreeTextActive.SetActive(true);
-        //     textContent = partThreeText.transform;
+        //     textContent = _partThreeTextActive.transform;
         //     state = 0;
         //     onChange();
         // } else if (section == 3 && partThreeComplete) {
         //     section = 4;
         //     _partThreeTextActive.SetActive(false);
         //     _endScreenActive.SetActive(true);
-        //     textContent = endScreen.transform;
+        //     textContent = _endScreenActive.transform;
         //     state = 0;
         //     onChange();
         // }

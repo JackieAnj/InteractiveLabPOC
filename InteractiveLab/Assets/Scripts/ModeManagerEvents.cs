@@ -12,7 +12,7 @@ public class ModeManagerEvents : MonoBehaviour
     public static void SetTestMode(TestMode mode)
     {
         _currentMode = mode;
-        Debug.Log("Setting test mode in ModeManagerEvents");
+        Debug.Log($"Setting test mode to {_currentMode} in ModeManagerEvents");
         OnSetMode?.Invoke(mode);
     }
     

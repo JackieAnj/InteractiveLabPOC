@@ -65,6 +65,7 @@ public class StateManager : MonoBehaviour
         switch (system)
         {
             case SystemType.HeatExchange:
+                Debug.Log("In StateManager: Activating Heat Exchange System");
                 HeatExchange.GetComponent<HXSystemState>().enabled = true;
                 PackedGreen.GetComponent<PDSystemState>().enabled = false;
                 
@@ -73,6 +74,8 @@ public class StateManager : MonoBehaviour
                 
                 break;
             case SystemType.PackedGreen:
+                Debug.Log("In StateManager: Activating Packed Green System");
+                
                 PackedGreen.GetComponent<PDSystemState>().enabled = true;
                 HeatExchange.GetComponent<HXSystemState>().enabled = false;
                 
