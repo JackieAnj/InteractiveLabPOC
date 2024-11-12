@@ -316,9 +316,7 @@ public class HXSystemState : MonoBehaviour
         };
 
         foreach (var (currState, condition, action) in steps) {
-            if (!condition())
-                break;
-            
+            if (!condition()) break;
             action();
         }
         UpdateStatus();

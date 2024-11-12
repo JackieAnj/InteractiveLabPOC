@@ -14,15 +14,20 @@ public class StateManager : MonoBehaviour
     
     public GameObject HeatExchange;
     public GameObject HXProcedure;
+    public GameObject HXProcedureVR;
+    
     public GameObject PackedGreen;
     public GameObject PDProcedure;
+    public GameObject PDProcedureVR;
+    
     public GameObject LeachingSystem;
     public GameObject LSProcedure;
-    public SystemType activeSystem = SystemType.HeatExchange;
+    public SystemType activeSystem;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log($"Current active system: {activeSystem}");
         ActivateSystem(activeSystem);
         
         OutputManagerEvents.SetSystemType(activeSystem.ToString());

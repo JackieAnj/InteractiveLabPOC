@@ -109,115 +109,98 @@ public class PDSystemState : MonoBehaviour
             FindObjectOfType<SoundManager>().Play("Correct");
         }
     }
+    
+    // Helper method to set state and update UI text
+    private void SetState(int newState, string gauge1Value = null, string gauge2Value = null)
+    {
+        state = newState;
+        statusUI.text = $"Step {newState}";
+        if (gauge1Value != null) updateGaugeValue("Temp", int.Parse(gauge1Value));
+        if (gauge2Value != null) updateGaugeValue("PI802", int.Parse(gauge2Value));
+    }
+    
+    private void ExecuteSteps(List<(int currState, Func<bool> condition, Action action)> steps)
+    {
+        foreach (var (currState, condition, action) in steps)
+        {
+            Debug.Log($"state {currState} condition {condition} which is {condition()} ");
+            if (!condition()) break;
+            action();
+        }
+        updateStatus();
+    }
 
     private void partOne() {
-        if (checkPosition("HV700", Position.left)) {
-            state = 1;
-            statusUI.text = "Part 1: step " + state;
-            updateGaugeValue("Temp", 10);
-            if (checkPosition("HV701", Position.left)) {
-                state = 2;
-                statusUI.text = "Part 1: step " + state;
-                if (checkTurn("FIC703", 1)) {
-                    state = 3;
-                    statusUI.text = "Part 1: step " + state;
-                    if (checkTurn("HV806", 1)) {
-                        state = 4;
-                        statusUI.text = "Part 1: step " + state;
-                        if (checkTurn("PRV807", 1)) {
-                            state = 5;
-                            statusUI.text = "Part 1: step " + state;
-                            updateGaugeValue("PI802", 10);
-                            if (checkCircle("HV704") && checkCircle("HV705")) {
-                                state = 6;
-                                statusUI.text = "Part 1: step " + state;
-                                if (checkOpen("HV901")) {
-                                    state = 7;
-                                    partOneComplete = true;
-                                    statusUI.text = "Part 1 Complete! Press [C] to perform part 2";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            state = 0;
-        }
+        Debug.Log("In Part One");
 
-        updateStatus();
+        var steps = new List<(int currState, Func<bool> condition, Action action)>
+        {
+            (1, () => checkPosition("HV700", Position.left), () => { SetState(1); updateGaugeValue("Temp", 10); }),
+            (2, () => checkPosition("HV701", Position.left), () => SetState(2)),
+            (3, () => checkTurn("FIC703", 1), () => SetState(3)),
+            (4, () => checkTurn("HV806", 1), () => SetState(4)),
+            (5, () => checkTurn("PRV807", 1), () => { SetState(5); updateGaugeValue("PI802", 10); }),
+            (6, () => checkCircle("HV704") && checkCircle("HV705"), () => SetState(6)),
+            (7, () => checkOpen("HV901"), CompletePartOne)
+        };
+
+        ExecuteSteps(steps);
     }
 
     private void partTwo() {
-        if (checkOpen("HV203")) {
-            state = 1;
-            statusUI.text = "Part 2: step " + state;
-            if (checkTurn("FIC204", 1)) {
-                state = 2;
-                statusUI.text = "Part 2: step " + state;
-                if (!checkOpen("HV403") && checkOpen("HV402") && checkOpen("HV404")) {
-                    state = 3;
-                    statusUI.text = "Part 2: step " + state;
-                    if (checkTurn("FIC401", 1)) {
-                        state = 4;
-                        statusUI.text = "Part 2: step " + state;
-                        if (checkOpen("HV802")) {
-                            state = 5;
-                            statusUI.text = "Part 2: step " + state;
-                            if (checkTurn("PRV803", 1)) {
-                                state = 6;
-                                statusUI.text = "Part 2: step " + state;
-                                updateGaugeValue("PI801", 3);
-                                partTwoComplete = true;
-                                statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            state = 0;
-        }
+        Debug.Log("In Part Two");
 
-        updateStatus();
+        var steps = new List<(int currState, Func<bool> condition, Action action)>
+        {
+            (1, () => checkOpen("HV203"), () => SetState(1)),
+            (2, () => checkTurn("FIC204", 1), () => SetState(2)),
+            (3, () => !checkOpen("HV403") && checkOpen("HV402") && checkOpen("HV404"), () => SetState(3)),
+            (4, () => checkTurn("FIC401", 1), () => SetState(4)),
+            (5, () => checkOpen("HV802"), () => SetState(5)),
+            (6, () => checkTurn("PRV803", 1), () => { SetState(6); updateGaugeValue("PI801", 3); CompletePartTwo(); })
+        };
+
+        ExecuteSteps(steps);
     }
 
     private void partThree() {
+        Debug.Log("In Shutdown Procedure");
+        
         statusUI.text = "Shutdown Procedure";
-        if (!checkOpen("FIC401")) {
-            state = 1;
-            statusUI.text = "Shutdown Procedure: step " + state;
-            if (checkTurn("FIC204", 0)) {
-                state = 2;
-                statusUI.text = "Shutdown Procedure: step " + state;
-                if (!checkOpen("HV203")) {
-                    state = 3;
-                    statusUI.text = "Shutdown Procedure: step " + state;
-                    if (!checkOpen("HS201")) {
-                        state = 4;
-                        statusUI.text = "Shutdown Procedure: step " + state;
-                        if (checkOpen("HV303")) {
-                            state = 5;
-                            statusUI.text = "Shutdown Procedure: step " + state;
-                            if (!checkOpen("HV402") && checkOpen("HV403") && checkTurn("HS301", 1)) {
-                                state = 6;
-                                statusUI.text = "Shutdown Procedure: Step " + state;
-                                if (!checkOpen("FIC703") && !checkOpen("HV701")) {
-                                    state = 7;
-                                    statusUI.text = "Shutdown Procedure: step " + state;
-                                    partThreeComplete = true;
-                                    statusUI.text = "Shutdown Procedure Complete!";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            state = 0;
-        }
+        
+        var steps = new List<(int currState, Func<bool> condition, Action action)>
+        {
+            (1, () => !checkOpen("FIC401"), () => SetState(1)),
+            (2, () => checkTurn("FIC204", 0), () => SetState(2)),
+            (3, () => !checkOpen("HV203"), () => SetState(3)),
+            (4, () => !checkOpen("HS201"), () => SetState(4)),
+            (5, () => checkOpen("HV303"), () => SetState(5)),
+            (6, () => !checkOpen("HV402") && checkOpen("HV403") && checkTurn("HS301", 1), () => SetState(6)),
+            (7, () => !checkOpen("FIC703") && !checkOpen("HV701"), CompletePartThree)
+        };
 
-        updateStatus();
+        ExecuteSteps(steps);
+    }
+    
+    private void CompletePartOne()
+    {
+        SetState(7);
+        partOneComplete = true;
+        statusUI.text = "Part 1 Complete! Press [C] to perform part 2";
+    }
+
+    private void CompletePartTwo()
+    {
+        SetState(6);
+        partTwoComplete = true;
+        statusUI.text = "Part 2 Complete! Press [C] to perform shutdown procedure";
+    }
+
+    private void CompletePartThree()
+    {
+        SetState(7);
+        partThreeComplete = true;
+        statusUI.text = "Shutdown Procedure Complete!";
     }
 
     // check if a two way valve is open given valve id
@@ -247,6 +230,7 @@ public class PDSystemState : MonoBehaviour
     }
 
     private void updateStatus() {
+        Debug.Log($"Update status, current state {state}");
         int index = 0;
         
         for (int i = 1; i < textContent.transform.childCount; ++i) {
@@ -256,6 +240,7 @@ public class PDSystemState : MonoBehaviour
 
             if (index <= state) {
                 content.fontStyle = FontStyles.Strikethrough;
+                Debug.Log("Strikethrough");
             } else {
                 content.fontStyle = FontStyles.Normal;
             }
