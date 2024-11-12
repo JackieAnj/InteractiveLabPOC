@@ -111,7 +111,7 @@ public class StateManager : MonoBehaviour
                 HeatExchange.GetComponent<HXSystemState>().OnChange();
                 break;
             case SystemType.PackedGreen:
-                PackedGreen.GetComponent<PDSystemState>().onChange();
+                PackedGreen.GetComponent<PDSystemState>().OnChange();
                 break;
             case SystemType.LeachingSystem:
                 LeachingSystem.GetComponent<LeachingSystem>().onChange();

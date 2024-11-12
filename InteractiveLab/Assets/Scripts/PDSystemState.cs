@@ -173,7 +173,7 @@ public class PDSystemState : MonoBehaviour
         updateScore();
     }
 
-    public void onChange() {
+    public void OnChange() {
         oldState = state;
 
         if (section == 1) {
@@ -196,8 +196,8 @@ public class PDSystemState : MonoBehaviour
     {
         state = newState;
         statusUI.text = $"Step {newState}";
-        if (gauge1Value != null) updateGaugeValue("Temp", int.Parse(gauge1Value));
-        if (gauge2Value != null) updateGaugeValue("PI802", int.Parse(gauge2Value));
+        if (gauge1Value != null) UpdateGaugeValue("Temp", int.Parse(gauge1Value));
+        if (gauge2Value != null) UpdateGaugeValue("PI802", int.Parse(gauge2Value));
     }
     
     private void ExecuteSteps(List<(int currState, Func<bool> condition, Action action)> steps)
@@ -208,7 +208,7 @@ public class PDSystemState : MonoBehaviour
             if (!condition()) break;
             action();
         }
-        updateStatus();
+        UpdateStatus();
     }
 
     private void PartOne() {
@@ -216,12 +216,12 @@ public class PDSystemState : MonoBehaviour
 
         var steps = new List<(int currState, Func<bool> condition, Action action)>
         {
-            (1, () => checkPosition("HV700", Position.left), () => { SetState(1); updateGaugeValue("Temp", 10); }),
-            (2, () => checkPosition("HV701", Position.left), () => SetState(2)),
-            (3, () => checkTurn("FIC703", 1), () => SetState(3)),
-            (4, () => checkTurn("HV806", 1), () => SetState(4)),
-            (5, () => checkTurn("PRV807", 1), () => { SetState(5); updateGaugeValue("PI802", 10); }),
-            (6, () => checkCircle("HV704") && checkCircle("HV705"), () => SetState(6)),
+            (1, () => CheckPosition("HV700", Position.left), () => { SetState(1); UpdateGaugeValue("Temp", 10); }),
+            (2, () => CheckPosition("HV701", Position.left), () => SetState(2)),
+            (3, () => CheckTurn("FIC703", 1), () => SetState(3)),
+            (4, () => CheckTurn("HV806", 1), () => SetState(4)),
+            (5, () => CheckTurn("PRV807", 1), () => { SetState(5); UpdateGaugeValue("PI802", 10); }),
+            (6, () => CheckCircle("HV704") && CheckCircle("HV705"), () => SetState(6)),
             // (7, () => checkOpen("HV901"), CompletePartOne)
             (7, () => true, CompletePartOne)
         };
@@ -234,12 +234,12 @@ public class PDSystemState : MonoBehaviour
 
         var steps = new List<(int currState, Func<bool> condition, Action action)>
         {
-            (1, () => checkOpen("HV203"), () => SetState(1)),  // todo there is no HV203!
-            (2, () => checkTurn("FIC204", 1), () => SetState(2)),
-            (3, () => !checkOpen("HV403") && checkOpen("HV402") && checkOpen("HV404"), () => SetState(3)),
-            (4, () => checkTurn("FIC401", 1), () => SetState(4)),
-            (5, () => checkOpen("HV802"), () => SetState(5)),
-            (6, () => checkTurn("PRV803", 1), () => { SetState(6); updateGaugeValue("PI801", 3); CompletePartTwo(); })
+            (1, () => CheckOpen("HV203"), () => SetState(1)),  // todo there is no HV203!
+            (2, () => CheckTurn("FIC204", 1), () => SetState(2)),
+            (3, () => !CheckOpen("HV403") && CheckOpen("HV402") && CheckOpen("HV404"), () => SetState(3)),
+            (4, () => CheckTurn("FIC401", 1), () => SetState(4)),
+            (5, () => CheckOpen("HV802"), () => SetState(5)),
+            (6, () => CheckTurn("PRV803", 1), () => { SetState(6); UpdateGaugeValue("PI801", 3); CompletePartTwo(); })
         };
 
         ExecuteSteps(steps);
@@ -252,13 +252,13 @@ public class PDSystemState : MonoBehaviour
         
         var steps = new List<(int currState, Func<bool> condition, Action action)>
         {
-            (1, () => !checkOpen("FIC401"), () => SetState(1)),
-            (2, () => checkTurn("FIC204", 0), () => SetState(2)),
-            (3, () => !checkOpen("HV203"), () => SetState(3)),
-            (4, () => !checkOpen("HS201"), () => SetState(4)),
-            (5, () => checkOpen("HV303"), () => SetState(5)),
-            (6, () => !checkOpen("HV402") && checkOpen("HV403") && checkTurn("HS301", 1), () => SetState(6)),
-            (7, () => !checkOpen("FIC703") && !checkOpen("HV701"), CompletePartThree)
+            (1, () => !CheckOpen("FIC401"), () => SetState(1)),
+            (2, () => CheckTurn("FIC204", 0), () => SetState(2)),
+            (3, () => !CheckOpen("HV203"), () => SetState(3)),
+            (4, () => !CheckOpen("HS201"), () => SetState(4)),
+            (5, () => CheckOpen("HV303"), () => SetState(5)),
+            (6, () => !CheckOpen("HV402") && CheckOpen("HV403") && CheckTurn("HS301", 1), () => SetState(6)),
+            (7, () => !CheckOpen("FIC703") && !CheckOpen("HV701"), CompletePartThree)
         };
 
         ExecuteSteps(steps);
@@ -286,27 +286,28 @@ public class PDSystemState : MonoBehaviour
     }
 
     // check if a two way valve is open given valve id
-    private bool checkOpen(string id) {
+    private bool CheckOpen(string id) {
         return Array.Find(twoWayValves, v => v.id == id).open;
     }
 
     // check if a three way valve is in the right position given valve id and target position
-    private bool checkPosition(string id, Position p) {
+    private bool CheckPosition(string id, Position p) {
         return Array.Find(threeWayValves, v => v.id == id).position == p;
     }
 
     // check if a circle valve is open given valve id
-    private bool checkCircle(string id) {
+    private bool CheckCircle(string id) {
         return Array.Find(circleValves, v => v.id == id).open;
     }
 
     // check if a PRV has at least x number of turns
-    private bool checkTurn(string id, int turn) {
+    private bool CheckTurn(string id, int turn) {
+        Debug.Log($"PRV valve {id} has {Array.Find(PRVs, v => v.id == id).turn} turns");
         return Array.Find(PRVs, v => v.id == id).turn >= turn;
     }
 
     // update the value of an info gauge
-    private void updateGaugeValue(string id, int value) {
+    private void UpdateGaugeValue(string id, int value) {
         InfoGauge target = Array.Find(infoGauges, g => g.id == id);
         target.updateValue(value);
     }
@@ -316,9 +317,10 @@ public class PDSystemState : MonoBehaviour
         // update the child components FinalScore and TimePlayed
         finalScore.text = "Score: " + currentScore;
         TimeSpan timePlaying = TimeSpan.FromSeconds(timeStart);
+        timePlayed.text = "Time Played: " + timePlaying.ToString("mm':'ss'.'ff");
     }
 
-    private void updateStatus() {
+    private void UpdateStatus() {
         Debug.Log($"Update status, current state {state}");
         int index = 0;
         

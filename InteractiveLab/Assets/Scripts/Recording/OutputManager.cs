@@ -11,11 +11,13 @@ namespace Recording
             Female
         }
 
-        public TestMode testMode;
         public string participantId;
         public Sex participantSex;
         public int participantAge;
-        
+
+        private bool _testModeIsSet = false;
+        private TestMode _testMode;
+
         private string _systemType;
 
         private string _outputFolder = "Assets/BehavioralData";
@@ -76,7 +78,7 @@ namespace Recording
                 new TableCell<object>("SystemType", _systemType), 
                 new TableCell<object>("ComponentID", componentID), 
                 new TableCell<object>("ComponentState", componentState),
-                new TableCell<object>("TestMode", testMode.ToString()),
+                new TableCell<object>("TestMode", _testMode.ToString()),
                 new TableCell<object>("ParticipantID", participantId),
                 new TableCell<object>("ParticipantSex", participantSex.ToString()),
                 new TableCell<object>("ParticipantAge", participantAge)
@@ -89,7 +91,10 @@ namespace Recording
         // Update is called once per frame
         void Update()
         {
-        
+            if (!_testModeIsSet)
+            {
+                _testMode = ModeManagerEvents.GetCurrentMode();
+            }
         }
     }
 }
