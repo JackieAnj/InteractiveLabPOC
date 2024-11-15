@@ -87,7 +87,7 @@ public class PDSystemState : MonoBehaviour
     
     private void OnDisable()
     {
-        restart();
+        // restart();
     }
 
     void Start()
@@ -226,8 +226,8 @@ public class PDSystemState : MonoBehaviour
 
         var steps = new List<(int currState, Func<bool> condition, Action action)>
         {
-            (1, () => CheckPosition("HV700", Position.left), () => { SetState(1); UpdateGaugeValue("Temp", 10); }),
-            (2, () => CheckPosition("HV701", Position.left), () => SetState(2)),
+            (1, () => CheckPosition("HV700", Position.bottom), () => { SetState(1); UpdateGaugeValue("Temp", 10); }),
+            (2, () => CheckPosition("HV701", Position.bottom), () => SetState(2)),
             (3, () => CheckTurn("FIC703", 1), () => SetState(3)),
             (4, () => CheckTurn("HV806", 1), () => SetState(4)),
             (5, () => CheckTurn("PRV807", 1), () => { SetState(5); UpdateGaugeValue("PI802", 10); }),
@@ -341,7 +341,6 @@ public class PDSystemState : MonoBehaviour
 
             if (index <= state) {
                 content.fontStyle = FontStyles.Strikethrough;
-                Debug.Log("Strikethrough");
             } else {
                 content.fontStyle = FontStyles.Normal;
             }
