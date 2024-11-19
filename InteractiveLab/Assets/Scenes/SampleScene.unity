@@ -5377,7 +5377,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -279.43597, w: 0}
+  m_margin: {x: 0, y: 0, z: -717, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7416,6 +7416,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1721776379}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &245257201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 245257202}
+  m_Layer: 0
+  m_Name: axis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &245257202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245257201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -37.04, y: 33.24, z: 241.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1063397906}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &257677828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4229384738288104, guid: 19cb042b07d2f2e4585682c3d6afb7bf,
@@ -12987,7 +13017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -314}
+  m_AnchoredPosition: {x: 0, y: -420}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &407151354
@@ -13072,7 +13102,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -587.2933, w: 0}
+  m_margin: {x: 0, y: 0, z: -717, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13918,7 +13948,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 460693278953249297}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &421556882
+--- !u!114 &421556880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13927,14 +13957,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 421556878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488c90c4ad4c2ed41aaf24e9dafb0e71, type: 3}
+  m_Script: {fileID: 11500000, guid: f945d09679078a6429eb7a4ee967db25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: HV700
-  position: 0
+  open: 0
   target: {fileID: 2138467063}
-  rotateVertical: 0
-  rotateHorizontal: 1
+  rotateVertical: 1
+  rotateHorizontal: 0
 --- !u!65 &421556883
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13980,7 +14010,7 @@ MonoBehaviour:
   m_OnSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 421556882}
+      - m_Target: {fileID: 421556880}
         m_MethodName: TurnValve
         m_Mode: 1
         m_Arguments:
@@ -16829,7 +16859,7 @@ MonoBehaviour:
   PDProcedureVR: {fileID: 596457998}
   LeachingSystem: {fileID: 156070153845956780}
   LSProcedure: {fileID: 0}
-  activeSystem: 0
+  activeSystem: 1
 --- !u!4 &507942908
 Transform:
   m_ObjectHideFlags: 0
@@ -18630,7 +18660,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Replay
+  m_Text: Finish
 --- !u!222 &550896770
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18806,7 +18836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -130}
+  m_AnchoredPosition: {x: 0, y: -163}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &556306805
@@ -18891,7 +18921,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -371.9143, w: 0}
+  m_margin: {x: 0, y: 0, z: -717, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -19786,7 +19816,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 460693278953249297}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &577185965
+--- !u!114 &577185963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19795,13 +19825,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 577185961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488c90c4ad4c2ed41aaf24e9dafb0e71, type: 3}
+  m_Script: {fileID: 11500000, guid: f945d09679078a6429eb7a4ee967db25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: HV701
-  position: 0
+  open: 0
   target: {fileID: 103089114}
-  rotateVertical: 0
+  rotateVertical: 1
   rotateHorizontal: 0
 --- !u!65 &577185966
 BoxCollider:
@@ -19848,7 +19878,7 @@ MonoBehaviour:
   m_OnSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 577185965}
+      - m_Target: {fileID: 577185963}
         m_MethodName: TurnValve
         m_Mode: 1
         m_Arguments:
@@ -20535,7 +20565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -233}
+  m_AnchoredPosition: {x: 0, y: -330}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593520306
@@ -20621,7 +20651,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -587.2933, w: 0}
+  m_margin: {x: 0, y: 0, z: -717, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -25515,7 +25545,7 @@ Transform:
   m_GameObject: {fileID: 750346092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.78, z: 1}
+  m_LocalScale: {x: 0.35, y: 1.78, z: 0.35}
   m_Children: []
   m_Father: {fileID: 1833113641}
   m_RootOrder: 0
@@ -28464,7 +28494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -406}
+  m_AnchoredPosition: {x: 0, y: -510}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &828586159
@@ -28550,7 +28580,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -587.2933, w: 0}
+  m_margin: {x: 0, y: 0, z: -717, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -35076,6 +35106,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 460693278953249297}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1063397906 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8412776599552154799, guid: ca732832743150b40b02f734ae50f8a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 460693278953249297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1063397909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35085,12 +35121,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1063397905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0dd09b7f766b34fb75f0b46bdd3925, type: 3}
+  m_Script: {fileID: 11500000, guid: f945d09679078a6429eb7a4ee967db25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: FIC703
-  turn: 0
-  rotateVertical: 0
+  open: 0
+  target: {fileID: 245257201}
+  rotateVertical: 1
   rotateHorizontal: 0
 --- !u!65 &1063397910
 BoxCollider:
@@ -35139,7 +35176,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1063397909}
         m_MethodName: TurnValve
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -40988,7 +41025,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -181}
+  m_AnchoredPosition: {x: 0, y: -244}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1260255613
@@ -41074,7 +41111,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -587.2933, w: 0}
+  m_margin: {x: 0, y: 0, z: -717, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -47893,8 +47930,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1924868173}
-        m_MethodName: Restart
+      - m_Target: {fileID: 1353370166}
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -68699,7 +68736,7 @@ PrefabInstance:
     - target: {fileID: 470047497702379808, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_TagString
-      value: ThreeWayValve
+      value: TwoWayValve
       objectReference: {fileID: 0}
     - target: {fileID: 475712995158897454, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
@@ -69589,7 +69626,7 @@ PrefabInstance:
     - target: {fileID: 2923617400311318701, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_TagString
-      value: PRV
+      value: TwoWayValve
       objectReference: {fileID: 0}
     - target: {fileID: 2923770367526103909, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
@@ -70354,7 +70391,7 @@ PrefabInstance:
     - target: {fileID: 4918783418035163457, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_TagString
-      value: ThreeWayValve
+      value: TwoWayValve
       objectReference: {fileID: 0}
     - target: {fileID: 4922809938938584364, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}

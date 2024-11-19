@@ -226,9 +226,14 @@ public class PDSystemState : MonoBehaviour
 
         var steps = new List<(int currState, Func<bool> condition, Action action)>
         {
-            (1, () => CheckPosition("HV700", Position.bottom), () => { SetState(1); UpdateGaugeValue("Temp", 10); }),
-            (2, () => CheckPosition("HV701", Position.bottom), () => SetState(2)),
-            (3, () => CheckTurn("FIC703", 1), () => SetState(3)),
+            // todo make them into a two-way valve (from three-way) for now because i can't close the valve in VR
+            // (1, () => CheckPosition("HV700", Position.bottom), () => { SetState(1); UpdateGaugeValue("Temp", 10); }),
+            // (2, () => CheckPosition("HV701", Position.bottom), () => SetState(2)),
+            (1, () => CheckOpen("HV700"), () => { SetState(1); UpdateGaugeValue("Temp", 10); }),
+            (2, () => CheckOpen("HV701"), () => SetState(2)),
+            // todo same as above make FIC703 a two-way valve for now
+            // (3, () => CheckTurn("FIC703", 1), () => SetState(3)),
+            (3, () => CheckOpen("FIC703"), () => SetState(3)),
             (4, () => CheckTurn("HV806", 1), () => SetState(4)),
             (5, () => CheckTurn("PRV807", 1), () => { SetState(5); UpdateGaugeValue("PI802", 10); }),
             (6, () => CheckCircle("HV704") && CheckCircle("HV705"), () => SetState(6)),
@@ -250,7 +255,7 @@ public class PDSystemState : MonoBehaviour
             (2, () => CheckOpen("FIC204"), () => SetState(2)),
             // todo HV401 might be mislabeled (should be HV402), HV403 should be HV404, HV403 is not labeled
             // (3, () => !CheckOpen("HV403") && CheckOpen("HV402") && CheckOpen("HV404"), () => SetState(3)),  
-            (3, () => CheckOpen("HV401") && !CheckOpen("HV403"), () => SetState(3)),
+            (3, () => CheckOpen("HV401") && !CheckOpen("HV403"), () => SetState(3)),  // todo update instructions
             // (4, () => CheckTurn("FIC401", 1), () => SetState(4)),  // this should be the correct one, but because we later need to shut it down, will change the implementation to a two-way valve so the actions are binary
             (4, () => CheckOpen("FIC401"), () => SetState(4)),
             (5, () => CheckOpen("HV802"), () => SetState(5)),
@@ -279,7 +284,7 @@ public class PDSystemState : MonoBehaviour
             // todo HV401 might be mislabeled (should be HV402), HV403 should be HV404, HV403 is not labeled, there is no HS301!!
             // (6, () => !CheckOpen("HV402") && CheckOpen("HV403") && CheckTurn("HS301", 1), () => SetState(6)),
             (6, () => !CheckOpen("HV401") && CheckOpen("HV403"), () => SetState(6)),
-            (7, () => !CheckOpen("FIC703") && !CheckOpen("HV701"), CompletePartThree)
+            (7, () => !CheckOpen("FIC703") && !CheckOpen("HV701"), CompletePartThree) // todo update instructions
         };
 
         ExecuteSteps(steps);

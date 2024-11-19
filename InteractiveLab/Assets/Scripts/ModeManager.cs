@@ -35,6 +35,11 @@ public class ModeManager : MonoBehaviour
         Debug.Log("Test mode set");
         
     }
+
+    public void Exit()
+    {
+        Application.Quit();        
+    }
     
     void LateUpdate()
     {
