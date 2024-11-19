@@ -27,12 +27,9 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        // Transform trans = vrCanvas.transform;
-        _initialPosition = transform.position;
-        _initialRotation = transform.eulerAngles;
-        
-        Debug.Log($"original pos are {_initialPosition.x}, {_initialPosition.y}, {_initialPosition.z}");
-        Debug.Log($"original rot are {_initialRotation.x}, {_initialRotation.y}, {_initialRotation.z}");
+        Transform thisTransform = transform;
+        _initialPosition = thisTransform.position;
+        _initialRotation = thisTransform.eulerAngles;
     }
 
     void GetDevice()
@@ -66,7 +63,6 @@ public class PauseMenu : MonoBehaviour
                 Resume();
             } else {
                 Pause();
-                Debug.Log("Pause menu is active, Paused is " + paused);
             }
         }
         
