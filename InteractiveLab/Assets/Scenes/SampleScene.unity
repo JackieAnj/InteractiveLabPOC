@@ -4482,7 +4482,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3. Adjust the condenser flowrate (with FIC-703)
+  m_text: 3. Adjust the condenser flowrate (with FIC-703) to introduce cooling water
+    to the condenser
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5313,7 +5314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1. Open HV-700 half way
+  m_text: 1. Open HV-700 half way to introduce cooling water to the system
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5960,6 +5961,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 4. Slightly open the reboiler steam isolation valve (HV-806) (1-2 turns)
+    to introduce steam to the reboiler
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15264,7 +15266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1. Open HV-700 half way
+  m_text: 1. Open HV-700 half way to introduce cooling water to the system
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16827,7 +16829,7 @@ MonoBehaviour:
   PDProcedureVR: {fileID: 596457998}
   LeachingSystem: {fileID: 156070153845956780}
   LSProcedure: {fileID: 0}
-  activeSystem: 1
+  activeSystem: 0
 --- !u!4 &507942908
 Transform:
   m_ObjectHideFlags: 0
@@ -18826,7 +18828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2. Slightly open valve HV-701
+  m_text: 2. Slightly open valve HV-701 to introduce cooling water to the system
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20556,6 +20558,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 4. Slightly open the reboiler steam isolation valve (HV-806) (1-2 turns)
+    to introduce steam to the reboiler
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -41007,7 +41010,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3. Adjust the condenser flowrate (with FIC-703)
+  m_text: 3. Adjust the condenser flowrate (with FIC-703) to introduce cooling water
+    to the condenser
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -52610,7 +52614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2. Slightly open valve HV-701
+  m_text: 2. Slightly open valve HV-701 to introduce cooling water to the system
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
