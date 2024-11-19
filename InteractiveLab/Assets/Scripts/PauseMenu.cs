@@ -4,19 +4,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using System.Linq;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.Rendering;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool paused = false;
     public GameObject pauseMenuUI;
+    // public GameObject vrCanvas;
     
     [SerializeField]
     private XRNode xrNode = XRNode.RightHand;
     private List<InputDevice> devices = new List<InputDevice>();
     private InputDevice device;
     private bool wasPressed = false;
-    
+
+    private Vector3 _initialPosition, _initialRotation;
+    private bool _atOriginalLoc = true;
+    private Vector3 _upstairsLoc = new Vector3(3f,3f, -8f);
+    private Vector3 _upstairsRot = new Vector3(0f, 180f, 0f);
+    private bool _changeLocPressed = false;
+
+    private void Start()
+    {
+        // Transform trans = vrCanvas.transform;
+        _initialPosition = transform.position;
+        _initialRotation = transform.eulerAngles;
+        
+        Debug.Log($"original pos are {_initialPosition.x}, {_initialPosition.y}, {_initialPosition.z}");
+        Debug.Log($"original rot are {_initialRotation.x}, {_initialRotation.y}, {_initialRotation.z}");
+    }
+
     void GetDevice()
     {
         InputDevices.GetDevicesAtXRNode(xrNode, devices);
@@ -33,7 +51,8 @@ public class PauseMenu : MonoBehaviour
         {
             GetDevice();
         }
-
+        
+        // check for pause menu
         bool isPressed = device.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed) && pressed;
 
         if (!isPressed) {
@@ -47,6 +66,34 @@ public class PauseMenu : MonoBehaviour
                 Resume();
             } else {
                 Pause();
+                Debug.Log("Pause menu is active, Paused is " + paused);
+            }
+        }
+        
+        // ability to move the pause menu in VR to upstairs
+        if (paused)
+        {
+            bool changeLoc = device.TryGetFeatureValue(CommonUsages.secondaryButton, out bool changeLocPressed) && changeLocPressed;
+            if (!changeLoc)
+                _changeLocPressed = false;
+            
+            if (changeLoc && !_changeLocPressed)
+            {
+                Transform thisTransform = transform;
+                _changeLocPressed = true;
+                if (_atOriginalLoc)
+                {
+                    
+                    thisTransform.position = _upstairsLoc + _initialPosition;
+                    thisTransform.eulerAngles = _upstairsRot;
+                    _atOriginalLoc = false;
+                }
+                else
+                {
+                    thisTransform.position = _initialPosition;
+                    thisTransform.eulerAngles = _initialRotation;
+                    _atOriginalLoc = true;
+                }
             }
         }
     }
