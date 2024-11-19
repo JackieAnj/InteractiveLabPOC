@@ -130,32 +130,32 @@ public class PDSystemState : MonoBehaviour
             _partOneTextActive.SetActive(true);
             textContent = _partOneTextActive.transform;
         } else if (section == 1 && partOneComplete) {
-            // section = 2;
-            // _partOneTextActive.SetActive(false);
-            // _partTwoTextActive.SetActive(true);
-            // textContent = _partTwoTextActive.transform;
+            section = 2;
+            _partOneTextActive.SetActive(false);
+            _partTwoTextActive.SetActive(true);
+            textContent = _partTwoTextActive.transform;
+            state = 0;
+            OnChange();
+            // _endScreenActive.SetActive(true);
+            // textContent = _endScreenActive.transform;
             // state = 0;
-            // onChange();
+            // UpdateEndScreen();
+        }
+        else if (section == 2 && partTwoComplete) {
+            section = 3;
+            _partTwoTextActive.SetActive(false);
+            _partThreeTextActive.SetActive(true);
+            textContent = _partThreeTextActive.transform;
+            state = 0;
+            OnChange();
+        } else if (section == 3 && partThreeComplete) {
+            section = 4;
+            _partThreeTextActive.SetActive(false);
             _endScreenActive.SetActive(true);
             textContent = _endScreenActive.transform;
             state = 0;
-            UpdateEndScreen();
+            OnChange();
         }
-        // else if (section == 2 && partTwoComplete) {
-        //     section = 3;
-        //     _partTwoTextActive.SetActive(false);
-        //     _partThreeTextActive.SetActive(true);
-        //     textContent = _partThreeTextActive.transform;
-        //     state = 0;
-        //     onChange();
-        // } else if (section == 3 && partThreeComplete) {
-        //     section = 4;
-        //     _partThreeTextActive.SetActive(false);
-        //     _endScreenActive.SetActive(true);
-        //     textContent = _endScreenActive.transform;
-        //     state = 0;
-        //     onChange();
-        // }
     }
     
     public void updateScore() {
@@ -232,8 +232,8 @@ public class PDSystemState : MonoBehaviour
             (4, () => CheckTurn("HV806", 1), () => SetState(4)),
             (5, () => CheckTurn("PRV807", 1), () => { SetState(5); UpdateGaugeValue("PI802", 10); }),
             (6, () => CheckCircle("HV704") && CheckCircle("HV705"), () => SetState(6)),
-            // (7, () => checkOpen("HV901"), CompletePartOne)
             (7, () => true, CompletePartOne)
+            // (7, () => checkOpen("HV901"), CompletePartOne)
         };
 
         ExecuteSteps(steps);
@@ -244,10 +244,15 @@ public class PDSystemState : MonoBehaviour
 
         var steps = new List<(int currState, Func<bool> condition, Action action)>
         {
-            (1, () => CheckOpen("HV203"), () => SetState(1)),  // todo there is no HV203!
-            (2, () => CheckTurn("FIC204", 1), () => SetState(2)),
-            (3, () => !CheckOpen("HV403") && CheckOpen("HV402") && CheckOpen("HV404"), () => SetState(3)),
-            (4, () => CheckTurn("FIC401", 1), () => SetState(4)),
+            (1, () => CheckOpen("HV203"), () => SetState(1)),
+            // todo FIC204 should be of type PRV (count turns), but for now use it as a two-way valve so open/close is a binary operation
+            // (2, () => CheckTurn("FIC204", 1), () => SetState(2)),
+            (2, () => CheckOpen("FIC204"), () => SetState(2)),
+            // todo HV401 might be mislabeled (should be HV402), HV403 should be HV404, HV403 is not labeled
+            // (3, () => !CheckOpen("HV403") && CheckOpen("HV402") && CheckOpen("HV404"), () => SetState(3)),  
+            (3, () => CheckOpen("HV401") && !CheckOpen("HV403"), () => SetState(3)),
+            // (4, () => CheckTurn("FIC401", 1), () => SetState(4)),  // this should be the correct one, but because we later need to shut it down, will change the implementation to a two-way valve so the actions are binary
+            (4, () => CheckOpen("FIC401"), () => SetState(4)),
             (5, () => CheckOpen("HV802"), () => SetState(5)),
             (6, () => CheckTurn("PRV803", 1), () => { SetState(6); UpdateGaugeValue("PI801", 3); CompletePartTwo(); })
         };
@@ -263,11 +268,17 @@ public class PDSystemState : MonoBehaviour
         var steps = new List<(int currState, Func<bool> condition, Action action)>
         {
             (1, () => !CheckOpen("FIC401"), () => SetState(1)),
-            (2, () => CheckTurn("FIC204", 0), () => SetState(2)),
+            // (1, () => CheckTurn("FIC401", 0), () => SetState(1)),  // the original was incorrect since this is a PRV need to check for turns
+            // todo FIC204 should be of type PRV (count turns), but for now use it as a two-way valve so open/close is a binary operation
+            // (2, () => CheckTurn("FIC204", 0), () => SetState(2)),
+            (2, () => !CheckOpen("FIC204"), () => SetState(2)),
             (3, () => !CheckOpen("HV203"), () => SetState(3)),
-            (4, () => !CheckOpen("HS201"), () => SetState(4)),
+            // (4, () => !CheckOpen("HS201"), () => SetState(4)),  // todo there is no HS201!!!
+            (4, () => true, () => SetState(4)),
             (5, () => CheckOpen("HV303"), () => SetState(5)),
-            (6, () => !CheckOpen("HV402") && CheckOpen("HV403") && CheckTurn("HS301", 1), () => SetState(6)),
+            // todo HV401 might be mislabeled (should be HV402), HV403 should be HV404, HV403 is not labeled, there is no HS301!!
+            // (6, () => !CheckOpen("HV402") && CheckOpen("HV403") && CheckTurn("HS301", 1), () => SetState(6)),
+            (6, () => !CheckOpen("HV401") && CheckOpen("HV403"), () => SetState(6)),
             (7, () => !CheckOpen("FIC703") && !CheckOpen("HV701"), CompletePartThree)
         };
 
