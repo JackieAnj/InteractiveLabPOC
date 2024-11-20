@@ -13963,8 +13963,8 @@ MonoBehaviour:
   id: HV700
   open: 0
   target: {fileID: 2138467063}
-  rotateVertical: 1
-  rotateHorizontal: 0
+  rotateVertical: 0
+  rotateHorizontal: 1
 --- !u!65 &421556883
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35260,8 +35260,8 @@ MonoBehaviour:
   id: FIC703
   open: 0
   target: {fileID: 245257201}
-  rotateVertical: 1
-  rotateHorizontal: 0
+  rotateVertical: 0
+  rotateHorizontal: 1
 --- !u!65 &1063397910
 BoxCollider:
   m_ObjectHideFlags: 0
