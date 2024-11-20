@@ -1,8 +1,0 @@
-id,Timestamp,ComponentID,ComponentState,SystemType,ParticipantID,ParticipantSex,ParticipantAge
-0,17.16063,HV700,right,PackedGreen,test,Male,0
-1,17.53539,HV700,bottom,PackedGreen,test,Male,0
-2,17.90252,HV700,left,PackedGreen,test,Male,0
-3,23.69095,HV701,right,PackedGreen,test,Male,0
-4,32.73285,HV701,bottom,PackedGreen,test,Male,0
-5,33.45458,HV701,left,PackedGreen,test,Male,0
-6,76.76123,FIC703,Right,PackedGreen,test,Male,0
