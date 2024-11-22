@@ -253,7 +253,7 @@ public class PDSystemState : MonoBehaviour
             // todo FIC204 should be of type PRV (count turns), but for now use it as a two-way valve so open/close is a binary operation
             // (2, () => CheckTurn("FIC204", 1), () => SetState(2)),
             (2, () => CheckOpen("FIC204"), () => SetState(2)),
-            // todo HV401 might be mislabeled (should be HV402), HV403 should be HV404, HV403 is not labeled
+            // todo HV401 might be mislabeled (should be HV404), HV402 is not labeled
             // (3, () => !CheckOpen("HV403") && CheckOpen("HV402") && CheckOpen("HV404"), () => SetState(3)),  
             (3, () => CheckOpen("HV401") && !CheckOpen("HV403"), () => SetState(3)),  // todo update instructions
             // (4, () => CheckTurn("FIC401", 1), () => SetState(4)),  // this should be the correct one, but because we later need to shut it down, will change the implementation to a two-way valve so the actions are binary
@@ -281,7 +281,7 @@ public class PDSystemState : MonoBehaviour
             // (4, () => !CheckOpen("HS201"), () => SetState(4)),  // todo there is no HS201!!!
             (4, () => true, () => SetState(4)),
             (5, () => CheckOpen("HV303"), () => SetState(5)),
-            // todo HV401 might be mislabeled (should be HV402), HV403 should be HV404, HV403 is not labeled, there is no HS301!!
+            // todo HV401 might be mislabeled (should be HV404), HV402 is not labeled, there is no HS301!!
             // (6, () => !CheckOpen("HV402") && CheckOpen("HV403") && CheckTurn("HS301", 1), () => SetState(6)),
             (6, () => !CheckOpen("HV401") && CheckOpen("HV403"), () => SetState(6)),
             (7, () => !CheckOpen("FIC703") && !CheckOpen("HV701"), CompletePartThree) // todo update instructions
