@@ -6636,7 +6636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f945d09679078a6429eb7a4ee967db25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: HV401
+  id: HV402
   open: 0
   target: {fileID: 1240906130}
   rotateVertical: 0
@@ -9024,8 +9024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f945d09679078a6429eb7a4ee967db25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: HV403
-  open: 1
+  id: HV404
+  open: 0
   target: {fileID: 525131177}
   rotateVertical: 0
   rotateHorizontal: 0
@@ -28783,8 +28783,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6. Close valve HV-402, open valve HV-403, then turn on the recirculation
-    pump (HS-301)
+  m_text: 6. Close valve HV-402, open valve HV-403. Remember to turn on the recirculation
+    pump (HS-301) in real life.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -37934,6 +37934,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140358954}
   m_CullTransparentMesh: 0
+--- !u!1 &1140883476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140883477}
+  m_Layer: 0
+  m_Name: axis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1140883477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140883476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -93.3, y: 83.5, z: 22.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 460693278953249309}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143584572
 GameObject:
   m_ObjectHideFlags: 0
@@ -44530,7 +44560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95fdea42a149ad4e87abb37f3fb0812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 1
+  testMode: 0
   nonVRObject: {fileID: 547637997}
   vRObject: {fileID: 21806667}
   vRPlayer: {fileID: 1761104824}
@@ -54108,8 +54138,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6. Close valve HV-402, open valve HV-403, then turn on the recirculation
-    pump (HS-301)
+  m_text: 6. Close valve HV-402, open valve HV-403. Remember to turn on the recirculation
+    pump (HS-301) in real life.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -71759,7 +71789,7 @@ PrefabInstance:
     - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.38
+      value: -21.18
       objectReference: {fileID: 0}
     - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
@@ -71769,12 +71799,12 @@ PrefabInstance:
     - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.31
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
@@ -71784,7 +71814,7 @@ PrefabInstance:
     - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
@@ -71795,6 +71825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074074547956910626, guid: ca732832743150b40b02f734ae50f8a3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8094574221857840275, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
@@ -72076,6 +72111,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d563bd7133e313644b549f9f506fde58, type: 2}
+    - target: {fileID: 8783713996779828006, guid: ca732832743150b40b02f734ae50f8a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.38
+      objectReference: {fileID: 0}
     - target: {fileID: 8844415730468409241, guid: ca732832743150b40b02f734ae50f8a3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -72251,6 +72291,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d563bd7133e313644b549f9f506fde58, type: 2}
+    - target: {fileID: 9220634895243631758, guid: ca732832743150b40b02f734ae50f8a3,
+        type: 3}
+      propertyPath: m_TagString
+      value: TwoWayValve
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca732832743150b40b02f734ae50f8a3, type: 3}
 --- !u!1 &460693278953249298 stripped
@@ -72397,6 +72442,111 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 460693278953249297}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &460693278953249303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9220634895243631758, guid: ca732832743150b40b02f734ae50f8a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 460693278953249297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &460693278953249304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460693278953249303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 1622744052}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 460693278953249307}
+        m_MethodName: TurnValve
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 507942907}
+        m_MethodName: OnChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CustomReticle: {fileID: 0}
+  m_AttachTransform: {fileID: 0}
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 1
+  m_TrackPosition: 0
+  m_SmoothPosition: 0
+  m_SmoothPositionAmount: 5
+  m_TightenPosition: 0.5
+  m_TrackRotation: 0
+  m_SmoothRotation: 0
+  m_SmoothRotationAmount: 5
+  m_TightenRotation: 0.5
+  m_ThrowOnDetach: 0
+  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
+  m_GravityOnDetach: 0
+  m_RetainTransformParent: 1
 --- !u!65 &460693278953249305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72410,6 +72560,58 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.127999, y: 3.998056, z: 3.9956298}
   m_Center: {x: -39.07153, y: 84.18042, z: 92.81175}
+--- !u!54 &460693278953249306
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460693278953249303}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &460693278953249307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460693278953249303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f945d09679078a6429eb7a4ee967db25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: HV403
+  open: 1
+  target: {fileID: 1140883476}
+  rotateVertical: 0
+  rotateHorizontal: 0
+--- !u!65 &460693278953249308
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460693278953249303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9684908, y: 1.1429981, z: 9.906004}
+  m_Center: {x: -93.72857, y: 83.52164, z: 25.451921}
+--- !u!4 &460693278953249309 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4457826972848607573, guid: ca732832743150b40b02f734ae50f8a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 460693278953249297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6080381675730235547
 PrefabInstance:
   m_ObjectHideFlags: 0
