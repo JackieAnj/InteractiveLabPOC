@@ -40,13 +40,28 @@ namespace Recording
         private void SetSystemType(string systemType)
         {
             _systemType = systemType;
+            _testModeIsSet = true;
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            
+            // EQUIPMENT RECORDING SETUP ========================================
+            _outputTable = new RecordingTable();
+            _outputTable.AddColumn("ComponentID", Type.GetType("System.String"));
+            _outputTable.AddColumn("ComponentState", Type.GetType("System.String"));
+            _outputTable.AddColumn("SystemType", Type.GetType("System.String"));
+            _outputTable.AddColumn("TestMode", Type.GetType("System.String"));
+            _outputTable.AddColumn("ParticipantID", Type.GetType("System.String"));
+            _outputTable.AddColumn("ParticipantSex", Type.GetType("System.String"));
+            _outputTable.AddColumn("ParticipantAge", Type.GetType("System.Int32"));
+        }
+
+        void SetOutputFileName()
+        {
             // Create output file name
-            _outputFileName = $"{_outputFolder}/par_{participantId}_{DateTime.Now:yyyyMMdd}.csv";
+            _outputFileName = $"{_outputFolder}/par_{participantId}_{_testMode}_{DateTime.Now:yyyyMMdd}.csv";
             
             // check for duplicate files
             int fileCount = 0;
@@ -59,16 +74,6 @@ namespace Recording
                 string newChar = $"_{fileCount}.csv";
                 _outputFileName = _outputFileName.Replace(oldChar, newChar);
             }
-            
-            // EQUIPMENT RECORDING SETUP ========================================
-            _outputTable = new RecordingTable();
-            _outputTable.AddColumn("ComponentID", Type.GetType("System.String"));
-            _outputTable.AddColumn("ComponentState", Type.GetType("System.String"));
-            _outputTable.AddColumn("SystemType", Type.GetType("System.String"));
-            _outputTable.AddColumn("TestMode", Type.GetType("System.String"));
-            _outputTable.AddColumn("ParticipantID", Type.GetType("System.String"));
-            _outputTable.AddColumn("ParticipantSex", Type.GetType("System.String"));
-            _outputTable.AddColumn("ParticipantAge", Type.GetType("System.Int32"));
         }
     
         void RecordOutput(string componentID, string componentState)
@@ -94,6 +99,7 @@ namespace Recording
             if (!_testModeIsSet)
             {
                 _testMode = ModeManagerEvents.GetCurrentMode();
+                SetOutputFileName();
             }
         }
     }
