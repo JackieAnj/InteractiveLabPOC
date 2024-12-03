@@ -12392,7 +12392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -262}
+  m_AnchoredPosition: {x: -383, y: -295}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383983979
@@ -14597,7 +14597,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1. Fully Open HV-203
+  m_text: 1. Fully Open HV-203 to introduce feed to the column and start the bottom
+    flow
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15562,7 +15563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5. Open valve HV-303
+  m_text: 5. Open valve HV-303 to allow the tank to drain by gravity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21572,7 +21573,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &619824617
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24769,7 +24770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -418}
+  m_AnchoredPosition: {x: -383, y: -465}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &720170501
@@ -28761,7 +28762,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.5, y: -130}
+  m_AnchoredPosition: {x: 8.5, y: -180}
   m_SizeDelta: {x: 898.9579, y: 309.99872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &834638753
@@ -28783,8 +28784,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6. Close valve HV-402, open valve HV-403. Remember to turn on the recirculation
-    pump (HS-301) in real life.
+  m_text: 6. Return contents of bottoms tank to the feed tank by closing valve HV-402
+    and open valve HV-403. Remember to turn on the recirculation pump (HS-301) in
+    real life.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29123,7 +29125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -130}
+  m_AnchoredPosition: {x: -383, y: -165}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842106095
@@ -31245,7 +31247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.5, y: -130}
+  m_AnchoredPosition: {x: 8.5, y: -260}
   m_SizeDelta: {x: 898.9579, y: 309.99872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &910330955
@@ -33295,7 +33297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -130}
+  m_AnchoredPosition: {x: -383, y: -165}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978548440
@@ -39681,7 +39683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -345}
+  m_AnchoredPosition: {x: -383, y: -380}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216596034
@@ -43069,7 +43071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -181}
+  m_AnchoredPosition: {x: -383, y: -210}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1310088004
@@ -43091,7 +43093,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3. Ensure HV-403 is closed and HV-402 and HV-404 are open
+  m_text: 3. Ensure HV-403 is closed and HV-402 and HV-404 are open to start the
+    bottom flow
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -44560,7 +44563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95fdea42a149ad4e87abb37f3fb0812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 0
+  testMode: 1
   nonVRObject: {fileID: 547637997}
   vRObject: {fileID: 21806667}
   vRPlayer: {fileID: 1761104824}
@@ -46054,7 +46057,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1. Fully Open HV-203
+  m_text: 1. Fully Open HV-203 to introduce feed to the column and start the bottom
+    flow
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -51398,7 +51402,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.5, y: -185}
+  m_AnchoredPosition: {x: 8.5, y: -317}
   m_SizeDelta: {x: 898.9579, y: 309.99872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569472577
@@ -51602,7 +51606,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Interact [E]
+  m_Text: 
 --- !u!222 &1570280592
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54116,7 +54120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.5, y: -185}
+  m_AnchoredPosition: {x: 8.5, y: -231}
   m_SizeDelta: {x: 898.9579, y: 309.99872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1632087390
@@ -54138,8 +54142,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6. Close valve HV-402, open valve HV-403. Remember to turn on the recirculation
-    pump (HS-301) in real life.
+  m_text: 6. Return contents of bottoms tank to the feed tank by closing valve HV-402
+    and open valve HV-403. Remember to turn on the recirculation pump (HS-301) in
+    real life.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -54768,7 +54773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -345}
+  m_AnchoredPosition: {x: -383, y: -380}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1657386182
@@ -59803,7 +59808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -262}
+  m_AnchoredPosition: {x: -383, y: -295}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840402378
@@ -64928,7 +64933,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -418}
+  m_AnchoredPosition: {x: -383, y: -465}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2037246162
@@ -65322,7 +65327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5. Open valve HV-303
+  m_text: 5. Open valve HV-303 to allow the tank to drain by gravity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -66558,7 +66563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -383, y: -181}
+  m_AnchoredPosition: {x: -383, y: -210}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2085112709
@@ -66580,7 +66585,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3. Ensure HV-403 is closed and HV-402 and HV-404 are open
+  m_text: 3. Ensure HV-403 is closed and HV-402 and HV-404 are open to start the
+    bottom flow
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -72646,8 +72652,8 @@ MonoBehaviour:
   id: HV403
   open: 1
   target: {fileID: 1140883476}
-  rotateVertical: 0
-  rotateHorizontal: 0
+  rotationAxis: 2
+  rotationUnit: 90
 --- !u!65 &460693278953249308
 BoxCollider:
   m_ObjectHideFlags: 0
