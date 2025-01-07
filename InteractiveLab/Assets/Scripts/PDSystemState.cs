@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Recording;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -309,24 +310,34 @@ public class PDSystemState : MonoBehaviour
     }
 
     // check if a two way valve is open given valve id
-    private bool CheckOpen(string id) {
-        return Array.Find(twoWayValves, v => v.id == id).open;
+    private bool CheckOpen(string id)
+    {
+        bool isOpen = Array.Find(twoWayValves, v => v.id == id).open;
+        OutputManagerEvents.RecordToOutput(id, isOpen ? "Open" : "Close");
+        return isOpen;
     }
 
     // check if a three way valve is in the right position given valve id and target position
     private bool CheckPosition(string id, Position p) {
-        return Array.Find(threeWayValves, v => v.id == id).position == p;
+        bool isOpen = Array.Find(threeWayValves, v => v.id == id).position == p;
+        OutputManagerEvents.RecordToOutput(id, isOpen ? "Open" : "Close");
+        return isOpen;
     }
 
     // check if a circle valve is open given valve id
     private bool CheckCircle(string id) {
-        return Array.Find(circleValves, v => v.id == id).open;
+        bool isOpen = Array.Find(circleValves, v => v.id == id).open;
+        OutputManagerEvents.RecordToOutput(id, isOpen ? "Open" : "Close");
+        return isOpen;
     }
 
     // check if a PRV has at least x number of turns
-    private bool CheckTurn(string id, int turn) {
+    private bool CheckTurn(string id, int turn)
+    {
+        int nTurns = Array.Find(PRVs, v => v.id == id).turn;
         Debug.Log($"PRV valve {id} has {Array.Find(PRVs, v => v.id == id).turn} turns");
-        return Array.Find(PRVs, v => v.id == id).turn >= turn;
+        OutputManagerEvents.RecordToOutput(id, nTurns.ToString());
+        return  nTurns >= turn;
     }
 
     // update the value of an info gauge

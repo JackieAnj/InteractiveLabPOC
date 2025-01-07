@@ -118,7 +118,7 @@ public class SelectionManager : MonoBehaviour
                     stateManager.GetComponent<StateManager>().OnChange();
                     
                     // record action
-                    OutputManagerEvents.RecordToOutput(target.id, target.open ? "Open" : "Close");
+                    // OutputManagerEvents.RecordToOutput(target.id, target.open ? "Open" : "Close");
                 }
             }
 
@@ -133,7 +133,7 @@ public class SelectionManager : MonoBehaviour
                     stateManager.GetComponent<StateManager>().OnChange();
                     
                     // record action
-                    OutputManagerEvents.RecordToOutput(target.id, target.position.ToString());
+                    // OutputManagerEvents.RecordToOutput(target.id, target.position.ToString());
                 }
             }
 
@@ -154,7 +154,7 @@ public class SelectionManager : MonoBehaviour
                     stateManager.GetComponent<StateManager>().OnChange();
                     
                     // record action
-                    OutputManagerEvents.RecordToOutput(target.id, target.open ? "Open" : "Close");
+                    // OutputManagerEvents.RecordToOutput(target.id, target.open ? "Open" : "Close");
                 }
             }
 
@@ -173,7 +173,7 @@ public class SelectionManager : MonoBehaviour
                     stateManager.GetComponent<StateManager>().OnChange();
                     
                     // record action
-                    OutputManagerEvents.RecordToOutput(target.id, "Right");
+                    // OutputManagerEvents.RecordToOutput(target.id, "Right");
                 }
 
                 if (Input.GetMouseButtonDown(1)) {
@@ -182,7 +182,7 @@ public class SelectionManager : MonoBehaviour
                     stateManager.GetComponent<StateManager>().OnChange();
                     
                     // record action
-                    OutputManagerEvents.RecordToOutput(target.id, "Left");
+                    // OutputManagerEvents.RecordToOutput(target.id, "Left");
                 }
             }
 
