@@ -21,8 +21,8 @@ public class PauseMenu : MonoBehaviour
 
     private Vector3 _initialPosition, _initialRotation;
     private bool _atOriginalLoc = true;
-    private Vector3 _upstairsLoc = new Vector3(3f,3f, -8f);
-    private Vector3 _upstairsRot = new Vector3(0f, 180f, 0f);
+    private Vector3 _upstairsLoc = new Vector3(4f,3f, -7f);
+    private Vector3 _upstairsRot = new Vector3(0f, 90f, 0f);
     private bool _changeLocPressed = false;
 
     private void Start()

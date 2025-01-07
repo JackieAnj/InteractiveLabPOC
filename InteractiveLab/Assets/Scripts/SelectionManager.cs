@@ -32,10 +32,11 @@ public class SelectionManager : MonoBehaviour
     public GameObject stateManager;
     private Transform _selection;
     
+    private TestMode _testMode;
+    private bool _modeIsSet;
+    
     private void OnEnable()
     {
-        TestMode testMode = ModeManagerEvents.GetCurrentMode();
-        SetTestMode(testMode);
     }
 
     private void SetTestMode(TestMode mode)
@@ -53,9 +54,18 @@ public class SelectionManager : MonoBehaviour
         }
         
         _interactCaptionActive.text = "";
+        
+        Debug.Log($"TestMode is set {mode} in SelectionManager");
     }
 
     private void Update() {
+        if (!_modeIsSet)
+        {
+            _testMode = ModeManagerEvents.GetCurrentMode();
+            SetTestMode(_testMode);
+            _modeIsSet = true;
+        }
+        
         if (Input.GetKeyDown("t")) {
             videoPanel.SetActive(!videoPanel.activeSelf);
         }
@@ -73,7 +83,9 @@ public class SelectionManager : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, distanceToSee) && !PauseMenu.paused) {
+        if (Physics.Raycast(ray, out hit, distanceToSee) && !PauseMenu.paused) 
+        {
+            
             var selection = hit.transform;
             
             // Debug.Log($"selection tag is {selection.tag}");
