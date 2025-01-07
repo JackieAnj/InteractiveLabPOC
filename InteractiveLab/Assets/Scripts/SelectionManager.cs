@@ -79,7 +79,8 @@ public class SelectionManager : MonoBehaviour
             _interactCaptionActive.text = "";  // Clear the interaction caption
             _captionBackgroundActive.enabled = false;  // Disable the caption background
         }
-
+        
+        // todo check if I can get raycast from joystick controller
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
