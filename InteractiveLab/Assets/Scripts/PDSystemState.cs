@@ -254,11 +254,14 @@ public class PDSystemState : MonoBehaviour
             // todo FIC204 should be of type PRV (count turns), but for now use it as a two-way valve so open/close is a binary operation
             // (2, () => CheckTurn("FIC204", 1), () => SetState(2)),
             (2, () => CheckOpen("FIC204"), () => SetState(2)),
-            (3, () => CheckOpen("HV402") && !CheckOpen("HV403") && CheckOpen("HV404"), () => SetState(3)),
+            // (3, () => CheckOpen("HV402") && !CheckOpen("HV403") && CheckOpen("HV404"), () => SetState(3)),
             // (4, () => CheckTurn("FIC401", 1), () => SetState(4)),  // this should be the correct one, but because we later need to shut it down, will change the implementation to a two-way valve so the actions are binary
-            (4, () => CheckOpen("FIC401"), () => SetState(4)),
-            (5, () => CheckOpen("HV802"), () => SetState(5)),
-            (6, () => CheckTurn("PRV803", 1), () => { SetState(6); UpdateGaugeValue("PI801", 3); CompletePartTwo(); }),
+            (3, () => !CheckOpen("HV403"), () => SetState(3)),
+            (4, () => CheckOpen("HV402"), () => SetState(4)),
+            (5, () => CheckOpen("HV404"), () => SetState(5)),
+            (6, () => CheckOpen("FIC401"), () => SetState(6)),
+            (7, () => CheckOpen("HV802"), () => SetState(7)),
+            (8, () => CheckTurn("PRV803", 1), () => { SetState(8); UpdateGaugeValue("PI801", 3); CompletePartTwo(); }),
         };
 
         ExecuteSteps(steps);
