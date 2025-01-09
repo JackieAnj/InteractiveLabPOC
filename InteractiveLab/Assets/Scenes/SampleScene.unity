@@ -54793,9 +54793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320b887dc07c74843adecfe40e4e1790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantId: 4
-  participantSex: 1
-  participantAge: 25
+  participantId: 2
+  participantSex: 0
+  participantAge: 27
 --- !u!4 &1633435584
 Transform:
   m_ObjectHideFlags: 0
